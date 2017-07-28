@@ -1,6 +1,6 @@
 <template>
   <div class="biaoti">
-    <span class="tiao"></span>
+    <!-- <span class="tiao"></span> -->
     <span class="biaoti">标&nbsp&nbsp&nbsp&nbsp题</span>
     <el-form ref="form" :model="form" label-width="80px" class="biao">
         <el-input v-model="form.name"></el-input>
@@ -27,15 +27,15 @@
   margin-top: 20px;
 }
 .biao{
-  width: 900px;
+  width: 100%;
   margin-left: 20px;
   margin-top: 10px;
 }
 .tiao{
-  width:900px;
+  width:100%;
   border-top:2px solid red;
   position: absolute;
-  top: 323px;
+  top: 308px;
   left:0;
   margin-left:20px;
 }

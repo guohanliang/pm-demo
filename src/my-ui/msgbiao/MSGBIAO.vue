@@ -1,7 +1,7 @@
 <template>
   <div class="msgbiao">
-    <span class="tiao"></span>
-    <table border="1" cellspacing="0" cellpadding="0" width="900" height="200" class="one_tab">
+    <!-- <span class="tiao"></span> -->
+    <table border="1" cellspacing="0" cellpadding="0" width="1015" height="200" class="one_tab">
       <tr align="center">
         <td class="ted">
           <span class="bianhao">申请编号</span>
@@ -70,14 +70,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .tiao{
-    width:900px;
+ /* .tiao{
+    width:100%;
     border-top:2px solid red;
     position: absolute;
     top: 35px;
     left:0;
     margin-left:20px;
-  }
+  }*/
 .one_tab{
   background: #fff;
   margin-left:20px;
@@ -94,7 +94,7 @@ export default {
   }
   .bianhao{
     float: left;
-    margin-left: 10px;
+    padding-left: 10px;
     line-height: 50px;
     color: darkgrey;
     width:65px;

@@ -13,10 +13,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .hzcx{
-    width:80%;
+    width:calc(100vw - 280px);
     height:626px;
-    margin-left:20%;
+    margin-left:280px;
     margin-top:100px;
     background: #F8F8FA;
+    overflow: hidden;
   }
+  
 </style>

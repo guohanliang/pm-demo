@@ -1,69 +1,84 @@
-<template>
+    <template>
   <div class="dzcx">
     <my-rightcenter></my-rightcenter>
     <my-rightbiao></my-rightbiao>
-    <my-paging></my-paging>
-    <div @click="getNowFormatDate()" class="nihao"></div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      testVuex: '00000',
-    }
-  },
-  created (){
-    console.log("test vues = " + this.testVuex);//组件中定义初始化的值    00000
+    import {mapState} from 'vuex'
+    import {mapMutations} from 'vuex'
+    import {mapActions} from 'vuex'
+    import {mapGetters} from 'vuex'
 
-    this.testVuex = this.$store.state.dzcx.testVuex;//把store中的值赋值到组件中
-    console.log("test vues = " + this.testVuex);     //123456
+    export default {
+        data() {
+            return {
+                aaa: '00000',
+            }
+        },
+        created (){
+                    //组件中定义初始化的值    00000
+            // console.log("test vues = " + this.testVuex);
 
-    this.$store.commit("TESTVUEX", "888888");//在mutaition中改变store的值
-    console.log("test vues = " + this.$store.state.dzcx.testVuex); //是在stroe中经过mutaition改变后的值 888888
-  },
-  computed: {
-    testVuex_01 () {
-      return this.$store.state.dzcx.testVuex;
+            //把store中的值赋值到组件中
+            // this.testVuex = this.$store.state.dzcx.testVuex;
 
+            //123456
+            //console.log("test vues = " + testVuex);     
+
+            //在mutaition中改变store的值
+            // this.$store.commit("TESTVUEX", "888888");
+
+            //是在stroe中经过mutaition改变后的值 888888
+            // console.log("test vues = " + this.$store.state.dzcx.testVuex);  
+        },
+        // 辅助函数
+        // computed:mapState({
+        //     testVuex:state=>state.dzcx.testVuex,
+        //     // testVuex(state){
+        //     //    return this.$store.state.dzcx.testVuex
+        //     // }
+        // }),
+        computed:{
+            testVuex(){
+                return this.$store.state.dzcx.count;
+            },
+            tableData(){   
+                return this.$store.state.dzcx.newData1.t0;
+            }
+        },
+        // computed:mapGetters([
+        //     'smallLength'
+        // ]),
+        // methods:mapMutations([
+        //         'SMALL'
+        //     ]),
+        // methods:mapActions([
+        //         'hello'
+        //     ]),
+        
+        // methods:{
+        //     SMALL(){
+        //         this.$store.commit('SMALL','13')
+        //     }
+        // }
+        methods:{
+            hello(n){
+                this.$store.dispatch('hello',n)
+                console.log(this.$store.getters.smallLength)
+                console.log(this.$store.state.dzcx.small)
+            }
+        }
     }
-  },
-  methods: {
-    getNowFormatDate(){
-      var date = new Date();
-      var seperator1 = "-";
-      var seperator2 = ":";
-      var month = date.getMonth() + 1;
-      var strDate = date.getDate();
-      if(month >= 1 && month <= 9) {
-          month = "0" + month;
-      }
-      if (strDate >= 0 && strDate <=9) {
-          strDate = "0" + strDate;
-      }
-      var currentdate = date.getUTCFullYear() + seperator1 + month + seperator1 + strDate
-       + " " + date.getHours() + seperator2 + date.getMinutes()
-       + seperator2 + date.getSeconds();
-      console.log(currentdate)
-      return currentdate;
-    }
-  }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  @import '../assets/css/sass';
   .dzcx{
-    width:80%;
+    width:calc(100vw - 280px);
     height:626px;
-    margin-left:20%;
+    margin-left:280px;
     margin-top:100px;
-    .nihao{
-      width: 50px;
-      height: 50px;
-      background: $highlight-color;
-    }
   }
 </style>

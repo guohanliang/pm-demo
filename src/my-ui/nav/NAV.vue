@@ -2,14 +2,14 @@
   <div class="nav">
     <el-row class="tac">
       <el-col theme="dark">
-        <h5 class="zhiling">指令干预</h5>
+        <h5>指令干预</h5>
         <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" router>
 
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i><span class="bijiao">资金对账</span></template>
             <el-menu-item-group>
-              <el-menu-item index="/dzcx">对账查询</el-menu-item>
-              <el-menu-item index="/dzgy">对账干预</el-menu-item>
+              <el-menu-item index="Dzcx">对账查询</el-menu-item>
+              <el-menu-item index="Dzgy">对账干预</el-menu-item>
             </el-menu-item-group>
             </el-submenu>
 
@@ -67,7 +67,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .nav{
-    width:20%;
+    width:280px;
     position: absolute;
     top: 100px;
     height:626px;
@@ -90,8 +90,5 @@ export default {
   .bijiao{
     margin-right:100px;
     margin-left:20px;
-  }
-  .zhiling{
-    text-align: center;
   }
 </style>

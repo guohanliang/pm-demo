@@ -14,9 +14,6 @@
           :visible.sync="dialogVisible"
           size="tiny"
           :before-close="handleClose">
-
-
-
           <el-input
             placeholder="输入关键字进行过滤"
             v-model="filterText">
@@ -30,10 +27,6 @@
             :filter-node-method="filterNode"
             ref="tree2">
           </el-tree>
-
-
-
-
           <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -126,12 +119,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .shenpi{
-    width: 900px;
-    margin-left: 20px;
-    margin-top: 120px;
+    width: 80%;
+    margin:50px auto;
+  }
+  @media (max-width: 964px) {
+    .shenpi{
+      width: 700px;
+    }
   }
   .shen_til{
-    width: 900px;
+    width: 100%;
     height: 30px;
   }
   .shen_peo{
@@ -145,7 +142,7 @@ export default {
     font-weight:900;
   }
   .shen_ul{
-    width: 900px;
+    width: 100%;
     background: white;
     border-top:1px solid red;
   }
@@ -156,7 +153,7 @@ export default {
   }
   .shen_one{
     font-size: 16px;
-    color: #999999;
+    color: ##999999;
     line-height: 50px;
     margin-left: 20px;
     color: #838383;
@@ -186,8 +183,9 @@ export default {
     line-height: 40px;
     margin-left:0;
     height: 39px;
-    width: 700px;
+    width: 400px;
     display: block;
+    border-top:1px solid #999999;
   }
   .tijiao{
     float: right;

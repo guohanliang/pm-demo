@@ -2,6 +2,7 @@
   <div id="app">
     <my-left></my-left>
     <my-nav></my-nav>
+    <div class="content"></div>
     <my-righttop></my-righttop>
     <router-view></router-view>
   </div>
@@ -10,9 +11,9 @@
 <script>
 
 
-export default {
+  export default {
 
-}
+  }
 </script>
 
 <style>

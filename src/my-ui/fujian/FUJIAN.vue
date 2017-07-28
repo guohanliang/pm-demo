@@ -57,13 +57,6 @@
         请特别注意不同类型附件的使用方法
       </span>
     </p>
-
-
-
-
-
-
-
     <el-table
       :data="tableData"
       style="width: 900px; margin-left: 20px;">

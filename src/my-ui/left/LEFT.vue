@@ -18,7 +18,7 @@ export default {
 <style scoped>
   .left{
     background: lightseagreen;
-    width: 20%;
+    width: 280px;
     height:100px;
     position: absolute;
     top:0;
@@ -30,7 +30,5 @@ export default {
     font-size:16px;
     line-height: 100px;
     height:100px;
-    display: block;
-    width: 256px;
   }
 </style>

@@ -13,76 +13,43 @@ import Ywcs from '@/my-ui/YWCS'
 import Zylx from '@/my-ui/ZYLX'
 Vue.use(Router)
 
-const router =  new Router({
+// 路由拦截
+const router = new Router({
   routes: [
-    {
-      path: '/Dzcx',
-      component: Dzcx,
+    {path: '/Dzcx',component: Dzcx},
+    {path: '/Dzgy',component: Dzgy},
+    {path: '/Gryw',component: Gryw},
+    {path: '/Hzcx',component: Hzcx},
+    {path: '/Mxcx',component: Mxcx},
+    {path: '/Mzgz',component: Mzgz},
+    {path: '/Qyfw',component: Qyfw},
+    {path: '/Xtcs',component: Xtcs},
+    {path: '/Ywcs',component: Ywcs},
+    {path: '/Zylx',component: Zylx
+        // ,meta:{requireAuth:true}
     },
-    {
-      path: '/Dzgy',
-      component: Dzgy,
-    },
-    {
-      path: '/Gryw',
-      component: Gryw
-    },
-    {
-      path: '/Hzcx',
-      component: Hzcx
-    },
-    {
-      path: '/Mxcx',
-      component: Mxcx
-    },
-    {
-      path: '/Mzgz',
-      component: Mzgz
-    },
-    {
-      path: '/Qyfw',
-      component: Qyfw,
-    },
-    {
-      path: '/Xtcs',
-      component: Xtcs,
-      meta: {requireAuth: true}
-    },
-    {
-      path: '/Ywcs',
-      component: Ywcs
-    },
-    {
-      path: '/Zylx',
-      component: Zylx
-    },
-    {
-      path:'/',
-      redirect:'/Dzcx'
-    },
-    {
-      path:'*',
-      redirect:'/Dzcx'
-    }
+    {path:'/',redirect:'/Dzcx'},
+    {path:'*',redirect:'/Dzcx'}
   ]
 })
 
+  
 
 //  判断是否需要登录权限 以及是否登录
- router.beforeEach((to, from, next) => {
-     if (to.matched.some(res => res.meta.requireAuth)) {// 判断是否需要登录权限
-         if (localStorage.getItem('username')) {// 判断是否登录
-             next()
-           } else {// 没登录则跳转到登录界面
-           next({
-                 path: '/Register',
-           query: {redirect: to.fullPath}
-             })
-           }
-       } else {
-         next()
-       }
-   })
+//  beforeEach：在路由切换开始时调用
+router.beforeEach((to, from, next) => {
+   if (to.matched.some(res => res.meta.requireAuth)) {// 判断是否需要登录权限
+     if (localStorage.getItem('username')) {// 判断是否登录
+       next()
+     } else {// 没登录则跳转到登录界面
+       next({
+         path: '/Register',
+         query: {redirect: to.fullPath}
+       })
+     }
+   } else {
+     next()
+   }
+}) 
 
- export default router
-
+export default router

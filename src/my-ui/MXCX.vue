@@ -13,10 +13,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .mxcx{
-    width:80%;
+    width:calc(100vw - 280px);
     height:606px;
-    margin-left:20%;
+    margin-left:280px;
     margin-top:100px;
     background: #f8f8fa;
+    overflow: hidden;
   }
 </style>

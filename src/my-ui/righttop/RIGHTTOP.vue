@@ -4,56 +4,21 @@
     <span class="name">name</span>
     <i class="el-icon-edit one"></i>
     <i class="el-icon-share two"></i>
-    <span class="time">{{this.getNowTime()}}</span>
-    <a href="http://localhost:1234/#/zylx">退出</a>
+    <span class="time">2017/06/21</span>
+    <a href="#">退出</a>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-//    getNowFormatDate(){                           //获取年月日时分秒
-//      var date = new Date();
-//      var seperator1 = "-";
-//      var seperator2 = ":";
-//      var month = date.getMonth() + 1;
-//      var strDate = date.getDate();
-//      if(month >= 1 && month <= 9) {
-//        month = "0" + month;
-//      }
-//      if (strDate >= 0 && strDate <=9) {
-//        strDate = "0" + strDate;
-//      }
-//      var currentdate = date.getUTCFullYear() + seperator1 + month + seperator1 + strDate
-//        + " " + date.getHours() + seperator2 + date.getMinutes()
-//        + seperator2 + date.getSeconds();
-//      console.log(currentdate)
-//      return currentdate;
-//    },
-    getNowTime(){                                   //获取年月日
-      var date = new Date();
-      var seperator1 = "/";
-      var month = date.getMonth() + 1;
-      var strDate = date.getDate();
-      if(month >=1 && month <= 9) {
-          month = "0" + month;
-      }
-      if(strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
-      }
-      var currentdate = date.getUTCFullYear() + seperator1 + month + seperator1 + strDate
-      console.log(currentdate)
-      return currentdate;
-    }
 
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .righttop{
-    width:80%;
+    width:calc(100vw - 280px);
     background: #324157;
     height:100px;
     position: absolute;
@@ -88,7 +53,7 @@ export default {
   }
   .time{
     position: absolute;
-    right:100px;
+    right: 80px;
     top:40px;
     color: #fff;
   }
