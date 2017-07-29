@@ -1,5 +1,5 @@
 <template>
-  <div>  
+  <div>
     <div class="rightbiao">
       <el-table
         ref="multipleTable"
@@ -67,7 +67,7 @@
     </div>
     <div class="test">
       {{newData}}
-    </div>  
+    </div>
   </div>
 </template>
 
@@ -161,7 +161,7 @@ export default {
           })
           .catch(function (error) {
             console.log(error)
-          })       
+          })
     }
   },
   computed:{
@@ -176,12 +176,12 @@ export default {
       return this.a
     },
     newData(){
-      // 将新建的数据放在计算属性里面，如果数据有变化，将新建的数据添加到当前页 
-      if(this.$store.state.dzcx.newData1.t0==0){   
+      // 将新建的数据放在计算属性里面，如果数据有变化，将新建的数据添加到当前页
+      if(this.$store.state.dzcx.newData1.t0==0){
       }
       else{
         // 为什么当新建第二条数据的时候，第一条的数据也变成第二条得了？
-        this.tableData3.unshift(this.$store.state.dzcx.newData1);       
+        this.tableData3.unshift(this.$store.state.dzcx.newData1);
       }
       return this.$store.state.dzcx.newData1.t0;
     }
@@ -201,7 +201,7 @@ export default {
           })
           .catch(function (error) {
             console.log(error)
-          })      
+          })
       }
   },
   mounted() {
