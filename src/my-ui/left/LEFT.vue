@@ -18,7 +18,7 @@ export default {
 <style scoped>
   .left{
     background: lightseagreen;
-    width: 280px;
+    width: 200px;
     height:100px;
     position: absolute;
     top:0;

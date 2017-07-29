@@ -194,4 +194,19 @@ td[data-v-5f302b49]{
   z-index: 200;
   width:70px;
 }
+.zylx .el-input__inner{
+  border-radius: 0;
+  height: 24px;
+  font-size: 12px;
+  /*width: 100%;*/
+}
+.zylx .el-date-editor.el-input{
+  width: 100%;
+}
+.zylx .el-input__icon{
 
+  width: 0;
+  height: 0;
+  display: none;
+
+}

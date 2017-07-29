@@ -18,7 +18,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .righttop{
-    width:calc(100vw - 280px);
+    width:calc(100vw - 200px);
     background: #324157;
     height:100px;
     position: absolute;

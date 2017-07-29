@@ -228,7 +228,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .xtcs{
-    width:calc(100vw - 280px);
+    width: calc(100vw - 200px);
     /*height:626px;*/
     /*background: cyan;*/
     margin-left:280px;

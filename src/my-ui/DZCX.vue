@@ -25,13 +25,13 @@
             // this.testVuex = this.$store.state.dzcx.testVuex;
 
             //123456
-            //console.log("test vues = " + testVuex);     
+            //console.log("test vues = " + testVuex);
 
             //在mutaition中改变store的值
             // this.$store.commit("TESTVUEX", "888888");
 
             //是在stroe中经过mutaition改变后的值 888888
-            // console.log("test vues = " + this.$store.state.dzcx.testVuex);  
+            // console.log("test vues = " + this.$store.state.dzcx.testVuex);
         },
         // 辅助函数
         // computed:mapState({
@@ -44,7 +44,7 @@
             testVuex(){
                 return this.$store.state.dzcx.count;
             },
-            tableData(){   
+            tableData(){
                 return this.$store.state.dzcx.newData1.t0;
             }
         },
@@ -57,7 +57,7 @@
         // methods:mapActions([
         //         'hello'
         //     ]),
-        
+
         // methods:{
         //     SMALL(){
         //         this.$store.commit('SMALL','13')
@@ -76,9 +76,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .dzcx{
-    width:calc(100vw - 280px);
+    width: calc(100vw - 200px);
     height:626px;
-    margin-left:280px;
+    margin-left:200px;
     margin-top:100px;
   }
 </style>

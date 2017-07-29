@@ -11,7 +11,7 @@
               :file-list="fileList">
               <i class="el-icon-plus">添加文件</i>
             </el-upload>
-        </div>       
+        </div>
         <span class="line1"></span>
     </div>
   </div>
@@ -33,15 +33,15 @@
             console.log(file);
           }
         }
-    }   
+    }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .mzgz{
-    width:calc(100vw - 280px);
+    width: calc(100vw - 200px);
     height:626px;
-    margin-left:280px;
+    margin-left:200px;
     margin-top:100px;
     overflow: hidden;
     .attachment{
@@ -72,7 +72,7 @@
     }
 
   }
-  
-  
+
+
 
 </style>

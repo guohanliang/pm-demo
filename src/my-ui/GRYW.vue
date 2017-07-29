@@ -125,9 +125,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .gryw{
-    width:calc(100vw - 280px);
+    width: calc(100vw - 200px);
     height:626px;
-    margin-left:280px;
+    margin-left:200px;
     margin-top:100px;
     overflow: hidden;
   }
