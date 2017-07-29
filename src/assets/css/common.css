@@ -12,9 +12,12 @@
 .fr{
   float: right;
 }
-h1,h2,h3,h4{
+h1,h2,h3,h4,h5,h6,ul,dl{
   margin:0;
   padding: 0;
+}
+ul,dl{
+  list-style-type: none;
 }
 .el-tabs .el-tabs__active-bar{
   background-color: red;
