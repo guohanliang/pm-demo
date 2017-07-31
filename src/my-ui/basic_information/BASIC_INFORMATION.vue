@@ -54,7 +54,7 @@
     </div>
 
 
-    <div class="one">
+    <div class="one for-center">
       <span class="title">
         标题
       </span>
@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="one">
+    <div class="one for-center">
       <span class="label">
         标签
       </span>
@@ -157,14 +157,14 @@
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 50px;
+        width: 7%;
         display: inline-block;
       }
       .label{
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 50px;
+        width: 7%;
         display: inline-block;
 
       }
@@ -192,7 +192,7 @@
         .num {
           font-size: 16px;
           line-height: 36px;
-          width: 25%;
+          width: 20%;
           display: inline-block;
         }
         .el-input, .el-input__inner {
