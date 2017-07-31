@@ -62,17 +62,17 @@
                           <el-button type="danger" icon="plus">
                                 将【人员】添加到【会签】中
                           </el-button>
-                        </div>                      
-                      </td>             
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="1" class="js-group">
-                        <el-tree :data="data" :props="defaultProps" 
+                        <el-tree :data="data" :props="defaultProps"
                             @node-click="handleNodeClick">
                         </el-tree>
                       </td>
-                      <td colspan="3"></td>               
-                    </tr>                    
+                      <td colspan="3"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -83,7 +83,7 @@
             </el-dialog>
           </li>
         </ul>
-      </dd> 
+      </dd>
       <dd>
         <ul>
           <li class="fl look">审核</li>
@@ -144,17 +144,17 @@
                           <el-button type="danger" icon="plus">
                                 将【人员】添加到【会签】中
                           </el-button>
-                        </div>                        
-                      </td>             
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="1">
-                        <el-tree :data="data" :props="defaultProps" 
+                        <el-tree :data="data" :props="defaultProps"
                             @node-click="handleNodeClick">
                         </el-tree>
                       </td>
-                      <td colspan="3"></td>               
-                    </tr>                    
+                      <td colspan="3"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -226,17 +226,17 @@
                           <el-button type="danger" icon="plus">
                                 将【人员】添加到【会签】中
                           </el-button>
-                        </div>                      
-                      </td>             
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="1">
-                        <el-tree :data="data" :props="defaultProps" 
+                        <el-tree :data="data" :props="defaultProps"
                             @node-click="handleNodeClick">
                         </el-tree>
                       </td>
-                      <td colspan="3"></td>               
-                    </tr>                    
+                      <td colspan="3"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -247,7 +247,7 @@
             </el-dialog>
           </li>
         </ul>
-      </dd> 
+      </dd>
       <dd>
         <ul>
           <li class="fl look">审核</li>
@@ -308,17 +308,17 @@
                           <el-button type="danger" icon="plus">
                                 将【人员】添加到【会签】中
                           </el-button>
-                        </div>                        
-                      </td>             
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="1">
-                        <el-tree :data="data" :props="defaultProps" 
+                        <el-tree :data="data" :props="defaultProps"
                             @node-click="handleNodeClick">
                         </el-tree>
                       </td>
-                      <td colspan="3"></td>               
-                    </tr>                    
+                      <td colspan="3"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -390,17 +390,17 @@
                           <el-button type="danger" icon="plus">
                                 将【人员】添加到【会签】中
                           </el-button>
-                        </div>                        
-                      </td>             
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="1">
-                        <el-tree :data="data" :props="defaultProps" 
+                        <el-tree :data="data" :props="defaultProps"
                             @node-click="handleNodeClick">
                         </el-tree>
                       </td>
-                      <td colspan="3"></td>               
-                    </tr>                    
+                      <td colspan="3"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -411,7 +411,7 @@
             </el-dialog>
           </li>
         </ul>
-      </dd>       
+      </dd>
     </dl>
   </div>
 </template>
@@ -458,10 +458,10 @@
                               label:'👱 财务管理',
                             },
                             {
-                              label:'👱 股票投资业务',                             
+                              label:'👱 股票投资业务',
                             },
                             {
-                              label:'👱 固收和机构投资业务',                              
+                              label:'👱 固收和机构投资业务',
                             },
                             {
                               label:'👱 法务和内控',
@@ -604,7 +604,7 @@
     },
     mounted() {
       this.restaurants = this.loadAll();
-      // 改变element弹窗默认的大小 
+      // 改变element弹窗默认的大小
       // var oDialog=this.$el.querySelector('.el-dialog--tiny');
       // oDialog.style.width='70%';
       // oDialog.style.left='830px';
@@ -616,9 +616,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .qyfw{
-    width:calc(100vw - 280px);
+    width: calc(100vw - 200px);
     height:626px;
-    margin-left:280px;
+    margin-left:200px;
     margin-top:100px;
     overflow: hidden;
   }
@@ -655,7 +655,7 @@
   dd{
   }
   .look{
-    margin-left: 30px;  
+    margin-left: 30px;
   }
   .name{
     margin-left: 50px;
@@ -695,7 +695,7 @@
     border: 0;
   }
   .add{
-    margin-left: 400px;  
+    margin-left: 400px;
   }
   .el-tree{
     border:0;

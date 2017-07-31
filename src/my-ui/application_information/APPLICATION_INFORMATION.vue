@@ -24,7 +24,7 @@
       </el-select>
     </div>
     <div class="two">
-      <span class="name">产品经理</span>
+      <span class="manager">产品经理</span>
       <el-select v-model="value9" filterable placeholder="请选择">
         <el-option
           v-for="item in options3"
@@ -33,6 +33,9 @@
           :value="item.value">
         </el-option>
       </el-select>
+    </div>
+    <div class="three">
+
     </div>
   </div>
 </template>
@@ -88,19 +91,19 @@
 
         options3: [{
           value: '选项1',
-          label: '黄金糕'
+          label: '王经理'
         }, {
           value: '选项2',
-          label: '双皮奶'
+          label: '刘经理'
         }, {
           value: '选项3',
-          label: '蚵仔煎'
+          label: '孙经理'
         }, {
           value: '选项4',
-          label: '龙须面'
+          label: '刘经理'
         }, {
           value: '选项5',
-          label: '北京烤鸭'
+          label: '谭经理'
         }],
         value9: ''
       }
@@ -113,7 +116,7 @@
 .application{
   width: 90%;
   margin: 10px;
-  height: 300px;
+  height: 400px;
   border: 1px solid black;
   .header-title {
     font-size: 20px;
@@ -128,6 +131,7 @@
     width:100%;
     height: 40px;
     background: green;
+    margin-top: 20px;
     .name{
       float: left;
       line-height: 40px;
@@ -146,6 +150,24 @@
       margin:0 10px;
       width:8%;
     }
+  }
+  .two{
+    width:100%;
+    height: 40px;
+    background: deepskyblue;
+    margin-top: 20px;
+    .manager{
+      float: left;
+      line-height: 40px;
+      margin:0 10px;
+      width:8%;
+    }
+  }
+  .three{
+    width:100%;
+    height: 70px;
+    background: red;
+    margin-top: 20px;
   }
   .el-input, .el-input__inner{
     width: 194px;

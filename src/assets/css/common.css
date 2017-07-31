@@ -12,9 +12,12 @@
 .fr{
   float: right;
 }
-h1,h2,h3,h4{
+h1,h2,h3,h4,h5,h6,ul,dl{
   margin:0;
   padding: 0;
+}
+ul,dl{
+  list-style-type: none;
 }
 .el-tabs .el-tabs__active-bar{
   background-color: red;
@@ -207,7 +210,31 @@ td[data-v-5f302b49]{
 .one .el-select .el-input__inner{
 
 }
-.one .el-button{
+.one .el-button {
   position: absolute;
-  right:0;
+  right: 0;
+}
+.zylx .el-input__inner{
+  border-radius: 0;
+  height: 24px;
+  font-size: 12px;
+  /*width: 100%;*/
+}
+.zylx .el-date-editor.el-input{
+  width: 100%;
+}
+.zylx .el-input__icon{
+  width: 0;
+  height: 0;
+  display: none;
+}
+.message .el-textarea__inner{
+  margin-left: 10px;
+}
+.approval-record .el-dialog__header{
+  border-bottom: 1px solid;
+  height: 20px;
+}
+.approval-record .el-dialog__headerbtn .el-dialog__close{
+  margin-top: 5px;
 }
