@@ -3,16 +3,16 @@
     <header>
       <div class="left">
         <span>关键字</span>
-        <input type="text" placeholder="名称/编号/申请人">
+        <input type="text" placeholder="名称/编号/申请人" v-model="searchword">
       </div>
       <div class="center">
         <span class="sq-time">申请时间</span>
         <div class="block">
-          <el-date-picker v-model="value1" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="startDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
         </div>
         <span class="line"></span>
         <div class="block">
-          <el-date-picker v-model="value2" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
         </div>
       </div>
       <button @click="select">查询</button>
@@ -22,13 +22,13 @@
       <el-row>
         <el-col :span="24">
           <el-table border :data="tableData" stripe style="width: 100%">
-            <el-table-column prop="id" label="序号" min-width="30"></el-table-column>
-            <el-table-column prop="number" label="编号" min-width="160"></el-table-column>
-            <el-table-column prop="headline" label="标题" min-width="100"></el-table-column>
-            <el-table-column prop="proposer" label="申请人" min-width="50"></el-table-column>
-            <el-table-column prop="branch" label="申请人部门" min-width="75"></el-table-column>
-            <el-table-column prop="decision" label="申请时间" min-width="135"></el-table-column>
-            <el-table-column prop="condition" label="当前状态" min-width="60"></el-table-column>
+            <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
+            <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
+            <el-table-column prop="dataTitle" label="标题" min-width="100"></el-table-column>
+            <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
+            <el-table-column prop="applyDept" label="申请人部门" min-width="75"></el-table-column>
+            <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
+            <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
           </el-table>
         </el-col>
       </el-row>
@@ -38,102 +38,109 @@
     </div>
   </div>
 </template>
-
 <script>
+  import axios from 'axios';
   export default {
     data(){
       return {
-        value1: '',
-        value2: '',
+        searchword: '',
+        startDate: '',
+        endDate: '',
         tableData: [{
-          id: '1',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '张三',
-          branch: '产品部',
-          decision: '2017-10-10 06:00:00',
-          condition: '草稿'
+          rownum: '1',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '张三',
+          applyDept: '产品部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '草稿'
         }, {
-          id: '2',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '李四',
-          branch: '投资部',
-          decision: '2017-10-10 06:00:00',
-          condition: '审批中'
+          rownum: '2',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '李四',
+          applyDept: '投资部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '审批中'
         }, {
-          id: '3',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '王五',
-          branch: '技术部',
-          decision: '2017-10-10 06:00:00',
-          condition: '结束'
+          rownum: '3',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '王五',
+          applyDept: '技术部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '结束'
         }, {
-          id: '4',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '老刘',
-          branch: '研发部',
-          decision: '2017-10-10 06:00:00',
-          condition: '草稿'
+          rownum: '4',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '老刘',
+          applyDept: '研发部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '草稿'
         }, {
-          id: '5',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '张三',
-          branch: '产品部',
-          decision: '2017-10-10 06:00:00',
-          condition: '草稿'
+          rownum: '5',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '张三',
+          applyDept: '产品部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '草稿'
         }, {
-          id: '6',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '李四',
-          branch: '投资部',
-          decision: '2017-10-10 06:00:00',
-          condition: '审批中'
+          rownum: '6',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '李四',
+          applyDept: '投资部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '审批中'
         }, {
-          id: '7',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '王五',
-          branch: '技术部',
-          decision: '2017-10-10 06:00:00',
-          condition: '结束'
+          rownum: '7',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '王五',
+          applyDept: '技术部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '结束'
         }, {
-          id: '8',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '老刘',
-          branch: '研发部',
-          decision: '2017-10-10 06:00:00',
-          condition: '草稿'
+          rownum: '8',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '老刘',
+          applyDept: '研发部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '草稿'
         }, {
-          id: '9',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '张三',
-          branch: '产品部',
-          decision: '2017-10-10 06:00:00',
-          condition: '草稿'
+          rownum: '9',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '张三',
+          applyDept: '产品部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '草稿'
         }, {
-          id: '10',
-          number: 'P990-170725102421345',
-          headline: ' 关于XXX的申请',
-          proposer: '李四',
-          branch: '投资部',
-          decision: '2017-10-10 06:00:00',
-          condition: '审批中'
+          rownum: '10',
+          dataCode: 'P990-170725102421345',
+          dataTitle: ' 关于XXX的申请',
+          applyUser: '李四',
+          applyDept: '投资部',
+          applyTime: '2017-10-10 06:00:00',
+          status: '审批中'
         }]
       }
     },
     methods: {
       select(){
-
+        axios.get('/api/demo/list/workflow/approvequery')
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (err) {
+            console.log(error)
+          })
       },
       to(){
-
+//        this.$router.push()
       }
     }
 

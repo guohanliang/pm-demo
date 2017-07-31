@@ -33,7 +33,7 @@ const router = new Router({
   ]
 })
 
-  
+
 
 //  判断是否需要登录权限 以及是否登录
 //  beforeEach：在路由切换开始时调用
@@ -50,6 +50,6 @@ router.beforeEach((to, from, next) => {
    } else {
      next()
    }
-}) 
+})
 
 export default router
