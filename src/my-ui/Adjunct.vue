@@ -1,5 +1,5 @@
 <template>
-  <div class="mzgz">
+  <div class="adjunct">
     <div class="attachment">
       <div class="header">
         <h4>附件</h4>
@@ -95,10 +95,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .mzgz {
+  .adjunct {
     width: calc(100vw - 200px);
     height: 626px;
-    
+
     margin-top: 110px;
     .attachment {
       margin: 10px;

@@ -1,12 +1,17 @@
 <template>
   <div class="hzcx">
     <my-fujian></my-fujian>
+    <approver></approver>
   </div>
 </template>
 
 <script>
-export default {
+  import approver from "./Approver.vue"
 
+export default {
+  components:{
+    approver
+  }
 }
 </script>
 
