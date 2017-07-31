@@ -26,7 +26,7 @@
 <style scoped lang="scss">
   .gryw{
 
-    width: calc(100vw - 200px);
+    width: calc(100vw - 235px);
     height:626px;
     margin-left:220px;
     margin-top: 120px;

@@ -207,9 +207,17 @@ td[data-v-5f302b49]{
   width: 100%;
 }
 .zylx .el-input__icon{
-
   width: 0;
   height: 0;
   display: none;
-
+}
+.message .el-textarea__inner{
+  margin-left: 10px;
+}
+.approval-record .el-dialog__header{
+  border-bottom: 1px solid;
+  height: 20px;
+}
+.approval-record .el-dialog__headerbtn .el-dialog__close{
+  margin-top: 5px;
 }
