@@ -42,7 +42,6 @@
 <style scoped lang="scss">
   .mzgz{
     width: calc(100vw - 200px);
-    height:626px;
     margin-left:200px;
     margin-top:100px;
     overflow: hidden;
