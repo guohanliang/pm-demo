@@ -3,7 +3,7 @@
     <h3 class="header-title">申请信息</h3>
     <div class="one">
       <span class="name">产品名称</span>
-      <el-select v-model="value8" filterable placeholder="请选择">
+      <el-select v-model="value8" filterable placeholder="请选择" disabled>
         <el-option
           v-for="item in options1"
           :key="item.value"
@@ -11,10 +11,10 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <span class="abbreviation">产品简称</span>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+      <span class="abbreviation" disabled="">产品简称</span>
+      <el-input v-model="input" placeholder="请输入内容" disabled></el-input>
       <span class="type">产品类型</span>
-      <el-select v-model="value" placeholder="公募">
+      <el-select v-model="value" placeholder="公募" disabled>
         <el-option
           v-for="item in options2"
           :key="item.value"
@@ -25,7 +25,7 @@
     </div>
     <div class="two">
       <span class="manager">产品经理</span>
-      <el-select v-model="value9" filterable placeholder="请选择">
+      <el-select v-model="value9" filterable placeholder="请选择" disabled>
         <el-option
           v-for="item in options3"
           :key="item.value"
@@ -35,7 +35,8 @@
       </el-select>
     </div>
     <div class="three">
-
+      <span class="explain">说明</span>
+      <my-bianji></my-bianji>
     </div>
   </div>
 </template>
@@ -116,7 +117,6 @@
 .application{
   width: 99.5%;
   margin: 10px auto;
-  height: 400px;
   border: 1px solid black;
   .header-title {
     font-size: 20px;
@@ -130,7 +130,6 @@
   .one{
     width:100%;
     height: 40px;
-    background: green;
     margin-top: 20px;
     .name{
       float: left;
@@ -154,7 +153,6 @@
   .two{
     width:100%;
     height: 40px;
-    background: deepskyblue;
     margin-top: 20px;
     .manager{
       float: left;
@@ -165,12 +163,15 @@
   }
   .three{
     width:100%;
-    height: 70px;
-    background: red;
     margin-top: 20px;
+    .explain{
+      float: left;
+      margin:0 10px;
+      width:8%;
+    }
   }
   .el-input, .el-input__inner{
-    width: 194px;
+    width: 18%;
   }
   .el-input{
     float: left;
