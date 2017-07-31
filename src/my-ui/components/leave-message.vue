@@ -32,7 +32,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .message{
-    width:396px;
+    width:33%;
     margin-left: 5px;
     height:500px;
     border: 1px solid rgb(51,51,51);
@@ -65,7 +65,7 @@
             }
             .time{
                 margin:10px;
-                margin-left: 180px;
+                margin-left: 56%;
                 margin-bottom: 0;
             }
 
@@ -76,9 +76,16 @@
         dd{
             overflow: hidden;
             .el-button{
-                margin:8px 280px;
+                margin:8px 74%;
             }
         }
+    }
+}
+@media(max-width: 1132px){
+    .message{
+        width: 95%;
+        margin-left: 0;
+        margin-top: 10px;
     }
 }
 </style>

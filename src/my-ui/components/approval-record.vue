@@ -59,7 +59,7 @@
         </dd>
         <dd>
           <ul class="carbon-copy countersign localDepartment">
-            <li class="local">抄送</li>
+            <li class="local local1">抄送</li>
             <li class="jsfund jsfund2 jsfund3">嘉实基金-IT部-王五</li>
           </ul>       
         </dd>     
@@ -91,7 +91,7 @@
 <style scoped lang="scss">
   $rgb51:rgb(51,51,51);
   .record{
-    width:800px;
+    width:66%;
     height:500px;
     border: 1px solid rgb(51,51,51);
     dl{
@@ -127,7 +127,7 @@
             }
           }
           .jsfund1{
-            margin-left: 136px;
+            margin-left: 18%;
             .reminder{
               margin-left: 30px;
               padding: 5px;
@@ -166,8 +166,8 @@
           }
         }
         .approval{
-            margin-left:140px;
-            width: 595px;
+            margin-left:18%;
+            width: 80%;
             height: 40px;
             overflow: hidden;
             border:1px solid rgb(51,51,51);
@@ -181,5 +181,23 @@
         }
       }
     }
+  }
+  @media(max-width: 1320px){
+    .record dl dd .localDepartment .jsfund{
+      flex:4;
+    }
+    .record dl dd .localDepartment .local1{
+      flex:1;
+    }
+  }
+  @media(max-width: 1132px){
+      .record{
+          width: 95%;
+      }
+  }
+  @media(max-width: 849px){
+      .record{
+        width:600px;
+      }
   }
 </style>
