@@ -62,11 +62,13 @@ ul,dl{
 .el-tabs__nav-wrap{
   border-bottom:1px solid red;
 }
-.bianjilan{
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 900px;
-  height: 500px;
+/*.bianjilan{*/
+  /*height: 500px;*/
+  /*width: 900px;*/
+/*}*/
+.edui-editor{
+  width: 72%!important;
+  margin-left: 10%;
 }
 .el-upload-list{
   display: none;
@@ -192,12 +194,11 @@ td[data-v-5f302b49]{
   z-index: 1000;
   width: 60px;
 }
-
 .caption1 .el-select .el-input .el-input__icon{
     opacity: 0;
     z-index:1000;
     width: 70px;
-  background: red;
+    background: red;
 }
 .caption1 .el-select .el-input .el-input__icon.is-reverse{
   opacity: 0;
@@ -207,8 +208,11 @@ td[data-v-5f302b49]{
 .special .el-input__inner{
   width:100%;
 }
-.one .el-select .el-input__inner{
-
+.two .el-input__inner{
+  height: 40px;
+}
+.two .el-select .el-input .el-input__icon{
+  opacity:0;
 }
 .one .el-button {
   position: absolute;

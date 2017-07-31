@@ -54,15 +54,15 @@
     </div>
 
 
-    <div class="one for-center">
+    <div class="one">
       <span class="title">
         标题
       </span>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+      <el-input v-model="input" placeholder="请输入内容" disabled></el-input>
     </div>
 
 
-    <div class="one for-center">
+    <div class="one">
       <span class="label">
         标签
       </span>
@@ -137,8 +137,8 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .basic {
-    width: 90%;
-    margin: 10px;
+    width: 99.5%;
+    margin: 10px auto;
     height: 300px;
     border: 1px solid black;
     .header-title {
@@ -157,14 +157,14 @@
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 7%;
+        width: 6.5%;
         display: inline-block;
       }
       .label{
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 7%;
+        width: 6.5%;
         display: inline-block;
 
       }
