@@ -14,6 +14,8 @@ import BianjiComponent from './bianji/BIANJI.vue'
 import UeditorComponent from './ueditor/UEDITOR.vue'
 import FujianComponent from './fujian/FUJIAN.vue'
 import ShenpiComponent from './shenpi/SHENPI.vue'
+import Basic_informationComponent from './basic_information/BASIC_INFORMATION.vue'
+import Application_informationComponent from './application_information/APPLICATION_INFORMATION.vue'
 
 
 import DzcxComponent from './DZCX.vue'
@@ -119,6 +121,20 @@ const Shenpi={
   }
 }
 
+
+const Basic_information={
+  install:(Vue)=>{
+    Vue.component('basic-msg',Basic_informationComponent)
+  }
+}
+
+const Application_information={
+  install:(Vue)=>{
+    Vue.component('application-msg',Application_informationComponent)
+  }
+}
+
+
 const Dzcx={
   install:(Vue)=>{
     Vue.component('my-dzcx',DzcxComponent)
@@ -179,4 +195,4 @@ const Zylx={
   }
 }
 
-export {Left,Nav,Righttop,Rightcenter,Rightbiao,Paging,Tab,Msgbiao,Select,Biaoti,Zhaiyao,Bianji,Ueditor,Fujian,Shenpi,Dzcx,Dzgy,Gryw,Hzcx,Mxcx,Mzgz,Qyfw,Xtcs,Ywcs,Zylx}
+export {Left,Nav,Righttop,Rightcenter,Rightbiao,Paging,Tab,Msgbiao,Select,Biaoti,Zhaiyao,Bianji,Ueditor,Fujian,Shenpi,Basic_information,Application_information,Dzcx,Dzgy,Gryw,Hzcx,Mxcx,Mzgz,Qyfw,Xtcs,Ywcs,Zylx}
