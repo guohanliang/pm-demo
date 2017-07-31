@@ -2,10 +2,12 @@
   <div class="dzcx">
     <my-rightcenter></my-rightcenter>
     <my-rightbiao></my-rightbiao>
+    <adjunct></adjunct>
   </div>
 </template>
 
 <script>
+    import adjunct from './Adjunct.vue'
     import {mapState} from 'vuex'
     import {mapMutations} from 'vuex'
     import {mapActions} from 'vuex'
@@ -69,6 +71,9 @@
                 console.log(this.$store.getters.smallLength)
                 console.log(this.$store.state.dzcx.small)
             }
+        },
+        components:{
+            adjunct
         }
     }
 </script>
