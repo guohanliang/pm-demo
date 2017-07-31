@@ -35,7 +35,8 @@
       </el-select>
     </div>
     <div class="three">
-
+      <span class="explain">说明</span>
+      <my-bianji></my-bianji>
     </div>
   </div>
 </template>
@@ -116,7 +117,7 @@
 .application{
   width: 90%;
   margin: 10px;
-  height: 400px;
+  padding-bottom: 20px;
   border: 1px solid black;
   .header-title {
     font-size: 20px;
@@ -130,7 +131,6 @@
   .one{
     width:100%;
     height: 40px;
-    background: green;
     margin-top: 20px;
     .name{
       float: left;
@@ -154,7 +154,6 @@
   .two{
     width:100%;
     height: 40px;
-    background: deepskyblue;
     margin-top: 20px;
     .manager{
       float: left;
@@ -165,12 +164,15 @@
   }
   .three{
     width:100%;
-    height: 70px;
-    background: red;
     margin-top: 20px;
+    .explain{
+      float: left;
+      margin:0 10px;
+      width:8%;
+    }
   }
   .el-input, .el-input__inner{
-    width: 194px;
+    width: 18%;
   }
   .el-input{
     float: left;
