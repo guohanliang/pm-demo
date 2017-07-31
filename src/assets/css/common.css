@@ -238,3 +238,25 @@ td[data-v-5f302b49]{
 .approval-record .el-dialog__headerbtn .el-dialog__close{
   margin-top: 5px;
 }
+.agreement .el-textarea__inner{
+  margin:0 auto;
+  width:98%;
+}
+.agreement .el-radio-group{
+  margin-left: 30px;
+}
+.agreement .el-radio{
+  margin-right: 20px;
+}
+.agreement .el-form-item__content{
+  margin-left: 10px!important;
+  margin-top: 10px;
+}
+.agreement .submit{
+  margin-bottom: 10px;
+}
+.agreement .submit .el-button{
+  width:18.8%;
+  height: 30px;
+  padding: 0;
+}
