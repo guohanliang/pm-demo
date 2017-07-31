@@ -1,5 +1,7 @@
 <template>
   <div class="mzgz">
+    <basic-msg></basic-msg>
+    <application-msg></application-msg>
     <div class="attachment">
         <div class="clear-fix header">
             <h2 class="fl">附件</h2>
@@ -11,7 +13,7 @@
               :file-list="fileList">
               <i class="el-icon-plus">添加文件</i>
             </el-upload>
-        </div>       
+        </div>
         <span class="line1"></span>
     </div>
   </div>
@@ -33,20 +35,20 @@
             console.log(file);
           }
         }
-    }   
+    }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .mzgz{
-    width:calc(100vw - 280px);
+    width:calc(100vw - 200px);
     height:626px;
-    margin-left:280px;
+    margin-left:200px;
     margin-top:100px;
     overflow: hidden;
     .attachment{
         width:90%;
-        margin:50px auto;
+        margin:10px;
         height: 300px;
         border:1px solid grey;
         .header{
@@ -72,7 +74,7 @@
     }
 
   }
-  
-  
+
+
 
 </style>

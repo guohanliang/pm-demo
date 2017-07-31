@@ -67,7 +67,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .nav{
-    width:280px;
+    width:200px;
     position: absolute;
     top: 100px;
     height:626px;
