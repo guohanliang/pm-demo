@@ -1,88 +1,73 @@
 <template>
   <div class="hzcx">
-    <el-dialog
-      title="会签信息表"
-      :visible.sync="dialogVisible3"
-      size="tiny"
-
-    >
-      <div class="sign">
-        <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
-          <tbody>
-          <tr align="center" height="80">
-            <td colspan="4">
-              <ul class="shenhe">
-
-                <li class="fl name">
-                  <el-row class="demo-autocomplete">
-                    <el-col :span="24">
-                      <el-autocomplete
-                        style="margin-left: 15px;  width: 700px"
-                        class="inline-input"
-                        v-model="state1"
-                        :fetch-suggestions="querySearch"
-                        placeholder="请输入要查询用户的账户/姓名/拼音/岗位"
-                      >
-                      </el-autocomplete>
-                    </el-col>
-                  </el-row>
-                </li>
-                <li class="fr sel">
-                  <el-button type="danger" icon="circle-check">
-                    确定
-                  </el-button>
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr height="80">
-            <td colspan="1" width="30%"></td>
-            <td colspan="3" width="70%">
-              <div class="add">
-                <el-button type="danger" icon="plus">
-                  将【人员】添加到【会签】中
+    <div class="sign">
+      <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
+        <tbody>
+        <tr align="center" height="80">
+          <td colspan="4">
+            <ul class="shenhe">
+              <li class="fl name">
+                <el-row class="demo-autocomplete">
+                  <el-col :span="24">
+                    <el-autocomplete
+                      style="margin-left: 15px;  width: 700px"
+                      class="inline-input"
+                      v-model="state1"
+                      :fetch-suggestions="querySearch"
+                      placeholder="请输入要查询用户的账户/姓名/拼音/岗位"
+                    >
+                    </el-autocomplete>
+                  </el-col>
+                </el-row>
+              </li>
+              <li class="fr sel">
+                <el-button type="danger" icon="circle-check">
+                  确定
                 </el-button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="1">
-              <el-tree :data="data" :props="defaultProps"
-                       @node-click="handleNodeClick">
-              </el-tree>
-            </td>
-            <td colspan="3">
-
-              <el-table
-                :data="tableData"
-                style="width: 100%">
-                <el-table-column
-                  prop="date"
-                  label="日期"
-                  width="180">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="姓名"
-                  width="180">
-                </el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="地址">
-                </el-table-column>
-              </el-table>
-
-
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-              </span>
-    </el-dialog>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr height="80">
+          <td colspan="1" width="30%"></td>
+          <td colspan="3" width="70%">
+            <div class="add">
+              <el-button type="danger" icon="plus">
+                将【人员】添加到【会签】中
+              </el-button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            <el-tree :data="data" :props="defaultProps"
+                     @node-click="handleNodeClick">
+            </el-tree>
+          </td>
+          <td colspan="3">
+            <el-table
+              :data="tableData"
+              style="width: 100%">
+              <el-table-column
+                prop="date"
+                label="日期"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="姓名"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="address"
+                label="地址">
+              </el-table-column>
+            </el-table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -212,7 +197,6 @@
     },
     methods: {
       handleNodeClick(data) {
-
       },
       handleSleect(data) {
         console.log(data);
@@ -224,7 +208,6 @@
         console.log(data);
       },
     }
-
   }
 </script>
 
