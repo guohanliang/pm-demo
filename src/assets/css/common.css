@@ -264,6 +264,12 @@ td[data-v-5f302b49]{
   height: 30px;
   padding: 0;
 }
+.agreement .add .el-button{
+  width:50%;
+}
+.agreement .shenhe .el-button{
+  width: 100%;
+}
 .application .edui-editor {
   margin-bottom: 10px;
 }
@@ -276,4 +282,26 @@ td[data-v-5f302b49]{
 }
 .approver .el-autocomplete{
   width: 100%;
+}
+.msg-emerge>.el-dialog--large{
+  height: 511px;
+}
+.selector1 .el-dialog__wrapper{
+  z-index:3000!important;
+}
+.selector1 .el-dialog--large{
+  top:0!important;
+}
+.selector1 .el-dialog{
+  margin-bottom: 0!important;
+}
+.selector1>.el-button{
+  width:100px!important;
+  margin-left: 10px;
+  height: 20px!important;
+  border:1px solid;
+}
+.selector1 .el-dialog__header{
+  height:40px;
+  border-bottom:1px solid;
 }

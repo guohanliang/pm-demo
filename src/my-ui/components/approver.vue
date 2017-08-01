@@ -1,11 +1,9 @@
 <template>
   <div class="approver">
-    <h4>审批人</h4>
+    <h4>审批人调整</h4>
     <span></span>
     <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
+      <li><button class="license">本部门审批</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -18,14 +16,16 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <!--点击选择按钮,弹出 dialog-->
         <el-dialog
           title="选择审批人"
           :visible.sync="dialogVisible"
-          size="tiny"
-          :before-close="handleClose">
-          <approverperson></approverperson>
+          :modal-append-to-body="false"
+          size="large"
+          :before-close="handleClose" @close="mask1">
+          <v-countersign></v-countersign>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -34,9 +34,7 @@
       </li>
     </ul>
     <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
+      <li><button class="license">产品部审批</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -49,14 +47,12 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
       </li>
     </ul>
     <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
+      <li><button class="license">部门会签</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -69,14 +65,12 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
       </li>
     </ul>
     <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
+      <li><button class="license">事后抄送</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -89,33 +83,23 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
       </li>
     </ul>
   </div>
 </template>
 <script>
-  import Approverperson from './components/approve-person.vue'
+  import vCountersign from "./countersign.vue"
   export default{
-    components:{
-      Approverperson
-    },
     data(){
       return {
         state1: '',
-        dialogVisible: false
+        dialogVisible: false,
+        mask:false
       }
     },
     methods: {
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {
-          });
-      },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;
         var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
@@ -138,10 +122,25 @@
       },
       handleSelect(item) {
         console.log(item);
+      },
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+      mask1(){
+          window.a=this.$el.querySelector('.input1 .el-input__inner');
+          console.log(a);
       }
     },
     mounted() {
       this.restaurants = this.loadAll();
+
+    },
+    components:{
+        vCountersign
     }
   }
 </script>
@@ -149,9 +148,8 @@
   .approver {
     background-color: white;
     margin: 10px;
-    height: 240px;
-    border: 1px solid black;
-    width: 90%;
+    height: 300px;
+    border: 1px solid gray;
     h4 {
       color: red;
       margin-left: 10px;
@@ -163,20 +161,23 @@
       display: block;
       width: 100%;
     }
-    ul {
+    .dialog-footer{
+      height: 0;
+    }
+    ul{
       display: flex;
       margin-left: 10px;
       margin-right: 10px;
       overflow: hidden;
-      li {
+      li{
         float: left;
         margin-top: 20px;
         margin-bottom: 5px;
       }
-      .input1 {
+      .input1{
         flex: 1;
       }
-      .license, .choice {
+      .license,.choice{
         border: none;
         border-radius: 2px;
         width: 100px;
@@ -184,17 +185,17 @@
         background-color: #eeeeee;
         /*outline: none;*/
       }
-      .license {
+      .license{
         outline: none;
       }
-      .choice {
-        margin-left: 10px;
-        margin-right: 10px;
+      .selector1{
+        overflow:hidden;
+        .choice{
+          margin-left: 10px;
+          margin-right: 10px;
+        }
       }
-      /*.choice:hover{*/
-      /*background-color: red;*/
-      /*}*/
-      .line {
+      .line{
         width: 30px;
         height: 1px;
         background-color: gray;
