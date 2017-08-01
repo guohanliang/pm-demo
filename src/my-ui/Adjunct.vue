@@ -100,13 +100,11 @@
 
   .enclosure {
     width: calc(100vw - 200px);
-    height: 626px;
     width: 90%;
     margin: 10px;
     .adjunct {
       width: calc(100vw - 200px);
-      height: 626px;
-      margin-top: 110px;
+      width:100%;
       .attachment {
         min-height: 100px;
         border: 1px solid black;
@@ -114,7 +112,7 @@
           height: 30px;
           h4 {
             float: left;
-            color: #C40000;
+            color: red;
             margin-left: 10px;
             line-height: 30px;
           }
@@ -125,7 +123,7 @@
             line-height: 30px;
             .el-icon-plus {
               font-size: 10px;
-              color: #C40000;
+              color: red;
               span {
                 font-size: 14px;
               }
@@ -134,7 +132,7 @@
         }
         .line1 {
           width: 100%;
-          border-top: 1px solid #C40000;
+          border-top: 1px solid red;
           display: block;
         }
         footer {

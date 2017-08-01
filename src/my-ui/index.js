@@ -16,6 +16,7 @@ import FujianComponent from './fujian/FUJIAN.vue'
 import ShenpiComponent from './shenpi/SHENPI.vue'
 import Basic_informationComponent from './basic_information/BASIC_INFORMATION.vue'
 import Application_informationComponent from './application_information/APPLICATION_INFORMATION.vue'
+import SubmitComponent from './submit/SUBMIT.vue'
 
 
 import DzcxComponent from './DZCX.vue'
@@ -134,6 +135,11 @@ const Application_information={
   }
 }
 
+const Submit={
+  install:(Vue)=>{
+    Vue.component('submit-btn',SubmitComponent)
+  }
+}
 
 const Dzcx={
   install:(Vue)=>{
@@ -195,4 +201,4 @@ const Zylx={
   }
 }
 
-export {Left,Nav,Righttop,Rightcenter,Rightbiao,Paging,Tab,Msgbiao,Select,Biaoti,Zhaiyao,Bianji,Ueditor,Fujian,Shenpi,Basic_information,Application_information,Dzcx,Dzgy,Gryw,Hzcx,Mxcx,Mzgz,Qyfw,Xtcs,Ywcs,Zylx}
+export {Left,Nav,Righttop,Rightcenter,Rightbiao,Paging,Tab,Msgbiao,Select,Biaoti,Zhaiyao,Bianji,Ueditor,Fujian,Shenpi,Basic_information,Application_information,Submit,Dzcx,Dzgy,Gryw,Hzcx,Mxcx,Mzgz,Qyfw,Xtcs,Ywcs,Zylx}
