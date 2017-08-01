@@ -4,7 +4,6 @@
       title="会签信息表"
       :visible.sync="dialogVisible3"
       size="tiny"
-
     >
       <div class="sign">
         <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
@@ -213,7 +212,7 @@
       handleNodeClick(data) {
 
       },
-      handleSleect(data) {
+      handleSelect(data) {
         console.log(data);
       },
       handleClose(data) {

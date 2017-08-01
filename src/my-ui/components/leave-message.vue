@@ -65,7 +65,7 @@
             }
             .time{
                 margin:10px;
-                margin-left: 56%;
+                margin-left: 54%;
                 margin-bottom: 0;
             }
 

@@ -198,6 +198,18 @@
             done();
           })
           .catch(_ => {});
+      },
+      handleNodeClick(data) {
+
+      },
+      handleSelect(data) {
+        console.log(data);
+      },
+      handleClose(data) {
+        console.log(data);
+      },
+      querySearch(data) {
+        console.log(data);
       }
     }
   }
@@ -205,4 +217,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .sel{
+    width:8%;
+  }
+  .agreement .submit .el-button{
+
+  }
 </style>

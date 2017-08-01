@@ -12,12 +12,13 @@
           <el-form-item class="submit">
             <el-button  @click="onSubmit">填写审批意见</el-button>
             <el-button  @click="dialogVisible = true">调整流程</el-button>
-            <el-dialog title="" class="msg-emerge" :visible.sync="dialogVisible"
-                       size="tiny" :before-close="handleClose">
+            <el-dialog title=""
+                       class="msg-emerge" :visible.sync="dialogVisible" size="large"
+                        :before-close="handleClose">
                 <v-approver></v-approver>
               <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button @click.native="dialogVisible = false">取 消</el-button>
               </span>
             </el-dialog>
             <el-button>抄送</el-button>
