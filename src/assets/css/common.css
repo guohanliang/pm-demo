@@ -277,3 +277,6 @@ td[data-v-5f302b49]{
 .approver .el-autocomplete{
   width: 100%;
 }
+.msg-emerge .el-dialog--tiny{
+  height: 500px;
+}
