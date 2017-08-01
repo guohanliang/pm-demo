@@ -16,10 +16,24 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li><button class="choice">选择</button></li>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <el-dialog
+          title="提示"
+          :visible.sync="dialogVisible"
+          :modal-append-to-body="false"
+          size="tiny"
+          :before-close="handleClose">
+          <span>这是一段信息</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+      </li>
     </ul>
     <ul>
-      <li><button class="license">本部门审批</button></li>
+      <li><button class="license">产品部审批</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -32,10 +46,12 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li><button class="choice">选择</button></li>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+      </li>
     </ul>
     <ul>
-      <li><button class="license">本部门审批</button></li>
+      <li><button class="license">部门会签</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -48,10 +64,12 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li><button class="choice">选择</button></li>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+      </li>
     </ul>
     <ul>
-      <li><button class="license">本部门审批</button></li>
+      <li><button class="license">事后抄送</button></li>
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
@@ -64,7 +82,9 @@
           ></el-autocomplete>
         </el-col>
       </li>
-      <li><button class="choice">选择</button></li>
+      <li class="selector1">
+        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+      </li>
     </ul>
   </div>
 </template>
@@ -72,7 +92,8 @@
   export default{
     data(){
       return {
-        state1: ''
+        state1: '',
+        dialogVisible: false
       }
     },
     methods: {
@@ -98,6 +119,13 @@
       },
       handleSelect(item) {
         console.log(item);
+      },
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
       }
     },
     mounted() {
@@ -146,9 +174,11 @@
       .license{
         outline: none;
       }
-      .choice{
-        margin-left: 10px;
-        margin-right: 10px;
+      .selector1{
+        .choice{
+          margin-left: 10px;
+          margin-right: 10px;
+        }
       }
       /*.choice:hover{*/
         /*background-color: red;*/
