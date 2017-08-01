@@ -11,6 +11,7 @@ import Qyfw from '@/my-ui/QYFW'
 import Xtcs from '@/my-ui/XTCS'
 import Ywcs from '@/my-ui/YWCS'
 import Zylx from '@/my-ui/ZYLX'
+
 Vue.use(Router)
 
 // 路由拦截
