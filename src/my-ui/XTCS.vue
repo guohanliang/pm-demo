@@ -1,259 +1,222 @@
 <template>
-  <div class="xtcs">
-    <div id="main"></div>
-    <div id="second"></div>
-    <div id="third"></div>
-    <div id="fourth"></div>
+  <div class="hzcx">
+    <el-dialog
+      title="会签信息表"
+      :visible.sync="dialogVisible3"
+      size="tiny"
+
+      :before-close="handleClose">
+      <div class="sign">
+        <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
+          <tbody>
+          <tr align="center" height="80">
+            <td colspan="4">
+              <ul class="shenhe">
+
+                <li class="fl name">
+                  <el-row class="demo-autocomplete">
+                    <el-col :span="24">
+                      <el-autocomplete
+                        style="margin-left: 15px;  width: 700px"
+                        class="inline-input"
+                        v-model="state1"
+                        :fetch-suggestions="querySearch"
+                        placeholder="请输入要查询用户的账户/姓名/拼音/岗位"
+                        @select="handleSelect">
+                      </el-autocomplete>
+                    </el-col>
+                  </el-row>
+                </li>
+                <li class="fr sel">
+                  <el-button type="danger" icon="circle-check">
+                    确定
+                  </el-button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr height="80">
+            <td colspan="1" width="30%"></td>
+            <td colspan="3" width="70%">
+              <div class="add">
+                <el-button type="danger" icon="plus">
+                  将【人员】添加到【会签】中
+                </el-button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <el-tree :data="data" :props="defaultProps"
+                       @node-click="handleNodeClick">
+              </el-tree>
+            </td>
+            <td colspan="3">
+
+              <el-table
+                :data="tableData"
+                style="width: 100%">
+                <el-table-column
+                  prop="date"
+                  label="日期"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="address"
+                  label="地址">
+                </el-table-column>
+              </el-table>
+
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+              </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
   export default {
-    data(){
-      return {}
-    },
-    created(){
-    },
-    mounted(){
-      var echarts = require('echarts');
+    data: function () {
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }],
 
-      // 基于准备好的dom，初始化echarts实例
-      // var myChart = echarts.init(this.$el.querySelector('#main'));
-      var myChart = echarts.init(document.getElementById('main'));
-      var myChart1=echarts.init(document.getElementById('second'));
-      var myChart2=echarts.init(document.getElementById('third'));
-      // 异步加载
-      // $.get('./static/list.json').done(function (data) {
-      //     alert(1);
-      //     myChart.setOption({
-      //         title: {
-      //             text: '异步数据加载示例'
-      //         },
-      //         tooltip: {},
-      //         legend: {
-      //             data:['销量']
-      //         },
-      //         xAxis: {
-      //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-      //         },
-      //         yAxis: {},
-      //         series: [{
-      //             name: '销量',
-      //             type: 'bar',
-      //             data: [5, 20, 36, 10, 10, 20]
-      //         }]
-      //     });
-      // },function(err){alert(0)});
-      var option={
-        // 背景色
-          // backgroundColor: '#2c343c',
-          // 字体颜色
-          textStyle: {
-              // color: 'rgba(255, 255, 255, 0.3)'
-          },
-          series : [
+        restaurants: [],
+        state1: '',
+        state2: '',
+        data: [
+          {
+            label: '🏠 嘉实集团',
+            children: [
               {
-                  name: '访问来源',
-                  type: 'pie',//饼图
-                  roseType:'angle',//南丁格尔图
-                  radius: '55%',
-                  data:[
-                      {value:235, name:'视频广告'},
-                      {value:274, name:'联盟广告'},
-                      {value:310, name:'邮件营销'},
-                      {value:335, name:'直接访问'},
-                      {value:400, name:'搜索引擎'},
-                      {value:300,name:'百度搜索'}
-                  ],
-                  //阴影效果
-                  itemStyle:{
-                    // 🖱hover 的时候高亮加阴影
-                    emphasis:{
-                      shadowBlur:200,
-                      shadowColor:'rgbd(0,0,0,0.5)'
-                    }
-                  },
-                  visualMap: {
-                      // 不显示 visualMap 组件，只用于明暗度的映射
-                      show: false,
-                      // 映射的最小值为 80
-                      min: 80,
-                      // 映射的最大值为 600
-                      max: 600,
-                      inRange: {
-                          // 明暗度的范围是 0 到 1
-                          colorLightness: [0, 1]
+                label: '🏠 HAI',
+                children: [{
+                  label: '🏠 HELLO'
+                }]
+              },
+              {
+                label: '🏠 嘉实财富',
+                children: [{
+                  label: '🏠 WORLD'
+                }]
+              },
+              {
+                label: '🏠 嘉实国际',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实基金',
+                children: [
+                  {
+                    label: '👱 董事长',
+                    children: [
+                      {
+                        label: '👱 总裁',
+                        children: [
+                          {
+                            label: '👱 财务管理',
+                          },
+                          {
+                            label: '👱 股票投资业务',
+                          },
+                          {
+                            label: '👱 固收和机构投资业务',
+                          },
+                          {
+                            label: '👱 法务和内控',
+                          }
+                        ]
                       }
+                    ]
                   }
-              }
-          ],
-          title : {
-              text: '饼图程序调用高亮示例',
-              x: 'center'
-          },
-          tooltip: {
-              trigger: 'item',
-              formatter: "{a} <br/>{b} : {c} ({d}%)"
-          },
-          legend: {
-              orient: 'vertical',
-              left: 'left',
-              data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度搜索']
-          },
-          // series : [
-          //     {
-          //         name: '访问来源',
-          //         type: 'pie',
-          //         radius : '55%',
-          //         center: ['50%', '60%'],
-          //         data:[
-          //             {value:335, name:'直接访问'},
-          //             {value:310, name:'邮件营销'},
-          //             {value:234, name:'联盟广告'},
-          //             {value:135, name:'视频广告'},
-          //             {value:1548, name:'搜索引擎'}
-          //         ],
-          //         itemStyle: {
-          //             emphasis: {
-          //                 shadowBlur: 10,
-          //                 shadowOffsetX: 0,
-          //                 shadowColor: 'rgba(0, 0, 0, 0.5)'
-          //             }
-          //         }
-          //     }
-          // ]
-      };
-      // 绘制图表
-      myChart.setOption({
-        title: { text: 'ECharts 入门示例' },
-        tooltip: {},
-        legend:{
-          data:['销量']
-        },
-        xAxis: {
-          data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","帽子"]
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20,50]
-        }]
-      });
-      myChart1.setOption(option);
-      app.currentIndex = -1;
-
-      setInterval(function () {
-          var dataLen = option.series[0].data.length;
-          // 取消之前高亮的图形
-          myChart1.dispatchAction({
-              type: 'downplay',
-              seriesIndex: 0,
-              dataIndex: app.currentIndex
-          });
-          app.currentIndex = (app.currentIndex + 1) % dataLen;
-          // 高亮当前图形
-          myChart1.dispatchAction({
-              type: 'highlight',
-              seriesIndex: 0,
-              dataIndex: app.currentIndex
-          });
-          // 显示 tooltip
-          myChart1.dispatchAction({
-              type: 'showTip',
-              seriesIndex: 0,
-              dataIndex: app.currentIndex
-          });
-      }, 1000);
-
-      myChart2.setOption({
-        xAxis: {
-            type: 'value'
-        },
-        yAxis: {
-            type: 'value'
-        },
-        dataZoom: [
-            {   // 这个dataZoom组件，默认控制x轴。
-                type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                start: 10,      // 左边在 10% 的位置。
-                end: 60         // 右边在 60% 的位置。
-            },
-            {   // 这个dataZoom组件，也控制x轴。
-              type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
-              start: 10,      // 左边在 10% 的位置。
-              end: 60         // 右边在 60% 的位置。
-            },
-            {
-                type: 'slider',
-                yAxisIndex: 0,
-                start: 30,
-                end: 80
-            },
-            {
-                type: 'inside',
-                yAxisIndex: 0,
-                start: 30,
-                end: 80
-            }
+                ]
+              },
+              {
+                label: '🏠 嘉实资本',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实远见科技',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实证券（筹）',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实投资',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实保汇',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+              {
+                label: '🏠 嘉实科技投资',
+                children: [{
+                  label: '🏠 HI'
+                }]
+              },
+            ]
+          }
         ],
-        legend:{
-          data:['散点图']
+        defaultProps: {
+          children: 'children',
+          label: 'label'
         },
-        series: [
-            {
-                name:'散点图',
-                type: 'scatter', // 这是个『散点图』
-                itemStyle: {
-                    normal: {
-                        opacity: 0.8
-                    }
-                },
-                symbolSize: function (val) {
-                    return val[2] * 40;
-                },
-                data: [["14.616","7.241","0.896"],["3.958","5.701","0.955"],["2.768","8.971","0.669"],["9.051","9.710","0.171"],["14.046","4.182","0.536"],["12.295","1.429","0.962"],["4.417","8.167","0.113"],["0.492","4.771","0.785"],["7.632","2.605","0.645"],["14.242","5.042","0.368"]]
-            }
-        ]
-      });
-      myChart.on('click', function (params) {
-          console.log(params);
-          window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
-      });
+        dialogVisible0: false,
+        dialogVisible1: false,
+        dialogVisible2: false,
+        dialogVisible3: true,
+        dialogVisible4: false,
+      }
     }
   }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .xtcs{
-    width: calc(100vw - 200px);
-    /*height:626px;*/
-    /*background: cyan;*/
-    margin-left:280px;
-    margin-top:100px;
-    overflow: hidden;
+  .hzcx {
+
   }
-  #main{
-    background-color: red;
-    width:600px;
-    height: 300px;
-    float: left;
-  }
-  #second{
-    width: 500px;
-    height: 300px;
-    float: right;
-  }
-  #third{
-    width:600px;
-    height: 300px;
-    float: left;
-  }
-  @media(max-width: 1380px){
-    #second{
-      float:left;
-    }
-  }
+
 </style>

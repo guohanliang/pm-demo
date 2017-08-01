@@ -264,3 +264,34 @@ td[data-v-5f302b49]{
   height: 30px;
   padding: 0;
 }
+.application .edui-editor {
+  margin-bottom: 10px;
+}
+.approver .el-input__inner{
+  border: none;
+  border: 1px solid gray;
+  border-radius: 0;
+  height: 25px;
+  width: 100%;
+}
+.approver .el-autocomplete{
+  width: 100%;
+}
+.msg-emerge .el-dialog--tiny{
+  height: 500px;
+}
+.selector1 .el-dialog__wrapper{
+  z-index:3000!important;
+}
+.selector1 .el-dialog--tiny{
+  top:0!important;
+}
+.selector1 .el-dialog{
+  margin-bottom: 0!important;
+}
+.selector1 .el-button{
+  width:100px!important;
+  margin-left: 10px;
+  height: 20px!important;
+  border:1px solid;
+}

@@ -1,5 +1,17 @@
 <template>
   <div class="gryw">
+    <div class="base-information">
+      <!--基础信息-->
+      <v-base></v-base>
+    </div>
+    <div class="application-information">
+      <!--申请信息-->
+      <v-application></v-application>
+    </div>
+    <div class="attachment">
+      <!--附件-->
+      <v-adjunct></v-adjunct>
+    </div>
     <div class="approval-record clear-fix">
       <!--审批记录一栏-->
       <v-record></v-record>
@@ -7,7 +19,7 @@
     </div>
     <div class="last">
       <!-- 最后提交留言栏 -->
-      <v-agreement></v-agreement>  
+      <v-agreement></v-agreement>
     </div>
   </div>
 </template>
@@ -16,6 +28,9 @@
   import vRecord from "./components/approval-record.vue"
   import vMessage from "./components/leave-message.vue"
   import vAgreement from "./components/agreement.vue"
+  import vBase from "./components/basic-information.vue"
+  import vApplication from "./components/application-information.vue"
+  import vAdjunct from  "./components/adjunct.vue"
   export default {
     data() {
         return {}
@@ -23,7 +38,10 @@
     components:{
         vRecord,
         vMessage,
-        vAgreement
+        vAgreement,
+        vBase,
+        vApplication,
+        vAdjunct
     }
   }
 </script>
@@ -37,6 +55,9 @@
     margin-top: 120px;
     .approval-record {
       overflow: hidden;
+    }
+    .attachment{
+      margin-bottom: 10px;
     }
     .last{
       margin-top: 10px;
