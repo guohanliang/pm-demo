@@ -19,12 +19,12 @@
       <li class="selector1">
         <el-button type="text" @click="dialogVisible = true">选择</el-button>
         <el-dialog
-          title="提示"
+          title="选择审批人"
           :visible.sync="dialogVisible"
           :modal-append-to-body="false"
           size="tiny"
           :before-close="handleClose">
-          <span>这是一段信息</span>
+          <v-countersign></v-countersign>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -89,6 +89,7 @@
   </div>
 </template>
 <script>
+  import vCountersign from "./countersign.vue"
   export default{
     data(){
       return {
@@ -130,6 +131,9 @@
     },
     mounted() {
       this.restaurants = this.loadAll();
+    },
+    components:{
+        vCountersign
     }
   }
 </script>
