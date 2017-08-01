@@ -141,6 +141,7 @@
     margin: 10px;
     height: 300px;
     border: 1px solid black;
+    margin-top: 20px;
     .header-title {
       font-size: 20px;
       color: red;

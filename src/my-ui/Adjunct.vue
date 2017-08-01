@@ -1,5 +1,5 @@
 <template>
-  <div class="mzgz">
+  <div class="enclosure">
     <div class="attachment">
       <div class="header">
         <h4>附件</h4>
@@ -95,15 +95,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .mzgz {
+  .enclosure {
     width: calc(100vw - 200px);
     height: 626px;
-    
-    margin-top: 110px;
+    width:90%;
+    margin: 10px;
     .attachment {
-      margin: 10px;
       min-height: 100px;
-      border: 1px solid grey;
+      border: 1px solid black;
       .header {
         height: 30px;
         h4 {
