@@ -1,13 +1,8 @@
 <template>
-  <div class="hzcx">
-    <el-dialog
-      title="会签信息表"
-      :visible.sync="dialogVisible3"
-      size="tiny"
-
-      :before-close="handleClose">
+  <div class="countersign">
       <div class="sign">
-        <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
+        <table cellspacing="0" cellpadding="0" border="1" align="center"
+               width="100%" height="400">
           <tbody>
           <tr align="center" height="80">
             <td colspan="4">
@@ -51,7 +46,6 @@
               </el-tree>
             </td>
             <td colspan="3">
-
               <el-table
                 :data="tableData"
                 style="width: 100%">
@@ -70,18 +64,11 @@
                   label="地址">
                 </el-table-column>
               </el-table>
-
-
             </td>
           </tr>
           </tbody>
         </table>
       </div>
-      <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-              </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -201,12 +188,16 @@
         defaultProps: {
           children: 'children',
           label: 'label'
-        },
-        dialogVisible0: false,
-        dialogVisible1: false,
-        dialogVisible2: false,
-        dialogVisible3: true,
-        dialogVisible4: false,
+        }
+      }
+    },
+    methods:{
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
       }
     }
   }
@@ -214,8 +205,4 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .hzcx {
-
-  }
-
 </style>
