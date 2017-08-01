@@ -2,13 +2,17 @@
   <div class="mzgz">
     <basic-msg></basic-msg>
     <application-msg></application-msg>
+    <adjunct></adjunct>
   </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import adjunct from './Adjunct.vue';
     export default {
-
+      components:{
+          adjunct
+      }
     }
 </script>
 
@@ -18,6 +22,7 @@
     width: calc(100vw - 200px);
     margin-left:200px;
     margin-top:100px;
+    overflow: hidden;
 
 
   }
