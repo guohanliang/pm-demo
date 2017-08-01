@@ -110,7 +110,8 @@
     background-color: white;
     margin: 10px;
     height: 240px;
-    border: 1px solid gray;
+    border: 1px solid black;
+    width:90%;
     h4 {
       color: red;
       margin-left: 10px;

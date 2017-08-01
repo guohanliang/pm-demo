@@ -3,15 +3,19 @@
     <basic-msg></basic-msg>
     <application-msg></application-msg>
     <adjunct></adjunct>
+    <approver></approver>
+    <submit-btn></submit-btn>
   </div>
 </template>
 
 <script>
     import axios from 'axios';
     import adjunct from './Adjunct.vue';
+    import approver from "./Approver.vue"
     export default {
       components:{
-          adjunct
+          adjunct,
+          approver
       }
     }
 </script>
