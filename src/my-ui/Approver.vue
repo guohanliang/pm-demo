@@ -21,7 +21,7 @@
       <li>
         <button class="choice" @click="dialogVisible = true">选择</button>
         <el-dialog
-          title="提示"
+          title="选择审批人"
           :visible.sync="dialogVisible"
           size="tiny"
           :before-close="handleClose">
