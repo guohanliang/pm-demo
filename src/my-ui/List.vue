@@ -56,12 +56,12 @@
             searchword: this.searchword,
             startDate: this.startDate,
             endDate: this.endDate,
-            pageNo:'1',
-            pageSize:'10'
+            pageNo: '1',
+            pageSize: '10'
           }
         })
           .then(function (response) {
-            console.log(response);
+            console.log(response.data);
 //            this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
@@ -73,13 +73,14 @@
       },
       go(row, event, column){
 //        console.log(row, event, column);
-//        console.log(row.dataCode);
+        console.log(row.dataCode);
         this.$router.push({
-          path: "/gryw"
-//          query: {
-//            input1: 'row.dataCode', input2: 'row.applyTime', input3: "row.applyUser",
+          path: "/gryw",
+          query: {
+            input1: 'row.dataCode'
+//            , input2: 'row.applyTime', input3: "row.applyUser",
 //            input4: "row.applyDept", input: "row.dataTitle"
-//          }
+          }
         })
       }
     },
@@ -90,12 +91,11 @@
           pageNo: '1',
           pageSize: '10',
         }
-      }).then(function (res) {
-        var list = eval('('+res.data+')');
-        that.tableData = list.data.approveinfos
+      }).then((res) => {
+        this.tableData = res.data.data.approveinfos
       })
-        .catch(function (err) {
-          console.log(err)
+        .catch((err) => {
+          console.log(err);
         })
     }
   }
