@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Dzcx from '@/my-ui/DZCX'
-import Dzgy from '@/my-ui/DZGY'
-import Gryw from '@/my-ui/GRYW'
-import Hzcx from '@/my-ui/HZCX'
-import Mxcx from '@/my-ui/MXCX'
-import Mzgz from '@/my-ui/MZGZ'
-import Qyfw from '@/my-ui/QYFW'
-import Xtcs from '@/my-ui/XTCS'
-import Ywcs from '@/my-ui/YWCS'
-import Zylx from '@/my-ui/ZYLX'
+import Dzcx from '@/my-ui/Check-for-the-query'
+import Dzgy from '@/my-ui/Check-for-interference'
+import Gryw from '@/my-ui/Approve-examination'
+import Hzcx from '@/my-ui/Aggregation-query'
+import Mxcx from '@/my-ui/Detailed-query'
+import Mzgz from '@/my-ui/Application'
+import Qyfw from '@/my-ui/The-enterprise-service'
+import Xtcs from '@/my-ui/System-parameters'
+import Ywcs from '@/my-ui/Business-parameters'
+import Zylx from '@/my-ui/List'
 
 Vue.use(Router)
 

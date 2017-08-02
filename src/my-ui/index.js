@@ -19,16 +19,16 @@ import Application_informationComponent from './application_information/APPLICAT
 import SubmitComponent from './submit/SUBMIT.vue'
 
 
-import DzcxComponent from './DZCX.vue'
-import DzgyComponent from './DZGY.vue'
-import GrywComponent from './GRYW.vue'
-import HzcxComponent from './HZCX.vue'
-import MxcxComponent from './MXCX.vue'
-import MzgzComponent from './MZGZ.vue'
-import QyfwComponent from './QYFW.vue'
-import XtcsComponent from './XTCS.vue'
-import YwcsComponent from './YWCS.vue'
-import ZylxComponent from './ZYLX.vue'
+import DzcxComponent from './Check-for-the-query.vue'
+import DzgyComponent from './Check-for-interference.vue'
+import GrywComponent from './Approve-examination.vue'
+import HzcxComponent from './Aggregation-query.vue'
+import MxcxComponent from './Detailed-query.vue'
+import MzgzComponent from './Application.vue'
+import QyfwComponent from './The-enterprise-service.vue'
+import XtcsComponent from './System-parameters.vue'
+import YwcsComponent from './Business-parameters.vue'
+import ZylxComponent from './List.vue'
 
 
 
