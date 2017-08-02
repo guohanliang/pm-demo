@@ -158,16 +158,17 @@
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 7%;
+        width: 6%;
+        padding-left: 10px;
         display: inline-block;
       }
       .label{
         float: left;
         font-size: 16px;
         line-height: 36px;
-        width: 7%;
+        width: 6%;
+        padding-left: 10px;
         display: inline-block;
-
       }
       .label-con{
         width: 80%;
@@ -193,8 +194,9 @@
         .num {
           font-size: 16px;
           line-height: 36px;
-          width: 20%;
+          width: 19%;
           display: inline-block;
+          padding-left: 10px;
         }
         .el-input, .el-input__inner {
           width: 70%;
