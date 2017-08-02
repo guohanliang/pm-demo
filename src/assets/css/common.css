@@ -305,3 +305,6 @@ td[data-v-5f302b49]{
   height:40px;
   border-bottom:1px solid;
 }
+.msg-emerge   .el-textarea__inner{
+  margin-left: 0;
+}

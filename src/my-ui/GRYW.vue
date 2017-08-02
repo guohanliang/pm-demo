@@ -64,10 +64,10 @@
       border: 1px solid;
     }
   }
-   @media(max-width:700px){
-        .last{
-            width:460px;
-        }
-    }
+ @media(max-width:700px){
+      .last{
+          width:460px;
+      }
+  }
 
 </style>
