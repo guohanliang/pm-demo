@@ -21,7 +21,7 @@
     <div class="list">
       <el-row>
         <el-col :span="24">
-          <el-table border :data="tableData" stripe style="width: 100%">
+          <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
             <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
             <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
             <el-table-column prop="dataTitle" label="标题" min-width="100"></el-table-column>
@@ -131,19 +131,50 @@
     },
     methods: {
       select(){
-        axios.get('/api/demo/list/workflow/approvequery')
+        axios.get('/demo/workflow/list/approvequery', {
+          params: {
+            searchword: this.searchword,
+            startDate: this.startDate,
+            endDate: this.endDate,
+          }
+        })
           .then(function (response) {
-            console.log(response);
+//            console.log(response);
+//            this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
-            console.log(error)
+//            console.log(error)
           })
       },
       to(){
-//        this.$router.push()
+        this.$router.push("/mzgz")
+      },
+      go(row, event, column){
+//        console.log(row, event, column);
+//        console.log(row.dataCode);
+        this.$router.push({
+          path: "/gryw",
+          query: {
+            input1: 'row.dataCode', input2: 'row.applyTime', input3: "row.applyUser",
+            input4: "row.applyDept", input: "row.dataTitle"
+          }
+        })
       }
-    }
+    },
+    created(){
+      axios.get("/demo/workflow/list/approvequery", {
+        params: {
+          pageNo: '1',
+          pageSize: '10',
+        }
+      }).then(function (res) {
+//        console.log(res)
 
+      })
+        .catch(function (err) {
+//          console.log(err)
+        })
+    }
   }
 </script>
 
