@@ -12,7 +12,7 @@
       </div>
     <div class="box_two">
       <span class="code">
-        这里放一维码
+        <img :src="url"/>
       </span>
     </div>
       <div class="box_three">
@@ -93,6 +93,7 @@
   export default {
     data() {
       return {
+        url:require('../../assets/1.jpg'),
         input1: 'P990-170725102421345',
         input2: '',
         input3: '张三',
@@ -213,6 +214,10 @@
           height: 36px;
           width:95%;
           background: red;
+          img{
+            width:100%;
+            height:100%;
+          }
         }
       }
       .box_three {
