@@ -91,7 +91,7 @@
           pageSize: '10',
         }
       }).then(function (res) {
-        var list = (eval('('+res.data+')'))
+        var list = eval('('+res.data+')');
         that.tableData = list.data.approveinfos
       })
         .catch(function (err) {
