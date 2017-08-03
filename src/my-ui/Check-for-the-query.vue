@@ -1,4 +1,4 @@
-    <template>
+<template>
   <div class="dzcx">
     <my-rightcenter></my-rightcenter>
     <my-rightbiao></my-rightbiao>

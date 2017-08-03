@@ -8,11 +8,14 @@
       <div class="center">
         <span class="sq-time">申请时间</span>
         <div class="block">
-          <el-date-picker v-model="startDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="startDate" type="datetime"
+                          placeholder="选择日期时间">
+          </el-date-picker>
         </div>
         <span class="line"></span>
         <div class="block">
-          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间">
+          </el-date-picker>
         </div>
       </div>
       <button @click="select">查询</button>
@@ -22,18 +25,35 @@
       <el-row>
         <el-col :span="24">
           <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
+<<<<<<< HEAD
+            <el-table-column prop="rownum" label="序号" min-width="30">
+            </el-table-column>
+            <el-table-column prop="dataCode" label="编号" min-width="160">
+            </el-table-column>
+            <el-table-column prop="dataTitle" label="标题" min-width="100">
+            </el-table-column>
+            <el-table-column prop="applyUser" label="申请人" min-width="50">
+            </el-table-column>
+            <el-table-column prop="applyDept" label="申请人部门" min-width="75">
+            </el-table-column>
+            <el-table-column prop="applyTime" label="申请时间" min-width="135">
+            </el-table-column>
+            <el-table-column prop="status" label="当前状态" min-width="60">
+            </el-table-column>
+=======
             <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
             <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
-            <el-table-column prop="dataTitle" label="标题" min-width="100"></el-table-column>
+            <el-table-column prop="dataTitle" label="标题" min-width="230"></el-table-column>
             <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
-            <el-table-column prop="applyDept" label="申请人部门" min-width="75"></el-table-column>
+            <el-table-column prop="applyDept" label="申请人部门" min-width="100"></el-table-column>
             <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
             <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
+>>>>>>> 4b2c727ea4361d573c7511ce6620da633402681c
           </el-table>
         </el-col>
       </el-row>
       <div class="block">
-        <el-pagination layout="prev, pager, next" :total="1000"></el-pagination>
+        <el-pagination layout="prev, pager, next" :total="1"></el-pagination>
       </div>
     </div>
   </div>
@@ -46,100 +66,23 @@
         searchword: '',
         startDate: '',
         endDate: '',
-        tableData: [{
-          rownum: '1',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '张三',
-          applyDept: '产品部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '草稿'
-        }, {
-          rownum: '2',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '李四',
-          applyDept: '投资部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '审批中'
-        }, {
-          rownum: '3',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '王五',
-          applyDept: '技术部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '结束'
-        }, {
-          rownum: '4',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '老刘',
-          applyDept: '研发部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '草稿'
-        }, {
-          rownum: '5',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '张三',
-          applyDept: '产品部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '草稿'
-        }, {
-          rownum: '6',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '李四',
-          applyDept: '投资部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '审批中'
-        }, {
-          rownum: '7',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '王五',
-          applyDept: '技术部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '结束'
-        }, {
-          rownum: '8',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '老刘',
-          applyDept: '研发部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '草稿'
-        }, {
-          rownum: '9',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '张三',
-          applyDept: '产品部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '草稿'
-        }, {
-          rownum: '10',
-          dataCode: 'P990-170725102421345',
-          dataTitle: ' 关于XXX的申请',
-          applyUser: '李四',
-          applyDept: '投资部',
-          applyTime: '2017-10-10 06:00:00',
-          status: '审批中'
-        }]
+        tableData: [],
+        total:''
       }
     },
     methods: {
       select(){
-        axios.get('/demo/workflow/list/approvequery', {
+        axios.get('http://10.0.192.40:8081/demo/workflow/list/approvequery', {
           params: {
             searchword: this.searchword,
             startDate: this.startDate,
             endDate: this.endDate,
+            pageNo: '1',
+            pageSize: '1'
           }
         })
           .then(function (response) {
-//            console.log(response);
+            console.log(response.data);
 //            this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
@@ -150,29 +93,30 @@
         this.$router.push("/mzgz")
       },
       go(row, event, column){
-//        console.log(row, event, column);
-//        console.log(row.dataCode);
         this.$router.push({
-          path: "/gryw",
-          query: {
-            input1: 'row.dataCode', input2: 'row.applyTime', input3: "row.applyUser",
-            input4: "row.applyDept", input: "row.dataTitle"
-          }
+          path: "/gryw"
         })
+        localStorage.setItem("input1",row.dataCode)
       }
     },
     created(){
-      axios.get("/demo/workflow/list/approvequery", {
+      var that = this;
+      axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
         params: {
           pageNo: '1',
           pageSize: '10',
         }
+<<<<<<< HEAD
       }).then(function (res) {
 //        console.log(res)
-
+=======
+      }).then((res) => {
+        this.tableData = res.data.data.approveinfos;
+//        this.total = res.data.data.total/pageSize
+>>>>>>> 4b2c727ea4361d573c7511ce6620da633402681c
       })
-        .catch(function (err) {
-//          console.log(err)
+        .catch((err) => {
+          console.log(err);
         })
     }
   }
