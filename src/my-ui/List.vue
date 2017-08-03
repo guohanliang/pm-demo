@@ -8,11 +8,14 @@
       <div class="center">
         <span class="sq-time">申请时间</span>
         <div class="block">
-          <el-date-picker v-model="startDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="startDate" type="datetime"
+                          placeholder="选择日期时间">
+          </el-date-picker>
         </div>
         <span class="line"></span>
         <div class="block">
-          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间">
+          </el-date-picker>
         </div>
       </div>
       <button @click="select">查询</button>
@@ -22,13 +25,20 @@
       <el-row>
         <el-col :span="24">
           <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
-            <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
-            <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
-            <el-table-column prop="dataTitle" label="标题" min-width="100"></el-table-column>
-            <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
-            <el-table-column prop="applyDept" label="申请人部门" min-width="75"></el-table-column>
-            <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
-            <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
+            <el-table-column prop="rownum" label="序号" min-width="30">
+            </el-table-column>
+            <el-table-column prop="dataCode" label="编号" min-width="160">
+            </el-table-column>
+            <el-table-column prop="dataTitle" label="标题" min-width="100">
+            </el-table-column>
+            <el-table-column prop="applyUser" label="申请人" min-width="50">
+            </el-table-column>
+            <el-table-column prop="applyDept" label="申请人部门" min-width="75">
+            </el-table-column>
+            <el-table-column prop="applyTime" label="申请时间" min-width="135">
+            </el-table-column>
+            <el-table-column prop="status" label="当前状态" min-width="60">
+            </el-table-column>
           </el-table>
         </el-col>
       </el-row>
@@ -169,7 +179,6 @@
         }
       }).then(function (res) {
 //        console.log(res)
-
       })
         .catch(function (err) {
 //          console.log(err)

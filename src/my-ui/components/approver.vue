@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-  import vCountersign from "./countersign.vue"
+  import vCountersign from "./approve-person.vue"
   export default{
     data(){
       return {

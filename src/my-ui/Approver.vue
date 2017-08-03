@@ -28,7 +28,8 @@
           <approverperson></approverperson>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定
+            </el-button>
           </span>
         </el-dialog>
       </li>
@@ -118,7 +119,9 @@
       },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;
-        var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+//        三目运算符
+        var results = queryString ?
+          restaurants.filter(this.createFilter(queryString)) : restaurants;
         // 调用 callback 返回建议列表的数据
         cb(results);
       },
@@ -191,9 +194,6 @@
         margin-left: 10px;
         margin-right: 10px;
       }
-      /*.choice:hover{*/
-      /*background-color: red;*/
-      /*}*/
       .line {
         width: 30px;
         height: 1px;

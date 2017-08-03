@@ -6,7 +6,7 @@
         <span class="num">编号</span>
         <el-input
           placeholder="请输入内容"
-          v-model="input1"
+          v-model="data.dataCode"
           :disabled="true">
         </el-input>
       </div>
@@ -21,19 +21,18 @@
       </span>
         <el-input
           placeholder="请输入内容"
-          v-model="input2"
+          v-model="data.sysCreatorTime"
           :disabled="true">
         </el-input>
       </div>
     </div>
-
 
     <div class="one">
       <div class="box_one">
         <span class="num">申请人</span>
         <el-input
           placeholder="请输入内容"
-          v-model="input3"
+          v-model="data.sysCreatorName"
           :disabled="true">
         </el-input>
       </div>
@@ -47,7 +46,7 @@
       </span>
         <el-input
           placeholder="请输入内容"
-          v-model="input4"
+          v-model="data.orgChName"
           :disabled="true">
         </el-input>
       </div>
@@ -58,7 +57,8 @@
       <span class="title">
         标题
       </span>
-      <el-input v-model="input" placeholder="请输入内容" disabled></el-input>
+      <el-input v-model="data.title" placeholder="请输入内容" disabled>
+      </el-input>
     </div>
 
 
@@ -84,7 +84,6 @@
       </div>
     </div>
 
-
   </div>
 </template>
 
@@ -93,21 +92,18 @@
   export default {
     data() {
       return {
-        input1: 'P990-170725102421345',
-        input2: '',
-        input3: '张三',
-        input4: '产品管理部',
-        input:'标题',
-        options5: [{
-          value: 'AAA',
-          label: 'AAA'
-        }, {
-          value: 'BBB',
-          label: 'BBB'
-        }, {
-          value: 'CCC',
-          label: 'CCC'
-        }],
+        data:{
+          dataCode:"",
+          sysCreatorTime: "",
+          sysCreatorAccount: "",
+          sysCreatorName: "",
+          dcOrgCode: "",
+          orgChName: "",
+          title: "" ,
+          label:""
+        },
+
+        options5: [],
         value10: []
       }
     },
@@ -123,13 +119,30 @@
         if(strDate >= 0 && strDate <= 9) {
           strDate = "0" + strDate;
         }
-        var currentdate = date.getUTCFullYear() + seperator1 + month + seperator1 + strDate
-        console.log(currentdate)
+        var currentdate = date.getUTCFullYear() + seperator1
+          + month + seperator1 + strDate
         return currentdate;
       }
     },
     created(){
       this.input2 = this.getNowTime();
+      var _this=this;
+      // /system/bpm/workflow/query/查询基础信息 api
+      axios.get('http://10.0.192.40:8081/system/bpm/workflow/query')
+        .then(function (res) {
+            //            将 res.data.data的 label 赋值给 options5
+          var label=res.data.data.label;
+          label=label.split(",");
+          for (var i=0;i<label.length;i++){
+              _this.options5.push({value:"",label:""});
+              _this.options5[i].value=label[i];
+              _this.options5[i].label=label[i];
+          }
+           _this.data=res.data.data;
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 </script>

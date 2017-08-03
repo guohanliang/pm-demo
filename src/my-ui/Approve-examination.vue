@@ -31,6 +31,7 @@
   import vBase from "./components/basic-information.vue"
   import vApplication from "./components/application-information.vue"
   import vAdjunct from  "./components/adjunct.vue"
+
   export default {
     data() {
         return {}
@@ -44,6 +45,7 @@
         vAdjunct
     }
   }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
