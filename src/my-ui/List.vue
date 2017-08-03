@@ -33,7 +33,7 @@
         </el-col>
       </el-row>
       <div class="block">
-        <el-pagination layout="prev, pager, next" :total="1000"></el-pagination>
+        <el-pagination layout="prev, pager, next" :total="1"></el-pagination>
       </div>
     </div>
   </div>
@@ -46,7 +46,8 @@
         searchword: '',
         startDate: '',
         endDate: '',
-        tableData: []
+        tableData: [],
+        total:''
       }
     },
     methods: {
@@ -57,7 +58,7 @@
             startDate: this.startDate,
             endDate: this.endDate,
             pageNo: '1',
-            pageSize: '10'
+            pageSize: '1'
           }
         })
           .then(function (response) {
@@ -72,16 +73,10 @@
         this.$router.push("/mzgz")
       },
       go(row, event, column){
-//        console.log(row, event, column);
-        console.log(row.dataCode);
         this.$router.push({
-          path: "/gryw",
-          query: {
-            input1: 'row.dataCode'
-//            , input2: 'row.applyTime', input3: "row.applyUser",
-//            input4: "row.applyDept", input: "row.dataTitle"
-          }
+          path: "/gryw"
         })
+        localStorage.setItem("input1",row.dataCode)
       }
     },
     created(){
@@ -92,7 +87,8 @@
           pageSize: '10',
         }
       }).then((res) => {
-        this.tableData = res.data.data.approveinfos
+        this.tableData = res.data.data.approveinfos;
+//        this.total = res.data.data.total/pageSize
       })
         .catch((err) => {
           console.log(err);

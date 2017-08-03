@@ -25,6 +25,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import vRecord from "./components/approval-record.vue"
   import vMessage from "./components/leave-message.vue"
   import vAgreement from "./components/agreement.vue"
@@ -42,7 +43,18 @@
         vBase,
         vApplication,
         vAdjunct
+    },
+    created(){
+        axios.get('http://10.0.192.40:8081/system/bpm/workflow/query',{
+            params:{
+                dataCode:localStorage.getItem("input1")
+            }
+        }).then((res)=>{
+          console.log(localStorage.getItem("input1"));
+          console.log(res);
+        })
     }
+
   }
 </script>
 
