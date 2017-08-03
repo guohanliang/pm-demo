@@ -28,8 +28,12 @@
           <approverperson></approverperson>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
+<<<<<<< HEAD
             <el-button type="primary" @click="dialogVisible = false">确 定
             </el-button>
+=======
+            <el-button @click="dialogVisible = false">确 定</el-button>
+>>>>>>> 4b2c727ea4361d573c7511ce6620da633402681c
           </span>
         </el-dialog>
       </li>
