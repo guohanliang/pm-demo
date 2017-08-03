@@ -101,7 +101,7 @@
   </div>
 </template>
 <script>
-  import Approverperson from './components/approve-person.vue'
+  import Approverperson from '../components/approve-person.vue'
   export default{
     components:{
       Approverperson

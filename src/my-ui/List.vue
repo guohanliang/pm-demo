@@ -108,6 +108,10 @@
       }).then((res) => {
         this.tableData = res.data.data.approveinfos;
 //        this.total = res.data.data.total/pageSize
+      }).then((res) => {
+        this.tableData = res.data.data.approveinfos;
+//        this.total = res.data.data.total/pageSize
+
       })
         .catch((err) => {
           console.log(err);
