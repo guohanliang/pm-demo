@@ -10,11 +10,11 @@
           :disabled="true">
         </el-input>
       </div>
-    <div class="box_two">
+      <div class="box_two">
       <span class="code">
         <img :src="url"/>
       </span>
-    </div>
+      </div>
       <div class="box_three">
         <span class="time">
         申请时间
@@ -93,12 +93,12 @@
   export default {
     data() {
       return {
-        url:require('../../assets/1.jpg'),
-        input1: 'P990-170725102421345',
+        url: require('../../assets/1.jpg'),
+        input1: '',
         input2: '',
-        input3: '张三',
-        input4: '产品管理部',
-        input:'标题',
+        input3: '',
+        input4: '',
+        input: '标题',
         options5: [{
           value: 'AAA',
           label: 'AAA'
@@ -112,25 +112,51 @@
         value10: []
       }
     },
-    methods: {
-      getNowTime(){                                   //获取年月日
-        var date = new Date();
-        var seperator1 = "/";
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
-        if(month >=1 && month <= 9) {
-          month = "0" + month;
-        }
-        if(strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
-        }
-        var currentdate = date.getUTCFullYear() + seperator1 + month + seperator1 + strDate
-        console.log(currentdate)
-        return currentdate;
-      }
-    },
+    methods: {},
     created(){
-      this.input2 = this.getNowTime();
+      var that = this;
+      axios.get('http://10.0.192.40:8081/system/bpm/datacode/add')//生成流程编号
+        .then(function (res) {
+//          console.log(res.data.data.dataCode);
+//          console.log(res.data.data.date);
+          that.input1 = res.data.data.dataCode;                   //编号
+          that.input2 = res.data.data.date;                       //时间
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      axios.get('http://10.0.192.40:8081/system/bpm/barcode/add', {//生成条形码
+        params: {
+          codeNumber: this.input1
+        }
+      })
+        .then(function (res) {
+//          console.log(res);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      axios.get('http://10.0.192.40:8081/system/user/loginuser/info')//查询当前登录用户
+        .then(function (res) {
+//          console.log(res.data.data);
+          that.input3 = res.data.data.chName;                   //申请人
+          that.input4 = res.data.data.orgChName;                //申请人部门
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      axios.get('http://10.0.192.40:8081/system/label/query')       //查询标签信息
+        .then(function (res) {
+          console.log(res.data.data.labels);
+          that.options5 = res.data.data.labels;
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 </script>
@@ -155,7 +181,7 @@
     .one {
       height: 40px;
       margin-top: 20px;
-      .title{
+      .title {
         float: left;
         font-size: 16px;
         line-height: 36px;
@@ -163,7 +189,7 @@
         padding-left: 10px;
         display: inline-block;
       }
-      .label{
+      .label {
         float: left;
         font-size: 16px;
         line-height: 36px;
@@ -171,22 +197,22 @@
         padding-left: 10px;
         display: inline-block;
       }
-      .label-con{
+      .label-con {
         width: 80%;
         height: 36px;
         float: left;
         position: relative;
-        .el-select{
-          width:100%;
+        .el-select {
+          width: 100%;
         }
-        .el-input{
+        .el-input {
           position: relative;
         }
       }
-      .el-input{
+      .el-input {
         width: 80%;
       }
-      .el-select .el-input__inner{
+      .el-select .el-input__inner {
         width: 60%;
       }
       .box_one {
@@ -203,8 +229,8 @@
           width: 70%;
         }
       }
-      .department{
-        width:20%;
+      .department {
+        width: 20%;
       }
       .box_two {
         width: 33%;
@@ -212,11 +238,11 @@
         .code {
           display: inline-block;
           height: 36px;
-          width:95%;
+          width: 95%;
           background: red;
-          img{
-            width:100%;
-            height:100%;
+          img {
+            width: 100%;
+            height: 100%;
           }
         }
       }
@@ -236,3 +262,7 @@
 
 
 </style>
+
+
+
+
