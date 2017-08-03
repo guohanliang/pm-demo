@@ -33,7 +33,8 @@
         </el-col>
       </el-row>
       <div class="block">
-        <el-pagination layout="prev, pager, next" :total="1"></el-pagination>
+        <el-pagination layout="prev, pager, next" :total="total" :page-size="pageSize"
+                       @current-change="change"></el-pagination>
       </div>
     </div>
   </div>
@@ -47,10 +48,12 @@
         startDate: '',
         endDate: '',
         tableData: [],
-        total:''
+        total: 0,
+        pageSize: 1
       }
     },
     methods: {
+//        查询
       select(){
         axios.get('http://10.0.192.40:8081/demo/workflow/list/approvequery', {
           params: {
@@ -58,37 +61,52 @@
             startDate: this.startDate,
             endDate: this.endDate,
             pageNo: '1',
-            pageSize: '1'
+            pageSize: this.pageSize
           }
         })
           .then(function (response) {
             console.log(response.data);
-//            this.tableData = response.data.approveinfos
+            this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
-//            console.log(error)
+            console.log(error)
           })
       },
+//      发起申请
       to(){
         this.$router.push("/mzgz")
       },
+//      表格点击
       go(row, event, column){
         this.$router.push({
           path: "/gryw"
         })
-        localStorage.setItem("input1",row.dataCode)
+        localStorage.setItem("input1", row.dataCode)
+      },
+//      分页渲染
+      change(currentPage){
+        axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
+          params: {
+            pageNo: currentPage
+          }
+        }).then((res) => {
+          this.tableData = res.data.data.approveinfos;
+          console.log(1);
+        }).catch((err) => {
+          console.log(err);
+        })
       }
     },
     created(){
-      var that = this;
+//        列表初始化
       axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
         params: {
           pageNo: '1',
-          pageSize: '10',
+          pageSize: this.pageSize
         }
       }).then((res) => {
         this.tableData = res.data.data.approveinfos;
-//        this.total = res.data.data.total/pageSize
+        this.total = res.data.data.total
       })
         .catch((err) => {
           console.log(err);
@@ -132,7 +150,6 @@
         }
       }
       .center {
-        /*margin-left: 20px;*/
         line-height: 70px;
         width: 50%;
         .sq-time {
@@ -167,12 +184,10 @@
     .list {
       overflow: hidden;
       padding: 10px;
-      /*min-width: 568px;*/
       margin-top: 10px;
       margin-left: 10px;
       margin-right: 10px;
       height: 506px;
-      /*width: calc(100vw - 240px);*/
       background-color: white;
       .block {
         float: right;
