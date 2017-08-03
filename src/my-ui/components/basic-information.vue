@@ -139,10 +139,14 @@
               _this.options5[i].label=label[i];
           }
            _this.data=res.data.data;
+          //      将编号存到 localStorage
+          localStorage.setItem("dataCode1",_this.data.dataCode)
         })
         .catch(function (error) {
           console.log(error)
         })
+
+
     }
   }
 </script>

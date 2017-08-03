@@ -118,10 +118,8 @@
         axios.get('http://10.0.192.40:8081/demo/workflow/approve/query')
         .then(function (res) {
           _this.data1=res.data.data;
-          console.log(res.data.data)
         })
         .catch(function (error) {
-          console.log(error)
         })
     }
 
