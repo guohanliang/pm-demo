@@ -1,4 +1,4 @@
-    <template>
+<template>
   <div class="dzcx">
     <my-rightcenter></my-rightcenter>
     <my-rightbiao></my-rightbiao>
@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import adjunct from './Adjunct.vue'
+    import adjunct from './adjunct/Adjunct.vue'
     import {mapState} from 'vuex'
     import {mapMutations} from 'vuex'
     import {mapActions} from 'vuex'

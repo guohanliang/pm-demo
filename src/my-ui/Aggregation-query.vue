@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import approver from "./Approver.vue"
+  import approver from "./approver/Approver.vue"
 
 export default {
   components:{

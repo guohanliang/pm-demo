@@ -32,6 +32,7 @@
   import vBase from "./components/basic-information.vue"
   import vApplication from "./components/application-information.vue"
   import vAdjunct from  "./components/adjunct.vue"
+
   export default {
     data() {
         return {}
@@ -50,12 +51,12 @@
                 dataCode:localStorage.getItem("input1")
             }
         }).then((res)=>{
-          console.log(localStorage.getItem("input1"));
-          console.log(res);
+//          console.log(localStorage.getItem("input1"));
         })
     }
 
   }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

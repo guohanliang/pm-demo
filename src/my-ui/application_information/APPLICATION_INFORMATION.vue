@@ -25,14 +25,7 @@
     </div>
     <div class="two">
       <span class="manager">产品经理</span>
-      <el-select v-model="value9" filterable placeholder="请选择">
-        <el-option
-          v-for="item in options3"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+      <el-input v-model="input1" placeholder="请输入内容"></el-input>
     </div>
     <div class="three">
       <span class="explain">说明</span>
@@ -47,26 +40,12 @@
     data() {
       return {
         input: '111',
+        input1:'222',
 
 
 
 
-        options1: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
+        options1: [],
         value8: '',
 
 
@@ -90,24 +69,26 @@
 
 
 
-        options3: [{
-          value: '选项1',
-          label: '王经理'
-        }, {
-          value: '选项2',
-          label: '刘经理'
-        }, {
-          value: '选项3',
-          label: '孙经理'
-        }, {
-          value: '选项4',
-          label: '刘经理'
-        }, {
-          value: '选项5',
-          label: '谭经理'
-        }],
-        value9: ''
       }
+    },
+    methods:{
+
+    },
+    created(){
+      var that = this;
+      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
+        .then(function (res) {
+          console.log(res)
+          console.log(res.data.data.projects[0]);
+          var list = res.data.data.projects;
+            for (var i = 0 ; i < list.length ; i++) {
+                 that.options1.push(list[i].prodName)
+              console.log(that.options1);
+            }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 </script>

@@ -8,11 +8,14 @@
       <div class="center">
         <span class="sq-time">申请时间</span>
         <div class="block">
-          <el-date-picker v-model="startDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="startDate" type="datetime"
+                          placeholder="选择日期时间">
+          </el-date-picker>
         </div>
         <span class="line"></span>
         <div class="block">
-          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          <el-date-picker v-model="endDate" type="datetime" placeholder="选择日期时间">
+          </el-date-picker>
         </div>
       </div>
       <button @click="select">查询</button>
@@ -33,8 +36,7 @@
         </el-col>
       </el-row>
       <div class="block">
-        <el-pagination layout="prev, pager, next" :total="total" :page-size="pageSize"
-                       @current-change="change"></el-pagination>
+        <el-pagination layout="prev, pager, next" :total="total" :page-size="pageSize" @current-change="change"></el-pagination>
       </div>
     </div>
   </div>

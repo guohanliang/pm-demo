@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-  import vCountersign from "./countersign.vue"
+  import vCountersign from "./approve-person.vue"
   export default{
     data(){
       return {
@@ -132,7 +132,6 @@
       },
       mask1(){
           window.a=this.$el.querySelector('.input1 .el-input__inner');
-          console.log(a);
       }
     },
     mounted() {

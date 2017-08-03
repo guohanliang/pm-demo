@@ -10,8 +10,8 @@
 
 <script>
     import axios from 'axios';
-    import adjunct from './Adjunct.vue';
-    import approver from "./Approver.vue"
+    import adjunct from './adjunct/Adjunct.vue';
+    import approver from "./approver/Approver.vue"
     export default {
       components:{
           adjunct,
@@ -27,7 +27,5 @@
     margin-left:200px;
     margin-top:100px;
     overflow: hidden;
-
-
   }
 </style>
