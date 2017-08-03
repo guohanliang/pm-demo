@@ -12,7 +12,7 @@
       </div>
       <div class="box_two">
       <span class="code">
-        <img :src="url"/>
+        <img id="barCodeImg" :src="src">
       </span>
       </div>
       <div class="box_three">
@@ -93,46 +93,26 @@
   export default {
     data() {
       return {
-        url: require('../../assets/1.jpg'),
+        src:"",
         input1: '',
         input2: '',
         input3: '',
         input4: '',
         input: '标题',
-        options5: [{
-          value: 'AAA',
-          label: 'AAA'
-        }, {
-          value: 'BBB',
-          label: 'BBB'
-        }, {
-          value: 'CCC',
-          label: 'CCC'
-        }],
-        value10: []
+        options5: [],
+        value10: ['aaa']
       }
     },
     methods: {},
     created(){
       var that = this;
-      axios.get('http://10.0.192.40:8081/system/bpm/datacode/add')//生成流程编号
+      axios.get('http://10.0.192.40:8081/system/bpm/datacode/add')//生成流程编号和时间
         .then(function (res) {
 //          console.log(res.data.data.dataCode);
 //          console.log(res.data.data.date);
           that.input1 = res.data.data.dataCode;                   //编号
+          that.src = 'http://10.0.192.40:8081/system/bpm/barcode/add?'+that.input1+'';  //拼接图片路径
           that.input2 = res.data.data.date;                       //时间
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      axios.get('http://10.0.192.40:8081/system/bpm/barcode/add', {//生成条形码
-        params: {
-          codeNumber: this.input1
-        }
-      })
-        .then(function (res) {
-//          console.log(res);
         })
         .catch(function (error) {
           console.log(error);
@@ -150,13 +130,20 @@
 
       axios.get('http://10.0.192.40:8081/system/label/query')       //查询标签信息
         .then(function (res) {
-          console.log(res.data.data.labels);
-          that.options5 = res.data.data.labels;
-
+//          console.log(res.data.data.labels);
+          var label=res.data.data.labels;
+          for (var i=0;i<label.length;i++){
+            that.options5.push({value:"",label:""});
+            that.options5[i].value=label[i];
+            that.options5[i].label=label[i];
+          }
+          that.data=res.data.data;
+          console.log(that.value10)
         })
         .catch(function (error) {
           console.log(error);
         });
+
     }
   }
 </script>

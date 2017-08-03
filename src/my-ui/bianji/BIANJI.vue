@@ -8,7 +8,7 @@
   import VueUEditor from '../ueditor/UEDITOR.vue';
   export default {
     created(){
-      console.log(this.mmm)
+      //console.log(this.mmm)
     },
     props:['mmm'],
     components: { VueUEditor },

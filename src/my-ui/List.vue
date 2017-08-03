@@ -25,7 +25,6 @@
       <el-row>
         <el-col :span="24">
           <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
-<<<<<<< HEAD
             <el-table-column prop="rownum" label="序号" min-width="30">
             </el-table-column>
             <el-table-column prop="dataCode" label="编号" min-width="160">
@@ -40,15 +39,6 @@
             </el-table-column>
             <el-table-column prop="status" label="当前状态" min-width="60">
             </el-table-column>
-=======
-            <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
-            <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
-            <el-table-column prop="dataTitle" label="标题" min-width="230"></el-table-column>
-            <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
-            <el-table-column prop="applyDept" label="申请人部门" min-width="100"></el-table-column>
-            <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
-            <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
->>>>>>> 4b2c727ea4361d573c7511ce6620da633402681c
           </el-table>
         </el-col>
       </el-row>
@@ -106,14 +96,10 @@
           pageNo: '1',
           pageSize: '10',
         }
-<<<<<<< HEAD
-      }).then(function (res) {
-//        console.log(res)
-=======
       }).then((res) => {
         this.tableData = res.data.data.approveinfos;
 //        this.total = res.data.data.total/pageSize
->>>>>>> 4b2c727ea4361d573c7511ce6620da633402681c
+
       })
         .catch((err) => {
           console.log(err);
