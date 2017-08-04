@@ -7,8 +7,22 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
+    created(){
 
+//      axios.post('http://10.0.192.40:8081/system/bpm/workflow/apply', {       //提交流程
+//        sysId: 'P990',
+//        dataCode: '1234567890',
+//        businessTitle:'aaa'
+//      })
+//        .then(function (res) {
+//          console.log(res);
+//        })
+//        .catch(function (error) {
+//          console.log(error);
+//        });
+    }
   }
 </script>
 
