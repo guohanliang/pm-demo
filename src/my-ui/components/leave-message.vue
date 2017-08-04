@@ -3,15 +3,16 @@
         <dl>
             <dt>留言</dt>
             <dd class="default-message">
-                <h4>产品管理部-张三</h4>
-                <p class="content">呈签事项涉及潜在税务影响的（如合同涉税条款、新业务形式、企业税务登记信息调整等），需进行税务会签</p>
-                <p class="time">2017-07-26 12:12:08</p>
+                <h4>{{data1.product1}}</h4>
+                <p class="content">{{data1.content}}</p>
+                <p class="time">{{data1.time1}}</p>
             </dd>
             <dd class="second-message">
-                <el-input type="textarea" :rows="5" placeholder="请输入内容"  v-model="textarea"></el-input>
+                <el-input type="textarea" :rows="5" placeholder="请输入内容"
+                          v-model="textarea"></el-input>
             </dd>
             <dd>
-                <el-button>发表留言</el-button>
+                <el-button @click="message_Delivered">发表留言</el-button>
             </dd>
         </dl>
 
@@ -23,7 +24,21 @@
         name:"leave-message",
         data(){
             return {
-                textarea:''
+                textarea:'',
+                data1:{
+                    product1:"产品管理部-张三",
+                    content:"呈签事项涉及潜在税务影响的（如合同涉税条款、新业务形式、" +
+                    "企业税务登记信息调整等），需进行税务会签.",
+                    time1:"2017-07-26 12:12:08"
+                }
+            }
+        },
+        methods:{
+//            发表留言
+            message_Delivered(){
+                axios.get("",{})
+
+
             }
         }
     }
@@ -65,7 +80,7 @@
             }
             .time{
                 margin:10px;
-                margin-left: 56%;
+                margin-left: 54%;
                 margin-bottom: 0;
             }
 

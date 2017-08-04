@@ -3,7 +3,7 @@
     <h3 class="header-title">申请信息</h3>
     <div class="one">
       <span class="name">产品名称</span>
-      <el-select v-model="value8" filterable placeholder="请选择" disabled>
+      <el-select v-model="data1.projName" filterable placeholder="请选择" disabled>
         <el-option
           v-for="item in options1"
           :key="item.value"
@@ -12,9 +12,9 @@
         </el-option>
       </el-select>
       <span class="abbreviation" disabled="">产品简称</span>
-      <el-input v-model="input" placeholder="请输入内容" disabled></el-input>
+      <el-input v-model="data1.projShortName" placeholder="请输入内容" disabled></el-input>
       <span class="type">产品类型</span>
-      <el-select v-model="value" placeholder="公募" disabled>
+      <el-select v-model="data1.projType" placeholder="公募" disabled>
         <el-option
           v-for="item in options2"
           :key="item.value"
@@ -25,7 +25,7 @@
     </div>
     <div class="two">
       <span class="manager">产品经理</span>
-      <el-select v-model="value9" filterable placeholder="请选择" disabled>
+      <el-select v-model="data1.projMgrName" filterable placeholder="请选择" disabled>
         <el-option
           v-for="item in options3"
           :key="item.value"
@@ -36,7 +36,7 @@
     </div>
     <div class="three">
       <span class="explain">说明</span>
-      <my-bianji></my-bianji>
+      <my-bianji :mmm="data1.content"></my-bianji>
     </div>
   </div>
 </template>
@@ -47,10 +47,6 @@
     data() {
       return {
         input: '111',
-
-
-
-
         options1: [{
           value: '选项1',
           label: '黄金糕'
@@ -68,8 +64,6 @@
           label: '北京烤鸭'
         }],
         value8: '',
-
-
 
 
         options2: [{
@@ -106,9 +100,32 @@
           value: '选项5',
           label: '谭经理'
         }],
-        value9: ''
+        value9: '',
+        data1: {
+          prodId:"",
+          projName: "",
+          projShortName: "",
+          projType: "",
+          projMgrAccount: "",
+          projMgrName: "",
+          content:""
+        }
       }
+    },
+    created(){
+      // 获取申请信息的一栏的数据
+        var _this=this;
+        axios.get('http://10.0.192.40:8081/demo/workflow/approve/query',{
+            params:{dataCode:localStorage.getItem("dataCode1")}
+        })
+        .then(function (res) {
+          _this.data1=res.data.data;
+        })
+        .catch(function (error) {
+        })
     }
+
+
   }
 </script>
 

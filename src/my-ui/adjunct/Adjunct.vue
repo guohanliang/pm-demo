@@ -59,13 +59,7 @@
   export default {
     data() {
       return {
-        fileList: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }],
+        fileList: [],
         tableData1: [{
           filename: 'XXX产品申请说明.docx',
           history: '2',
@@ -100,13 +94,11 @@
 
   .enclosure {
     width: calc(100vw - 200px);
-    height: 626px;
     width: 90%;
     margin: 10px;
     .adjunct {
       width: calc(100vw - 200px);
-      height: 626px;
-      margin-top: 110px;
+      width:100%;
       .attachment {
         min-height: 100px;
         border: 1px solid black;
@@ -114,7 +106,7 @@
           height: 30px;
           h4 {
             float: left;
-            color: #C40000;
+            color: red;
             margin-left: 10px;
             line-height: 30px;
           }
@@ -125,7 +117,7 @@
             line-height: 30px;
             .el-icon-plus {
               font-size: 10px;
-              color: #C40000;
+              color: red;
               span {
                 font-size: 14px;
               }
@@ -134,7 +126,7 @@
         }
         .line1 {
           width: 100%;
-          border-top: 1px solid #C40000;
+          border-top: 1px solid red;
           display: block;
         }
         footer {

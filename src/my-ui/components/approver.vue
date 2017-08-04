@@ -18,13 +18,14 @@
       </li>
       <li class="selector1">
         <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <!--点击选择按钮,弹出 dialog-->
         <el-dialog
-          title="提示"
+          title="选择审批人"
           :visible.sync="dialogVisible"
           :modal-append-to-body="false"
-          size="tiny"
-          :before-close="handleClose">
-          <span>这是一段信息</span>
+          size="large"
+          :before-close="handleClose" @close="mask1">
+          <v-countersign></v-countersign>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -89,11 +90,13 @@
   </div>
 </template>
 <script>
+  import vCountersign from "./approve-person.vue"
   export default{
     data(){
       return {
         state1: '',
-        dialogVisible: false
+        dialogVisible: false,
+        mask:false
       }
     },
     methods: {
@@ -126,10 +129,17 @@
             done();
           })
           .catch(_ => {});
+      },
+      mask1(){
+          window.a=this.$el.querySelector('.input1 .el-input__inner');
       }
     },
     mounted() {
       this.restaurants = this.loadAll();
+
+    },
+    components:{
+        vCountersign
     }
   }
 </script>
@@ -149,6 +159,9 @@
       background-color: red;
       display: block;
       width: 100%;
+    }
+    .dialog-footer{
+      height: 0;
     }
     ul{
       display: flex;
@@ -175,14 +188,12 @@
         outline: none;
       }
       .selector1{
+        overflow:hidden;
         .choice{
           margin-left: 10px;
           margin-right: 10px;
         }
       }
-      /*.choice:hover{*/
-        /*background-color: red;*/
-      /*}*/
       .line{
         width: 30px;
         height: 1px;

@@ -2,78 +2,85 @@
     <div class="record fl" >
       <dl>
         <dt>审批记录</dt>
-        <dd>
+
+        <dd v-for="item in activity">
           <ul class="localDepartment">
-            <li class="local">本部门审批</li>
-            <li class="jsfund">嘉实基金-销售部-张三 <span class="agree">同意</span></li>
-            <li class="send">送达:2017-07-23 12:09:23</li>
+            <li class="local">{{item.activityName}}</li>
+            <li class="jsfund">嘉实基金-{{item.approverDept}}-{{item.approverName}}<span class="agree " ref="agree" v-bind:class="{ haveRead: isActive }">
+              {{item.approverResult}}</span></li>
+            <li class="send">送达:{{item.approverStartTime}}</li>
           </ul>
+
           <div class="approval clear-fix">
-            <span class="no-suggest fl">同意,没有意见</span>
-            <span class="approval1 fr">审批:2017-07-23 12:09:23</span>
+            <span class="no-suggest fl">{{item.approverContent}}</span>
+            <span class="approval1 fr">审批:{{item.approverFinishTime}}</span>
           </div>
-        </dd>
-        <dd>
-          <ul class="localDepartment">
-            <li class="local">本部门审批</li>
-            <li class="jsfund">嘉实基金-产品部-李四 <span class="agree have-read">已阅</span></li>
-            <li class="send">送达:2017-07-23 12:09:23</li>
-          </ul>
-          <div class="approval clear-fix">
-            <span class="no-suggest fl">同意,没有意见</span>
-            <span class="approval1 fr">审批:2017-07-23 12:09:23</span>
-          </div>
-          <ul class="localDepartment">
-            <li class="jsfund jsfund1">嘉实基金-产品部-王五 
+
+          <ul class="localDepartment" v-show="item.reminder">
+            <li class="jsfund jsfund1">嘉实基金-{{item.approverDept}}-{{item.approverName}}
               <!-- 弹出催办窗 -->
               <el-button class="reminder" @click="dialogVisible = true">催办
               </el-button>
-              <el-dialog title="短信催办" class="msg-emerge" :visible.sync="dialogVisible"  size="tiny"
+              <el-dialog title="短信催办" class="msg-emerge"
+                         :visible.sync="dialogVisible"  size="tiny"
                 :before-close="handleClose">
-                <span>张三:18811109999</span>
-                <p class="msg1">签报:关于 XXX 的申请等待您审批.张三给您的留言:</p>
-                <p class="msg2"></p>
-                <p class="msg3">同意,请回复8321123Y 加上您的意见,不同意请回复8321123N 加上您的意见.</p>
+                <span>{{reminder.name}}</span>
+                <p class="msg1">{{reminder.report}}</p>
+                <el-input type="textarea" :rows="5" placeholder="请输入内容"
+                          v-model="textarea" style="margin-left: 0"></el-input>
+                <p class="msg3">同意,请回复{{reminder.num}}加上您的意见,
+                  不同意请回复{{reminder.num}} 加上您的意见.</p>
                 <p class="msg4">说明:发送短信给想审批人,审批人以回复短信的方式审批流程</p>
                 <span slot="footer" class="dialog-footer">
                   <el-button type="primary" @click="dialogVisible = false">发送
                   </el-button>
-                  <el-button @click="dialogVisible = false">取 消</el-button>  
+                  <el-button @click="dialogVisible = false">取 消</el-button>
                 </span>
               </el-dialog>
             </li>
-            <li class="send">送达:2017-07-23 12:09:23</li>
+            <li class="send">{{data1.send3}}</li>
           </ul>
         </dd>
-        <dd>
-          <ul class="countersign localDepartment">
-            <li class="local">部门会签</li>
-            <li class="jsfund jsfund2">嘉实基金-投资部-赵六</li>
-            <li class="send">送达:2017-07-23 12:09:23</li>
-          </ul>
-          <ul class="countersign localDepartment">
-            <li class="local"></li>
-            <li class="jsfund jsfund2">嘉实基金-稽核部-王五</li>
-            <li class="send">送达:2017-07-23 12:09:23</li>
-          </ul>       
-        </dd>
-        <dd>
-          <ul class="carbon-copy countersign localDepartment">
-            <li class="local local1">抄送</li>
-            <li class="jsfund jsfund2 jsfund3">嘉实基金-IT部-王五</li>
-          </ul>       
-        </dd>     
+                
       </dl>
     </div>
 </template>
 
 <script>
+  import axios from "axios"
   export default {
     name:"approval-record",
     data() {
       return {
-        dialogVisible: false
-      };
+        dialogVisible: false,
+        textarea:"",
+        isActive:true,
+        data1:{
+            sales:"嘉实基金-销售部-张三",
+            comments1:"同意",
+            comments2:"已阅",
+            send1:"送达:2017-07-23 12:09:23",
+            send2:"送达:2017-07-23 12:09:23",
+            send3:"送达:2017-07-23 12:09:23",
+            send4:"送达:2017-07-23 12:09:23",
+            send5:"送达:2017-07-23 12:09:23",
+            commits1:"同意,没有意见",
+            commits2:"同意,没有意见",
+            approval1:"审批:2017-07-23 12:09:23",
+            approval2:"审批:2017-07-23 12:09:23",
+            product1:"嘉实基金-产品部-李四",
+            product2:"嘉实基金-产品部-王五",
+            product3:"嘉实基金-投资部-赵六",
+            product4:"嘉实基金-稽核部-王五",
+            product5:"嘉实基金-IT部-王五"
+        },
+        activity: [],
+        reminder:{
+            name:"张三:18811109999",
+            report:"签报:关于 XXX 的申请等待您审批.张三给您的留言:",
+            num:"8321123N"
+        }
+      }
     },
     methods: {
       handleClose(done) {
@@ -83,7 +90,29 @@
           })
           .catch(_ => {});
       }
+    },
+    created(){
+      
+        var _this=this;
+//      审批页查询审批留言接口 /system/bpm/comment/query
+      axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+        {params:{
+            dataCode:localStorage.getItem("dataCode1")
+        }}
+      )
+      .then(function(res){
+          var activity=res.data.data.activity;//数组
+          _this.activity=activity;
+      })
+      .catch(function(error){})
+
+    },
+    mounted(){
+      var a=this.$refs;
+      console.log(a)
     }
+
+
   }
 </script>
 
@@ -122,7 +151,7 @@
               color:#008000;
               font-size:25px;
             }
-            .have-read{
+            .haveRead{
               color:#F90;
             }
           }
@@ -150,9 +179,9 @@
               }
               .msg4{
                 color:#00f;
-              }              
+              }
             }
-            
+
           }
           .jsfund2{
             padding-top: 10px;
@@ -161,7 +190,7 @@
             flex:9;
           }
           .send{
-            flex:3;
+            flex:3.5;
             line-height: 42px;
           }
         }

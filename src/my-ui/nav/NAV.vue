@@ -30,17 +30,17 @@
           </el-submenu>
 
           <el-submenu index="4">
-            <template slot="title"><i class="el-icon-search"></i><span class="bijiao">资金对账</span></template>
+            <template slot="title"><i class="el-icon-search"></i><span class="bijiao">列表+申请</span></template>
             <el-menu-item-group>
-              <el-menu-item index="mzgz">附件页</el-menu-item>
+              <el-menu-item index="mzgz">申请页</el-menu-item>
               <el-menu-item index="zylx">列表页</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
           <el-submenu index="5">
-            <template slot="title"><i class="el-icon-plus"></i><span class="bijiao">资金对账</span></template>
+            <template slot="title"><i class="el-icon-plus"></i><span class="bijiao">审批</span></template>
             <el-menu-item-group>
-              <el-menu-item index="gryw">个人业务</el-menu-item>
+              <el-menu-item index="gryw">审批</el-menu-item>
               <el-menu-item index="qyfw">企业服务</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

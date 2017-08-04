@@ -12,16 +12,19 @@
           <el-form-item class="submit">
             <el-button  @click="onSubmit">填写审批意见</el-button>
             <el-button  @click="dialogVisible = true">调整流程</el-button>
-            <el-dialog title="" class="msg-emerge" :visible.sync="dialogVisible"
-                       size="tiny" :before-close="handleClose">
+            <el-dialog title=""
+                       class="msg-emerge" :visible.sync="dialogVisible"
+                       size="large" :before-close="handleClose">
                 <v-approver></v-approver>
               <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">
+                  确 定</el-button>
+                <el-button @click.native="dialogVisible = false">
+                  取 消</el-button>
               </span>
             </el-dialog>
-            <el-button>抄送</el-button>
-            <el-button>作废</el-button>
+            <el-button @click="Carbon_Copy">抄送</el-button>
+            <el-button @click="cancellation">作废</el-button>
             <el-button>取消</el-button>
           </el-form-item>
         </el-form>
@@ -29,6 +32,7 @@
 </template>
 
 <script>
+  import axios from "axios"
   import vApprover from "./approver.vue"
   export default {
     data() {
@@ -56,7 +60,31 @@
             done();
           })
           .catch(_ => {});
+      },
+
+//      点击作废
+      cancellation(){
+        axios.get('http://10.0.192.40:8081/system/bpm/workflow/abolish',{
+          params:{dataCode:localStorage.getItem("dataCode1")}
+        }).then((res)=>{
+
+        }).catch((error)=>{
+            console.log(error)
+        })
+      },
+
+//      点击抄送
+      Carbon_Copy(){
+        axios.get('http://10.0.192.40:8081/system/bpm/copyto/add',{
+          params:{dataCode:localStorage.getItem("dataCode1")}
+        })
+          .then((res)=>{
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
       }
+
     },
     components:{
         vApprover

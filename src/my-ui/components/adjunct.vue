@@ -88,7 +88,6 @@
       handleClick() {
         console.log(1);
       }
-
     }
   }
 </script>
