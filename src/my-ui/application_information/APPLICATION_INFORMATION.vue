@@ -125,13 +125,13 @@
       })
         .then(function (res) {
           console.log(res)
-//          console.log(res.data.data.projects[0]);
-          var list = res.data.data.projects;
-
-          for (var i = 0 ; i < list.length ; i++) {
-            that.options1.push(list[i].prodName)
-//              console.log(that.options1);
-          }
+////          console.log(res.data.data.projects[0]);
+//          var list = res.data.data.projects;
+//
+//          for (var i = 0 ; i < list.length ; i++) {
+//            that.options1.push(list[i].prodName)
+////              console.log(that.options1);
+//          }
         })
         .catch(function (error) {
           console.log(error);
@@ -216,6 +216,16 @@
       width:17%;
     }
   }
+  .el-input, .el-input__inner{
+    width: 17%;
+  }
+  .el-input{
+    float: left;
+  }
+  .el-select{
+    width:17%;
+  }
+}
 
 
 
