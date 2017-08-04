@@ -12,7 +12,7 @@
                           v-model="textarea"></el-input>
             </dd>
             <dd>
-                <el-button>发表留言</el-button>
+                <el-button @click="message_Delivered">发表留言</el-button>
             </dd>
         </dl>
 
@@ -31,6 +31,14 @@
                     "企业税务登记信息调整等），需进行税务会签.",
                     time1:"2017-07-26 12:12:08"
                 }
+            }
+        },
+        methods:{
+//            发表留言
+            message_Delivered(){
+                axios.get("",{})
+
+
             }
         }
     }

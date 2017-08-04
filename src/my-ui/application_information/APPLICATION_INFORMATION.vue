@@ -45,7 +45,21 @@
 
 
 
-        options1: [],
+        options1: [
+          {
+            value: '选项1',
+            label: '公募'
+          }, {
+            value: '选项2',
+            label: '专户'
+          }, {
+            value: '选项3',
+            label: '养老金产品'
+          }, {
+            value: '选项4',
+            label: '社保'
+          }
+        ],
         value8: '',
 
 
@@ -76,25 +90,24 @@
     },
     created(){
       var that = this;
-      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
-        .then(function (res) {
-            console.log(res)
-          console.log(res.data.data.projects[0]);
-          var list = res.data.data.projects;
-          var arr = []
-            for (var i = 0 ; i < list.length ; i++) {
-//              console.log(list[i].prodName);
-                 arr.push(list[i])
-              console.log(arr);
+      axios.get('http://10.0.192.40:8081/demo/workflow/product/query',
+        {
+            params:{
+              searchWord:"1",
+              pageNo:"2",
+              pageSize:"2"
             }
-//          var label=res.data.data.projects.prodName;
-//          for (var i=0;i<label.length;i++){
-//            that.options1.push({value:"",label:""});
-//            that.options1[i].value=label[i];
-//            that.options1[i].label=label[i];
-//          }
-//          that.data=res.data.data;
-//          console.log(that.value10)
+        })
+      //查询产品信息
+        .then(function (res) {
+          var list = res;
+          console.log(list)
+          var arr = []
+          for (var i = 0 ; i < list.length ; i++) {
+//              console.log(list[i].prodName);
+                 arr.push(list[i].prodName)
+            }
+          console.log(arr);
         })
         .catch(function (error) {
           console.log(error);

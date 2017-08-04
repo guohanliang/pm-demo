@@ -138,7 +138,6 @@
             that.options5[i].label=label[i];
           }
           that.data=res.data.data;
-          console.log(that.value10)
         })
         .catch(function (error) {
           console.log(error);
