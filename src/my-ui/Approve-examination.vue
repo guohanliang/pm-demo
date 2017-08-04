@@ -51,7 +51,7 @@
                 dataCode:localStorage.getItem("input1")
             }
         }).then((res)=>{
-//          console.log(localStorage.getItem("input1"));
+          console.log(localStorage.getItem("input1"));
         })
     }
 

@@ -2,32 +2,22 @@
     <div class="record fl" >
       <dl>
         <dt>审批记录</dt>
-        <dd>
+
+        <dd v-for="item in activity">
           <ul class="localDepartment">
-            <li class="local">本部门审批</li>
-            <li class="jsfund"> {{data1.sales}}<span class="agree">
-              {{data1.comments1}}
-              </span></li>
-            <li class="send">{{data1.send1}}</li>
+            <li class="local">{{item.activityName}}</li>
+            <li class="jsfund">嘉实基金-{{item.approverDept}}-{{item.approverName}}<span class="agree " ref="agree1" v-bind:class="{ haveRead: isActive }">
+              {{item.approverResult}}</span></li>
+            <li class="send">送达:{{item.approverStartTime}}</li>
           </ul>
+
           <div class="approval clear-fix">
-            <span class="no-suggest fl">{{data1.commits1}}</span>
-            <span class="approval1 fr">{{data1.approval1}}</span>
+            <span class="no-suggest fl">{{item.approverContent}}</span>
+            <span class="approval1 fr">审批:{{item.approverFinishTime}}</span>
           </div>
-        </dd>
-        <dd>
-          <ul class="localDepartment">
-            <li class="local">本部门审批</li>
-            <li class="jsfund">{{data1.product1}} <span class="agree have-read">
-              {{data1.comments2}}</span></li>
-            <li class="send">{{data1.send2}}</li>
-          </ul>
-          <div class="approval clear-fix">
-            <span class="no-suggest fl">{{data1.commits2}}</span>
-            <span class="approval1 fr">{{data1.approval2}}</span>
-          </div>
-          <ul class="localDepartment">
-            <li class="jsfund jsfund1">{{data1.product2}}
+
+          <ul class="localDepartment" v-show="item.reminder">
+            <li class="jsfund jsfund1">嘉实基金-{{item.approverDept}}-{{item.approverName}}
               <!-- 弹出催办窗 -->
               <el-button class="reminder" @click="dialogVisible = true">催办
               </el-button>
@@ -51,35 +41,20 @@
             <li class="send">{{data1.send3}}</li>
           </ul>
         </dd>
-        <dd>
-          <ul class="countersign localDepartment">
-            <li class="local">部门会签</li>
-            <li class="jsfund jsfund2">{{data1.product3}}</li>
-            <li class="send">{{data1.send4}}</li>
-          </ul>
-          <ul class="countersign localDepartment">
-            <li class="local"></li>
-            <li class="jsfund jsfund2">{{data1.product4}}</li>
-            <li class="send">{{data1.send5}}</li>
-          </ul>
-        </dd>
-        <dd>
-          <ul class="carbon-copy countersign localDepartment">
-            <li class="local local1">抄送</li>
-            <li class="jsfund jsfund2 jsfund3">{{data1.product5}}</li>
-          </ul>
-        </dd>
+                
       </dl>
     </div>
 </template>
 
 <script>
+  import axios from "axios"
   export default {
     name:"approval-record",
     data() {
       return {
         dialogVisible: false,
         textarea:"",
+        isActive:true,
         data1:{
             sales:"嘉实基金-销售部-张三",
             comments1:"同意",
@@ -99,12 +74,13 @@
             product4:"嘉实基金-稽核部-王五",
             product5:"嘉实基金-IT部-王五"
         },
+        activity: [],
         reminder:{
             name:"张三:18811109999",
             report:"签报:关于 XXX 的申请等待您审批.张三给您的留言:",
             num:"8321123N"
         }
-      };
+      }
     },
     methods: {
       handleClose(done) {
@@ -114,7 +90,29 @@
           })
           .catch(_ => {});
       }
+    },
+    created(){
+      
+        var _this=this;
+//      审批页查询审批留言接口 /system/bpm/comment/query
+      axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+        {params:{
+            dataCode:localStorage.getItem("dataCode1")
+        }}
+      )
+      .then(function(res){
+          var activity=res.data.data.activity;//数组
+          _this.activity=activity;
+      })
+      .catch(function(error){})
+
+    },
+    mounted(){
+      var a=this.$refs.agree1;
+      console.log(a)
     }
+
+
   }
 </script>
 
@@ -153,7 +151,7 @@
               color:#008000;
               font-size:25px;
             }
-            .have-read{
+            .haveRead{
               color:#F90;
             }
           }
@@ -192,7 +190,7 @@
             flex:9;
           }
           .send{
-            flex:3;
+            flex:3.5;
             line-height: 42px;
           }
         }

@@ -140,7 +140,7 @@
           }
            _this.data=res.data.data;
           //      将编号存到 localStorage
-          localStorage.setItem("dataCode1",_this.data.dataCode)
+          localStorage.setItem("dataCode1","js201708031")
         })
         .catch(function (error) {
           console.log(error)

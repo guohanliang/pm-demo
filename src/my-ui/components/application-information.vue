@@ -115,7 +115,9 @@
     created(){
       // 获取申请信息的一栏的数据
         var _this=this;
-        axios.get('http://10.0.192.40:8081/demo/workflow/approve/query')
+        axios.get('http://10.0.192.40:8081/demo/workflow/approve/query',{
+            params:{dataCode:localStorage.getItem("dataCode1")}
+        })
         .then(function (res) {
           _this.data1=res.data.data;
         })

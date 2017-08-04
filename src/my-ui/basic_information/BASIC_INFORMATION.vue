@@ -173,6 +173,7 @@
             that.options5[i].value = label[i];
             that.options5[i].label = label[i];
           }
+          that.data=res.data.data;
           that.data = res.data.data;
 //          console.log(that.value10)
         })
