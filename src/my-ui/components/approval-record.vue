@@ -6,7 +6,7 @@
         <dd v-for="item in activity">
           <ul class="localDepartment">
             <li class="local">{{item.activityName}}</li>
-            <li class="jsfund">嘉实基金-{{item.approverDept}}-{{item.approverName}}<span class="agree " ref="agree" v-bind:class="{ haveRead: isActive }">
+            <li class="jsfund">嘉实基金-{{item.approverDept}}-{{item.approverName}}<span class="agree " ref="agree1" v-bind:class="{ haveRead: isActive }">
               {{item.approverResult}}</span></li>
             <li class="send">送达:{{item.approverStartTime}}</li>
           </ul>
@@ -108,7 +108,7 @@
 
     },
     mounted(){
-      var a=this.$refs;
+      var a=this.$refs.agree1;
       console.log(a)
     }
 
