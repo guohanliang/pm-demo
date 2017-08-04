@@ -11,14 +11,23 @@
       //console.log(this.mmm)
     },
     props:['mmm'],
+    data(){
+        return {
+            dd:""
+        }
+    },
     components: { VueUEditor },
     methods: {
       editorReady (editorInstance) {
-        editorInstance.setContent('Hello world!<br>你可以在这里初始化编辑器的初始内容。');
+        editorInstance.setContent('Hello world!<br>你可以在这里初' +
+          '始化编辑器的初始内容。');
         editorInstance.addListener('contentChange', () => {
           console.log('编辑器内容发生了变化：', editorInstance.getContent());
         });
       }
+    },
+    created(){
+        this.dd=this.mmm;
     }
   };
 </script>

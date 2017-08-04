@@ -25,25 +25,18 @@
       <el-row>
         <el-col :span="24">
           <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
-            <el-table-column prop="rownum" label="序号" min-width="30">
-            </el-table-column>
-            <el-table-column prop="dataCode" label="编号" min-width="160">
-            </el-table-column>
-            <el-table-column prop="dataTitle" label="标题" min-width="100">
-            </el-table-column>
-            <el-table-column prop="applyUser" label="申请人" min-width="50">
-            </el-table-column>
-            <el-table-column prop="applyDept" label="申请人部门" min-width="75">
-            </el-table-column>
-            <el-table-column prop="applyTime" label="申请时间" min-width="135">
-            </el-table-column>
-            <el-table-column prop="status" label="当前状态" min-width="60">
-            </el-table-column>
+            <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
+            <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
+            <el-table-column prop="dataTitle" label="标题" min-width="230"></el-table-column>
+            <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
+            <el-table-column prop="applyDept" label="申请人部门" min-width="100"></el-table-column>
+            <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
+            <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
           </el-table>
         </el-col>
       </el-row>
       <div class="block">
-        <el-pagination layout="prev, pager, next" :total="1"></el-pagination>
+        <el-pagination layout="prev, pager, next" :total="total" :page-size="pageSize" @current-change="change"></el-pagination>
       </div>
     </div>
   </div>
@@ -57,10 +50,12 @@
         startDate: '',
         endDate: '',
         tableData: [],
-        total:''
+        total: 0,
+        pageSize: 1
       }
     },
     methods: {
+//        查询
       select(){
         axios.get('http://10.0.192.40:8081/demo/workflow/list/approvequery', {
           params: {
@@ -68,38 +63,52 @@
             startDate: this.startDate,
             endDate: this.endDate,
             pageNo: '1',
-            pageSize: '1'
+            pageSize: this.pageSize
           }
         })
           .then(function (response) {
             console.log(response.data);
-//            this.tableData = response.data.approveinfos
+            this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
-//            console.log(error)
+            console.log(error)
           })
       },
+//      发起申请
       to(){
         this.$router.push("/mzgz")
       },
+//      表格点击
       go(row, event, column){
         this.$router.push({
           path: "/gryw"
         })
-        localStorage.setItem("input1",row.dataCode)
+        localStorage.setItem("input1", row.dataCode)
+      },
+//      分页渲染
+      change(currentPage){
+        axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
+          params: {
+            pageNo: currentPage
+          }
+        }).then((res) => {
+          this.tableData = res.data.data.approveinfos;
+          console.log(1);
+        }).catch((err) => {
+          console.log(err);
+        })
       }
     },
     created(){
-      var that = this;
+//        列表初始化
       axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
         params: {
           pageNo: '1',
-          pageSize: '10',
+          pageSize: this.pageSize
         }
       }).then((res) => {
         this.tableData = res.data.data.approveinfos;
-//        this.total = res.data.data.total/pageSize
-
+        this.total = res.data.data.total
       })
         .catch((err) => {
           console.log(err);
@@ -143,7 +152,6 @@
         }
       }
       .center {
-        /*margin-left: 20px;*/
         line-height: 70px;
         width: 50%;
         .sq-time {
@@ -178,12 +186,10 @@
     .list {
       overflow: hidden;
       padding: 10px;
-      /*min-width: 568px;*/
       margin-top: 10px;
       margin-left: 10px;
       margin-right: 10px;
       height: 506px;
-      /*width: calc(100vw - 240px);*/
       background-color: white;
       .block {
         float: right;

@@ -132,7 +132,6 @@
       },
       mask1(){
           window.a=this.$el.querySelector('.input1 .el-input__inner');
-          console.log(a);
       }
     },
     mounted() {
