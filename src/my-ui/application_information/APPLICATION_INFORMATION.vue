@@ -127,10 +127,11 @@
           console.log(res)
 //          console.log(res.data.data.projects[0]);
           var list = res.data.data.projects;
-            for (var i = 0 ; i < list.length ; i++) {
-                 that.options1.push(list[i].prodName)
+
+          for (var i = 0 ; i < list.length ; i++) {
+            that.options1.push(list[i].prodName)
 //              console.log(that.options1);
-            }
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -187,11 +188,9 @@
       line-height: 40px;
       margin:0 10px;
       width:8%;
-    }
-    .el-input{
-      width: 165px;
-      .el-input__inner{
-        width:100%;
+
+      .el-input{
+        float: left;
       }
     }
   }
@@ -202,6 +201,9 @@
       float: left;
       margin:0 10px;
       width:8%;
+      .el-select{
+        width:17%;
+      }
     }
   }
   .el-input, .el-input__inner{
@@ -214,6 +216,7 @@
     width:17%;
   }
 }
+
 
 
 </style>
