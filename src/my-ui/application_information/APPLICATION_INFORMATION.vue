@@ -142,80 +142,80 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.application{
-  width: 90%;
-  margin: 10px;
-  padding-bottom: 20px;
-  border: 1px solid black;
-  .header-title {
-    font-size: 20px;
-    color: red;
-    border-bottom: 1px solid red;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    margin: 0;
-    padding-left: 5px;
-  }
-  .one{
-    width:100%;
-    height: 40px;
-    margin-top: 20px;
-    .name{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
+  .application{
+    width: 90%;
+    margin: 10px;
+    padding-bottom: 20px;
+    border: 1px solid black;
+    .header-title {
+      font-size: 20px;
+      color: red;
+      border-bottom: 1px solid red;
+      padding-top: 5px;
+      padding-bottom: 10px;
+      margin: 0;
+      padding-left: 5px;
     }
-    .abbreviation{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-    .type{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-  }
-  .two{
-    width:100%;
-    height: 40px;
-    margin-top: 20px;
-    .manager{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-
-      .el-input{
+    .one{
+      width:100%;
+      height: 40px;
+      margin-top: 20px;
+      .name{
         float: left;
+        line-height: 40px;
+        margin:0 10px;
+        width:8%;
+      }
+      .abbreviation{
+        float: left;
+        line-height: 40px;
+        margin:0 10px;
+        width:8%;
+      }
+      .type{
+        float: left;
+        line-height: 40px;
+        margin:0 10px;
+        width:8%;
       }
     }
-  }
-  .three{
-    width:100%;
-    margin-top: 20px;
-    .explain{
+    .two{
+      width:100%;
+      height: 40px;
+      margin-top: 20px;
+      .manager{
+        float: left;
+        line-height: 40px;
+        margin:0 10px;
+        width:8%;
+
+        .el-input{
+          float: left;
+        }
+      }
+    }
+    .three{
+      width:100%;
+      margin-top: 20px;
+      .explain{
+        float: left;
+        margin:0 10px;
+        width:8%;
+        .el-select{
+          width:17%;
+        }
+      }
+    }
+    .el-input, .el-input__inner{
+      width: 18%;
+    }
+    .el-input{
       float: left;
-      margin:0 10px;
-      width:8%;
-      .el-select{
-        width:17%;
-      }
+    }
+    .el-select{
+      width:17%;
     }
   }
-  .el-input, .el-input__inner{
-    width: 18%;
-  }
-  .el-input{
-    float: left;
-  }
-  .el-select{
-    width:17%;
-  }
-}
 
 
 
