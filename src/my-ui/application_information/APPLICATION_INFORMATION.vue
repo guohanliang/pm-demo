@@ -63,47 +63,6 @@
             value: '选项5',
             label: '医疗'
           },
-          {
-            value: '选项6',
-            label: '保险'
-          },
-          {
-            value: '选项7',
-            label: '可爱'
-          },
-          {
-            value: '选项8',
-            label: '动人'
-          },
-          {
-            value: '选项9',
-            label: '你好'
-          },
-          {
-            value: '选项10',
-            label: '他好'
-          },
-          {
-            value: '选项11',
-            label: '优秀'
-          },
-          {
-            value: '选项12',
-            label: '宝宝'
-          },
-          {
-            value: '选项13',
-            label: '呵呵'
-          },
-          {
-            value: '选项14',
-            label: '嘻嘻'
-          },
-          {
-            value: '选项15',
-            label: '哈哈'
-          },
-
         ],
         value8: '',
 
@@ -165,7 +124,6 @@
         }
       })
         .then(function (res) {
-
           console.log(res)
 //          console.log(res.data.data.projects[0]);
           var list = res.data.data.projects;
