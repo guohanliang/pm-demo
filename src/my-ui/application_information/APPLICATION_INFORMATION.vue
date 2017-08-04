@@ -45,7 +45,66 @@
 
 
 
-        options1: [],
+        options1: [
+          {
+            value: '选项1',
+            label: '公募'
+          }, {
+            value: '选项2',
+            label: '专户'
+          }, {
+            value: '选项3',
+            label: '养老金产品'
+          }, {
+            value: '选项4',
+            label: '社保'
+          },
+          {
+            value: '选项5',
+            label: '医疗'
+          },
+          {
+            value: '选项6',
+            label: '保险'
+          },
+          {
+            value: '选项7',
+            label: '可爱'
+          },
+          {
+            value: '选项8',
+            label: '动人'
+          },
+          {
+            value: '选项9',
+            label: '你好'
+          },
+          {
+            value: '选项10',
+            label: '他好'
+          },
+          {
+            value: '选项11',
+            label: '优秀'
+          },
+          {
+            value: '选项12',
+            label: '宝宝'
+          },
+          {
+            value: '选项13',
+            label: '呵呵'
+          },
+          {
+            value: '选项14',
+            label: '嘻嘻'
+          },
+          {
+            value: '选项15',
+            label: '哈哈'
+          },
+
+        ],
         value8: '',
 
 
@@ -76,25 +135,37 @@
     },
     created(){
       var that = this;
-      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
+//      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
+//        .then(function (res) {
+//            console.log(res)
+//          console.log(res.data.data.projects[0]);
+//          var list = res.data.data.projects;
+//          var arr = []
+//            for (var i = 0 ; i < list.length ; i++) {
+////              console.log(list[i].prodName);
+//                 arr.push(list[i])
+//              console.log(arr);
+//            }
+////          var label=res.data.data.projects.prodName;
+////          for (var i=0;i<label.length;i++){
+////            that.options1.push({value:"",label:""});
+////            that.options1[i].value=label[i];
+////            that.options1[i].label=label[i];
+////          }
+////          that.data=res.data.data;
+////          console.log(that.value10)
+//        })
+//        .catch(function (error) {
+//          console.log(error);
+//        });
+
+      axios.get('http://10.0.192.40:8081/demo/workflow/product/query', {    //查询产品信息
+        params: {
+          searchword:''
+        }
+      })
         .then(function (res) {
-            console.log(res)
-          console.log(res.data.data.projects[0]);
-          var list = res.data.data.projects;
-          var arr = []
-            for (var i = 0 ; i < list.length ; i++) {
-//              console.log(list[i].prodName);
-                 arr.push(list[i])
-              console.log(arr);
-            }
-//          var label=res.data.data.projects.prodName;
-//          for (var i=0;i<label.length;i++){
-//            that.options1.push({value:"",label:""});
-//            that.options1[i].value=label[i];
-//            that.options1[i].label=label[i];
-//          }
-//          that.data=res.data.data;
-//          console.log(that.value10)
+          console.log(res);
         })
         .catch(function (error) {
           console.log(error);
@@ -151,6 +222,12 @@
       line-height: 40px;
       margin:0 10px;
       width:8%;
+    }
+    .el-input{
+      width: 165px;
+      .el-input__inner{
+        width:100%;
+      }
     }
   }
   .three{

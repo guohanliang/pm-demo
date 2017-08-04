@@ -93,14 +93,14 @@
   export default {
     data() {
       return {
-        src:"",
+        src: "",
         input1: '',
         input2: '',
         input3: '',
         input4: '',
         input: '标题',
         options5: [],
-        value10: ['aaa']
+        value10: ['aaa','bbb']
       }
     },
     methods: {},
@@ -111,12 +111,28 @@
 //          console.log(res.data.data.dataCode);
 //          console.log(res.data.data.date);
           that.input1 = res.data.data.dataCode;                   //编号
-          that.src = 'http://10.0.192.40:8081/system/bpm/barcode/add?'+that.input1+'';  //拼接图片路径
+          that.src = 'http://10.0.192.40:8081/system/bpm/barcode/add?' + that.input1 + '';  //拼接图片路径
           that.input2 = res.data.data.date;                       //时间
         })
         .catch(function (error) {
           console.log(error);
         });
+
+//      axios.get('http://10.0.192.40:8081/system/bpm/datacode/add', {  //生成流程编号和时间
+//        params: {
+//          procTypeCode: 'P990',
+//        }
+//      })
+//        .then(function (res) {
+////          console.log(res.data.data.dataCode);
+////          console.log(res.data.data.date);
+//          that.input1 = res.data.data.dataCode;                   //编号
+//          that.src = 'http://10.0.192.40:8081/system/bpm/barcode/add?' + that.input1 + '';  //拼接图片路径
+//          that.input2 = res.data.data.date;                       //时间
+//        })
+//        .catch(function (error) {
+//          console.log(error);
+//        });
 
       axios.get('http://10.0.192.40:8081/system/user/loginuser/info')//查询当前登录用户
         .then(function (res) {
@@ -128,17 +144,37 @@
           console.log(error);
         });
 
-      axios.get('http://10.0.192.40:8081/system/label/query')       //查询标签信息
+//      axios.get('http://10.0.192.40:8081/system/label/query')           //查询标签信息
+//        .then(function (res) {
+////          console.log(res.data.data.labels);
+//          var label = res.data.data.labels;
+//          for (var i = 0; i < label.length; i++) {
+//            that.options5.push({value: "", label: ""});
+//            that.options5[i].value = label[i];
+//            that.options5[i].label = label[i];
+//          }
+//          that.data = res.data.data;
+//          console.log(that.value10)
+//        })
+//        .catch(function (error) {
+//          console.log(error);
+//        });
+
+      axios.get('http://10.0.192.40:8081/system/label/query', {           //查询标签信息
+        params: {
+          searchword: '',
+        }
+      })
         .then(function (res) {
-//          console.log(res.data.data.labels);
-          var label=res.data.data.labels;
-          for (var i=0;i<label.length;i++){
-            that.options5.push({value:"",label:""});
-            that.options5[i].value=label[i];
-            that.options5[i].label=label[i];
+//            console.log(res.data.data.labels);
+          var label = res.data.data.labels;
+          for (var i = 0; i < label.length; i++) {
+            that.options5.push({value: "", label: ""});
+            that.options5[i].value = label[i];
+            that.options5[i].label = label[i];
           }
-          that.data=res.data.data;
-          console.log(that.value10)
+          that.data = res.data.data;
+//          console.log(that.value10)
         })
         .catch(function (error) {
           console.log(error);
