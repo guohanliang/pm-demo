@@ -40,9 +40,11 @@
     data() {
       return {
         input: '111',
-        input1: '222',
-        options1: [],
         input1:'222',
+
+
+
+
         options1: [
           {
             value: '选项1',
@@ -61,92 +63,37 @@
             value: '选项5',
             label: '医疗'
           },
-          {
-            value: '选项6',
-            label: '保险'
-          },
-          {
-            value: '选项7',
-            label: '可爱'
-          },
-          {
-            value: '选项8',
-            label: '动人'
-          },
-          {
-            value: '选项9',
-            label: '你好'
-          },
-          {
-            value: '选项10',
-            label: '他好'
-          },
-          {
-            value: '选项11',
-            label: '优秀'
-          },
-          {
-            value: '选项12',
-            label: '宝宝'
-          },
-          {
-            value: '选项13',
-            label: '呵呵'
-          },
-          {
-            value: '选项14',
-            label: '嘻嘻'
-          },
-          {
-            value: '选项15',
-            label: '哈哈'
-          },
         ],
         value8: '',
+
+
+
+
         options2: [{
-          value: '公募',
+          value: '选项1',
           label: '公募'
         }, {
-          value: '专户',
+          value: '选项2',
           label: '专户'
         }, {
-          value: '养老金产品',
+          value: '选项3',
           label: '养老金产品'
         }, {
-          value: '社保',
+          value: '选项4',
           label: '社保'
         }],
-        value: ''
+        value: '',
+
+
+
+
       }
     },
-    methods: {},
+    methods:{
+
+    },
     created(){
       var that = this;
-      axios.get('http://10.0.192.40:8081/demo/workflow/product/query',
-        {
-            params:{
-              searchWord:"1",
-              pageNo:"2",
-              pageSize:"2"
-            }
-        })
-      //查询产品信息
-        .then(function (res) {
-          var list = res;
-          console.log(list)
-          var arr = []
-          for (var i = 0 ; i < list.length ; i++) {
-//              console.log(list[i].prodName);
-                 arr.push(list[i].prodName)
-            }
-          console.log(arr);
-      axios.get('http://10.0.192.40:8081/demo/workflow/product/query', {
-        params: {
-          searchword: "P225-1609051616919",
-          pageNo: 1,
-          pageSize: '10'
-        }
-      })       //查询产品信息
 //      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
 //        .then(function (res) {
 //            console.log(res)
@@ -177,14 +124,9 @@
         }
       })
         .then(function (res) {
-
           console.log(res)
 //          console.log(res.data.data.projects[0]);
           var list = res.data.data.projects;
-          for (var i = 0; i < list.length; i++) {
-            that.options1.push(list[i].prodName)
-            console.log(that.options1);
-          }
             for (var i = 0 ; i < list.length ; i++) {
                  that.options1.push(list[i].prodName)
 //              console.log(that.options1);
@@ -199,65 +141,52 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .application {
-    width: 90%;
-    margin: 10px;
-    padding-bottom: 20px;
-    border: 1px solid black;
-    .header-title {
-      font-size: 20px;
-      color: red;
-      border-bottom: 1px solid red;
-      padding-top: 5px;
-      padding-bottom: 10px;
-      margin: 0;
-      padding-left: 5px;
+.application{
+  width: 90%;
+  margin: 10px;
+  padding-bottom: 20px;
+  border: 1px solid black;
+  .header-title {
+    font-size: 20px;
+    color: red;
+    border-bottom: 1px solid red;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin: 0;
+    padding-left: 5px;
+  }
+  .one{
+    width:100%;
+    height: 40px;
+    margin-top: 20px;
+    .name{
+      float: left;
+      line-height: 40px;
+      margin:0 10px;
+      width:8%;
     }
-    .one {
-      width: 100%;
-      height: 40px;
-      margin-top: 20px;
-      .name {
-        float: left;
-        line-height: 40px;
-        margin: 0 10px;
-        width: 8%;
-      }
-      .abbreviation {
-        float: left;
-        line-height: 40px;
-        margin: 0 10px;
-        width: 8%;
-      }
-      .type {
-        float: left;
-        line-height: 40px;
-        margin: 0 10px;
-        width: 8%;
-      }
+    .abbreviation{
+      float: left;
+      line-height: 40px;
+      margin:0 10px;
+      width:8%;
     }
-    .two {
-      width: 100%;
-      height: 40px;
-      margin-top: 20px;
-      .manager {
-        float: left;
-        line-height: 40px;
-        margin: 0 10px;
-        width: 8%;
-      }
+    .type{
+      float: left;
+      line-height: 40px;
+      margin:0 10px;
+      width:8%;
     }
-    .three {
-      width: 100%;
-      margin-top: 20px;
-      .explain {
-        float: left;
-        margin: 0 10px;
-        width: 8%;
-      }
-    }
-    .el-input, .el-input__inner {
-      width: 18%;
+  }
+  .two{
+    width:100%;
+    height: 40px;
+    margin-top: 20px;
+    .manager{
+      float: left;
+      line-height: 40px;
+      margin:0 10px;
+      width:8%;
     }
     .el-input{
       width: 165px;
@@ -265,16 +194,26 @@
         width:100%;
       }
     }
-    .three{
-      width:100%;
-      margin-top: 20px;
-      .explain{
-        float: left;
-      }
-      .el-select {
-        width: 17%;
-      }
+  }
+  .three{
+    width:100%;
+    margin-top: 20px;
+    .explain{
+      float: left;
+      margin:0 10px;
+      width:8%;
     }
   }
+  .el-input, .el-input__inner{
+    width: 18%;
+  }
+  .el-input{
+    float: left;
+  }
+  .el-select{
+    width:17%;
+  }
+}
+
 
 </style>

@@ -6,11 +6,11 @@
           <h4>附件</h4>
           <el-upload
             class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList">
-            <i class="el-icon-plus"><span>添加文件</span></i>
+            name="fileContent"
+            action="http://localhost/api/v1/system/attachment/add?businessId=P225-77373"
+            :on-success="onSuccess"
+            :file-list="tableData1">
+            <span><i class="el-icon-plus">点击添加</i></span>
           </el-upload>
         </div>
         <span class="line1"></span>
@@ -20,31 +20,38 @@
             border
             style="width: 100%">
             <el-table-column
-              prop="filename"
+              prop="fileName"
               label="文件名"
               min-width="150">
             </el-table-column>
             <el-table-column
-              prop="history"
+              prop="fileVersion"
               label="历史版本"
               min-width="60">
             </el-table-column>
             <el-table-column
-              prop="uploadtime"
+              prop="sysCreateTime"
               label="上传时间"
               min-width="80">
             </el-table-column>
             <el-table-column
-              prop="taddy"
+              prop="sysCreateName"
               label="上传人"
               min-width="100">
             </el-table-column>
             <el-table-column
+              v-if="flag"
               label="操作"
               min-width="100">
               <template scope="scope">
-                <el-button @click="handleClick" type="text" size="small">更新</el-button>
-                <el-button type="text" size="small">删除</el-button>
+                <el-upload
+                  class="upload-demo"
+                  name="fileContent"
+                  action="http://localhost/api/v1/system/attachment/update"
+                  :file-list="tableData1">
+                  <span>更新</span>
+                </el-upload>
+                <el-button type="text" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -59,32 +66,57 @@
   export default {
     data() {
       return {
-        fileList: [],
-        tableData1: [{
-          filename: 'XXX产品申请说明.docx',
-          history: '2',
-          uploadtime: '2017-10-11',
-          taddy: '张三'
-        }, {
-          filename: 'XXX产品申请说明.docx',
-          history: '2',
-          uploadtime: '2017-10-11',
-          taddy: '李四'
-        }]
+        flag:true,
+        tableData1: []
       };
     },
     methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
+      onSuccess(response, file, fileList){
+        console.log(typeof(response.data));
+        this.tableData1.push(response.data);
+        console.log(this.tableData1)
       },
-      handlePreview(file) {
-        console.log(file);
-      },
-
-      handleClick() {
-        console.log(1);
+//      onChange(index){
+//          axios.post("http://localhost/api/v1/system/attachment/update",{
+//              data:{
+//                businessId:'P225-77373',
+//                sysId:this.tableData1[index].sysId
+//              }
+//          },{
+//              transformRequest:function (data) {
+//                return data;
+//              }
+//          }).then((res)=>{
+//            console.log(res);
+//          })
+//      },
+//      onSuccess1(response){
+//
+//      },
+      handleDelete(index,row){
+        console.log(index);
+        console.log(this.tableData1[index].sysId);
+        axios.get('http://localhost/api/v1/system/attachment/delete',{
+          params:{
+            sysId:this.tableData1[index].sysId
+          }
+        }).then((res)=>{
+          console.log(res)
+          history.go(0)
+        })
       }
-
+    },
+    created(){
+        axios.get('http://localhost/api/v1/system/attachment/query?businessId=P225-77373').then((res)=>{
+          console.log(res.data.data[0].sysCreateName);
+          this.tableData1=res.data.data
+        })
+        axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res)=>{
+          console.log(res.data.data.chName);
+          if(res.data.data.chName !== this.tableData1[0].sysCreateName){
+              this.flag=false
+          }
+        })
     }
   }
 </script>
@@ -131,6 +163,12 @@
         }
         footer {
           margin: 10px;
+          .upload-demo{
+            width: 50%;
+            float: left;
+            font-size: 10px;
+            color: red;
+          }
         }
       }
     }
