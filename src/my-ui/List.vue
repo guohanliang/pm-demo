@@ -101,7 +101,7 @@
     },
     created(){
 //        列表初始化
-      axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
+      axios.get("http://localhost/api/v1/demo/workflow/list/approvequery", {
         params: {
           pageNo: '1',
           pageSize: this.pageSize

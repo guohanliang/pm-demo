@@ -52,7 +52,27 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+        // 点击填写审批意见
+        var _this=this;
+        axios.post("http://localhost/api/v1/system/bpm/task/approve",
+          {data:{
+            dataCode:localStorage.getItem("dataCode1"),
+            activityCode:localStorage.getItem("activityCode"),
+            approverResult:_this.form.resource,
+            approverContent:_this.form.desc,
+            taskId:5
+          }},
+          {
+            transformRequest:function(data){
+              return data
+            }
+          }
+        )
+        .then((res)=>{
+          // console.log(res.log)
+        })
+        .catch((error)=>{})
+
       },
       handleClose(done) {
         this.$confirm('确认关闭？')
@@ -64,25 +84,31 @@
 
 //      点击作废
       cancellation(){
-        axios.get('http://10.0.192.40:8081/system/bpm/workflow/abolish',{
+        axios.get('http://localhost/api/v1/system/bpm/workflow/abolish',{
           params:{dataCode:localStorage.getItem("dataCode1")}
-        }).then((res)=>{
+        })
+        .then((res)=>{
 
-        }).catch((error)=>{
+        })
+        .catch((error)=>{
             console.log(error)
         })
       },
 
 //      点击抄送
       Carbon_Copy(){
-        axios.get('http://10.0.192.40:8081/system/bpm/copyto/add',{
-          params:{dataCode:localStorage.getItem("dataCode1")}
+        axios.get('http://localhost/api/v1/system/bpm/copyto/add',{
+          params:{
+            dataCode:localStorage.getItem("dataCode1"),
+            appprover:""
+
+          }
         })
-          .then((res)=>{
-          })
-          .catch((error)=>{
-            console.log(error)
-          })
+        .then((res)=>{
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
       }
 
     },
