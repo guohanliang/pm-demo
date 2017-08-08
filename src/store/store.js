@@ -5,6 +5,7 @@ import 'babel-polyfill'
 import dzcx from './modules/DZCX.js'
 import page from './modules/page.js'
 import pagecon from './modules/pagecon.js'
+import approvalRecord from './modules/approval-record.js'
 
 Vue.use(Vuex)
 
