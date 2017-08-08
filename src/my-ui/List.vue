@@ -57,7 +57,7 @@
     methods: {
 //        查询
       select(){
-        axios.get('http://10.0.192.40:8081/demo/workflow/list/approvequery', {
+        axios.get('http://localhost/api/v1/demo/workflow/list/approvequery', {
           params: {
             searchword: this.searchword,
             startDate: this.startDate,
@@ -71,7 +71,7 @@
             this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
-            console.log(error)
+//            console.log(error)
           })
       },
 //      发起申请
@@ -87,9 +87,10 @@
       },
 //      分页渲染
       change(currentPage){
-        axios.get("http://10.0.192.40:8081/demo/workflow/list/approvequery", {
+        axios.get("http://localhost/api/v1/demo/workflow/list/approvequery", {
           params: {
-            pageNo: currentPage
+            pageNo: currentPage,
+            pageSize:this.pageSize
           }
         }).then((res) => {
           this.tableData = res.data.data.approveinfos;
@@ -107,11 +108,12 @@
           pageSize: this.pageSize
         }
       }).then((res) => {
+        console.log(res)
         this.tableData = res.data.data.approveinfos;
         this.total = res.data.data.total
       })
         .catch((err) => {
-          console.log(err);
+//          console.log(err);
         })
     }
   }

@@ -7,9 +7,8 @@
           class="upload-demo"
           action="https://jsonplaceholder.typicode.com/posts/"
           :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList">
-          <i class="el-icon-plus"><span>添加文件</span></i>
+          :on-remove="handleRemove">
+          <!--<i class="el-icon-plus"><span>添加文件</span></i>-->
         </el-upload>
       </div>
       <span class="line1"></span>
@@ -57,13 +56,7 @@
   export default {
     data() {
       return {
-        fileList: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }],
+//        fileList: [],
         tableData1: [{
           filename: 'XXX产品申请说明.docx',
           history: '2',
@@ -100,7 +93,7 @@
       min-height: 100px;
       border: 1px solid grey;
       .header {
-        height: 30px;
+        height: 60px;
         h4 {
           float: left;
           color: #C40000;
