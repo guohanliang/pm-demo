@@ -41,7 +41,7 @@
             <li class="send">{{data1.send3}}</li>
           </ul>
         </dd>
-                
+
       </dl>
     </div>
 </template>
@@ -92,7 +92,7 @@
       }
     },
     created(){
-      
+
         var _this=this;
 //      审批页查询审批留言接口 /system/bpm/comment/query
       axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
@@ -213,7 +213,7 @@
   }
   @media(max-width: 1320px){
     .record dl dd .localDepartment .jsfund{
-      flex:4;
+      flex:6;
     }
     .record dl dd .localDepartment .local1{
       flex:1;
