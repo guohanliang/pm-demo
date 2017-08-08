@@ -94,29 +94,6 @@
     },
     created(){
       var that = this;
-//      axios.get('http://10.0.192.40:8081/demo/workflow/product/query')       //查询产品信息
-//        .then(function (res) {
-//            console.log(res)
-//          console.log(res.data.data.projects[0]);
-//          var list = res.data.data.projects;
-//          var arr = []
-//            for (var i = 0 ; i < list.length ; i++) {
-////              console.log(list[i].prodName);
-//                 arr.push(list[i])
-//              console.log(arr);
-//            }
-////          var label=res.data.data.projects.prodName;
-////          for (var i=0;i<label.length;i++){
-////            that.options1.push({value:"",label:""});
-////            that.options1[i].value=label[i];
-////            that.options1[i].label=label[i];
-////          }
-////          that.data=res.data.data;
-////          console.log(that.value10)
-//        })
-//        .catch(function (error) {
-//          console.log(error);
-//        });
 
       axios.get('http://10.0.192.40:8081/demo/workflow/product/query', {    //查询产品信息
         params: {
@@ -125,22 +102,11 @@
       })
         .then(function (res) {
           console.log(res)
-<<<<<<< HEAD
-////          console.log(res.data.data.projects[0]);
-//          var list = res.data.data.projects;
-//
-//          for (var i = 0 ; i < list.length ; i++) {
-//            that.options1.push(list[i].prodName)
-////              console.log(that.options1);
-//          }
-=======
-//          console.log(res.data.data.projects[0]);
           var list = res.data.data.projects;
             for (var i = 0 ; i < list.length ; i++) {
                  that.options1.push(list[i].prodName)
-//              console.log(that.options1);
             }
->>>>>>> 8e5fb98427f59fbc7f14b6180432636113f3d061
+
         })
         .catch(function (error) {
           console.log(error);
@@ -151,7 +117,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-<<<<<<< HEAD
   .application{
     width: 90%;
     margin: 10px;
@@ -226,88 +191,4 @@
       width:17%;
     }
   }
-  .el-input, .el-input__inner{
-    width: 17%;
-=======
-.application{
-  width: 90%;
-  margin: 10px;
-  padding-bottom: 20px;
-  border: 1px solid black;
-  .header-title {
-    font-size: 20px;
-    color: red;
-    border-bottom: 1px solid red;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    margin: 0;
-    padding-left: 5px;
-  }
-  .one{
-    width:100%;
-    height: 40px;
-    margin-top: 20px;
-    .name{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-    .abbreviation{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-    .type{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-  }
-  .two{
-    width:100%;
-    height: 40px;
-    margin-top: 20px;
-    .manager{
-      float: left;
-      line-height: 40px;
-      margin:0 10px;
-      width:8%;
-    }
-    .el-input{
-      width: 165px;
-      .el-input__inner{
-        width:100%;
-      }
-    }
-  }
-  .three{
-    width:100%;
-    margin-top: 20px;
-    .explain{
-      float: left;
-      margin:0 10px;
-      width:8%;
-    }
-  }
-  .el-input, .el-input__inner{
-    width: 18%;
->>>>>>> 8e5fb98427f59fbc7f14b6180432636113f3d061
-  }
-  .el-input{
-    float: left;
-  }
-  .el-select{
-    width:17%;
-  }
-<<<<<<< HEAD
-
-
-=======
-}
->>>>>>> 8e5fb98427f59fbc7f14b6180432636113f3d061
-
-
 </style>
