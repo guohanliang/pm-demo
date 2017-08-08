@@ -1,11 +1,5 @@
 <template>
   <div class="hzcx">
-    <el-dialog
-      title="会签信息表"
-      :visible.sync="dialogVisible3"
-      size="tiny"
-
-    >
       <div class="sign">
         <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
           <tbody>
@@ -105,109 +99,7 @@
           </tbody>
         </table>
       </div>
-      <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消 </el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-              </span>
-    </el-dialog>
-    <div class="sign">
-      <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
-        <tbody>
-        <tr align="center" height="80">
-          <td colspan="4">
-            <ul class="shenhe">
-
-              <li class="fl name" style="width: 700px">
-
-                <el-table
-                  :data="tableData1"
-                  height="200"
-                  style="width: 100%">
-                  <el-table-column
-                    prop="department"
-                    label="部门"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="name"
-                    label="姓名"
-                    width="180">
-                  </el-table-column>
-
-                </el-table>
-
-              </li>
-              <li class="fr sel" style="">
-                <div>
-                  <el-button type="danger" icon="circle-check" @click="feedback"
-                             style="margin-right:32px; margin-top:60%">
-                    确定
-                  </el-button>
-                  <el-button type="danger" icon="circle-check" @click="clear" style="margin-right:32px; margin-top:60%">
-                    取消
-                  </el-button>
-                </div>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr height="80">
-          <td colspan="1" width="30%"></td>
-          <td colspan="3" width="70%">
-            <div class="add">
-              <el-button type="danger" icon="plus" style="margin-left:30%" @click="select">
-                将【人员】添加到【会签】中
-              </el-button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="1">
-
-            <el-tree :data="tableData2"
-                     :props="defaultProps"
-                     accordion
-                     @check-change="handleNodeselect1"
-                     show-checkbox
-                     check-strictly
-                     node-key="setid"
-                     ref="tree"
-                     highlight-current
-            >
-            </el-tree>
-          </td>
-          <td colspan="3">
-
-            <el-table
-              ref="multipleTable"
-              @selection-change="handleNodeselect2"
-              :data="tableData3"
-              border
-              height="400"
-              tooltip-effect="dark"
-              style="width: 100%"
-            >
-              <el-table-column
-                type="selection"
-                width="55">
-              </el-table-column>
-
-              <el-table-column
-                prop="chName"
-                label="姓名"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="jobName"
-                label="职位"
-                show-overflow-tooltip>
-              </el-table-column>
-            </el-table>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+        
   </div>
 </template>
 

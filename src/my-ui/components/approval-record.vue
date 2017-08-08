@@ -1,12 +1,11 @@
 <template>
     <div class="record fl" >
       <dl>
-        <dt>审批记录</dt>
-
+        <dt :data-resource="resource">审批记录</dt>
         <dd v-for="(item,index) in activity" v-on:click="onclick(index)" >
           <ul class="localDepartment">
             <li class="local">{{item.activityName}}</li>
-            <li class="jsfund">嘉实基金-{{item.approverDept}}-{{item.approverName}}
+            <li class="jsfund" >嘉实基金-{{item.approverDept}}-{{item.approverName}}
               <span class="agree " ref="agree1"
                     >{{item.approverResult}}</span>
             </li>
@@ -180,34 +179,84 @@
         })
         .catch((error)=>{})
       }
+    },
+    computed:{
+      chName(){
+        return this.$store.state.approvalRecord.chName;
+      },
+      orgChName(){
+        return this.$store.state.approvalRecord.orgChName;
+      },
+      time(){
+        return this.$store.state.approvalRecord.time
+      },
+      resource(){
+        if(this.desc==1){return}
+        // 将填写审批意见的新数据,赋值给 activity
+        this.activity.push({
+            activityCode: localStorage.getItem("activityCode"),
+            activityName: "部门签批",
+            approverDept: this.orgChName,
+            approverAccount:"lisi",
+            approverName: this.chName,
+            approverType:"user",
+            approverResult: localStorage.getItem("resource"),
+            approverContent: this.desc,
+            approverStartTime: this.time,
+            approverFinishTime: this.time
+        })
+        // DOM 还没有更新
+        this.$nextTick(function () {
+          // DOM 现在更新了
+          // this 绑定到当前实例,获取到 span 标签
+           var agree= this.$el.querySelectorAll('.agree');
+           var DD=this.$el.querySelectorAll('dd');
+
+            var str="";
+            // 根据同意不同意变换不同的颜色
+            for (var i=0;i<agree.length;i++){
+               str =agree[i].innerHTML;
+
+               switch (str){
+                case "同意":break;
+                case "不同意":agree[i].classList.add("disagree");
+                       break;
+                 default:agree[i].classList.add("haveRead");
+               }
+            }
+
+          })
+        return this.$store.state.approvalRecord.resource;
+      },
+      desc(){
+        return this.$store.state.approvalRecord.desc;
+      }
+    },
+    created(){
+
+      // 存储流程环节编号
+        localStorage.setItem("activityCode",this.activity[0].activityCode);
+
+        var _this=this;
+      //  审批页查询审批留言接口 /system/bpm/comment/query
+       axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+         {params:{
+             dataCode:localStorage.getItem("dataCode1")
+         }}
+       )
+       .then(function(res){
+           var activity=res.data.data.activity;//数组
+           _this.activity=activity;
+       })
+       .catch(function(error){})
 
     },
-   created(){
-
-    // 存储流程环节编号
-      localStorage.setItem("activityCode",this.activity[0].activityCode);
-
-      var _this=this;
-    //  审批页查询审批留言接口 /system/bpm/comment/query
-     axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
-       {params:{
-           dataCode:localStorage.getItem("dataCode1")
-       }}
-     )
-     .then(function(res){
-         var activity=res.data.data.activity;//数组
-         _this.activity=activity;
-     })
-     .catch(function(error){})
-
-
-   },
     mounted(){
 
-// DOM 还没有更新
+        // DOM 还没有更新
         this.$nextTick(function () {
-// DOM 现在更新了
-// this 绑定到当前实例,获取到 span 标签
+        // DOM 现在更新了
+        // this 绑定到当前实例,获取到 span 标签
          var agree= this.$el.querySelectorAll('.agree');
          var DD=this.$el.querySelectorAll('dd');
 
@@ -225,7 +274,6 @@
           }
 
         })
-
     }
 
   }

@@ -14,7 +14,8 @@ export default new Vuex.Store({
   modules: {
     dzcx,
     page,
-    pagecon
+    pagecon,
+    approvalRecord
   }
 
 })
