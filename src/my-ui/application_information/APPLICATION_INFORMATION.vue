@@ -76,7 +76,7 @@
     },
     methods: {
       nihao(m){
-              console.log(m)
+        console.log(m)
 ////          console.log(this.options1.length)
 //
 //        for (let i = 0; i < this.options1.length; i++) {
@@ -123,16 +123,18 @@
 
 
       axios.get('http://localhost/api/v1/demo/workflow/product/query', {    //查询产品信息
+
         params: {
           searchword: ''
         }
       })
         .then(function (res) {
+
 //          console.log(res.data.data.projects[0]);
-          localStorage.setItem("prodName",that.value8);                  //把产品名称存入localStroage
-          localStorage.setItem("prodShortName",that.value7);            //把产品简称存入localStroage
-          localStorage.setItem("prodType",that.value6);                 //把产品类型存入localStroage
-          localStorage.setItem("prodMgrName",that.value5);             //把产品经理存入localStroage
+          localStorage.setItem("prodName", that.value8);                  //把产品名称存入localStroage
+          localStorage.setItem("prodShortName", that.value7);            //把产品简称存入localStroage
+          localStorage.setItem("prodType", that.value6);                 //把产品类型存入localStroage
+          localStorage.setItem("prodMgrName", that.value5);             //把产品经理存入localStroage
 
           var label = res.data.data.projects;
 //          console.log(label)
@@ -157,6 +159,9 @@
 
           }
 //          console.log(that.options1)
+
+//          console.log(res)
+          
         })
         .catch(function (error) {
           console.log(error);
@@ -168,6 +173,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
   .application {
     width: 90%;
     margin: 10px;
