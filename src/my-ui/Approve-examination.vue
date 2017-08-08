@@ -31,7 +31,7 @@
   import vAgreement from "./components/agreement.vue"
   import vBase from "./components/basic-information.vue"
   import vApplication from "./components/application-information.vue"
-  import vAdjunct from  "./components/adjunct.vue"
+  import vAdjunct from  "./adjunct/Adjunct.vue"
 
   export default {
     data() {
@@ -71,6 +71,9 @@
     }
     .attachment{
       margin-bottom: 10px;
+      v-adjunct{
+        width: 100%;
+      }
     }
     .last{
       margin-top: 10px;

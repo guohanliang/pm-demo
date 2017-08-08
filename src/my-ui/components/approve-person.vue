@@ -1,6 +1,5 @@
 <template>
   <div class="hzcx">
-<<<<<<< HEAD
     <el-dialog
       title="会签信息表"
       :visible.sync="dialogVisible3"
@@ -35,11 +34,13 @@
 
                 </li>
                 <li class="fr sel" style="">
-                  <div >
-                    <el-button type="danger" icon="circle-check" @click="feedback" style="margin-right:32px; margin-top:60%">
+                  <div>
+                    <el-button type="danger" icon="circle-check" @click="feedback"
+                               style="margin-right:32px; margin-top:60%">
                       确定
                     </el-button>
-                    <el-button type="danger" icon="circle-check" @click="clear" style="margin-right:32px; margin-top:60%">
+                    <el-button type="danger" icon="circle-check" @click="clear"
+                               style="margin-right:32px; margin-top:60%">
                       取消
                     </el-button>
                   </div>
@@ -109,8 +110,6 @@
                 <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
               </span>
     </el-dialog>
-=======
-
     <div class="sign">
       <table cellspacing="0" cellpadding="0" border="1" align="center" width="100%" height="400">
         <tbody>
@@ -209,7 +208,6 @@
         </tbody>
       </table>
     </div>
->>>>>>> 4fea11b006b27ddd05ac9c354895699b1c98aced
   </div>
 </template>
 
@@ -248,11 +246,8 @@
           var code = selectedone.dcOrgCode;
           console.log(code)
         }
-<<<<<<< HEAD
-        var url = 'http://10.0.192.40:8081/system/user/user/list' + '?' + 'dcOrgCode' + '=' + code ;
-=======
         var url = 'http://10.0.192.40:8081/system/user/user/list' + '?' + 'dcOrgCode' + '=' + code;
->>>>>>> 4fea11b006b27ddd05ac9c354895699b1c98aced
+        var url = 'http://10.0.192.40:8081/system/user/user/list' + '?' + 'dcOrgCode' + '=' + code;
         var that = this;
         ajax.get(url)
           .then(function (response) {
@@ -287,39 +282,27 @@
 
       },
       clear(){
-<<<<<<< HEAD
-        while(this.tableData1.length > 0) {
-=======
         while (this.tableData1.length > 0) {
->>>>>>> 4fea11b006b27ddd05ac9c354895699b1c98aced
-          this.tableData1.pop()
+          while (this.tableData1.length > 0) {
+            this.tableData1.pop()
+          }
         }
-      },
-      feedback(){
-
-      },
-      handleSleect(data) {
-        console.log(data);
-      },
-      handleClose(data) {
-        console.log(data);
-      },
 
 
-    },
-    created: function () {
-      var that = this;
-      ajax.get('http://10.0.192.40:8081/system/user/org/list')
-        .then(function (response) {
-          that.tableData2 = response.data.data;
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      },
+      created: function () {
+        var that = this;
+        ajax.get('http://10.0.192.40:8081/system/user/org/list')
+          .then(function (response) {
+            that.tableData2 = response.data.data;
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      }
+
     }
-
   }
-
 
 </script>
 

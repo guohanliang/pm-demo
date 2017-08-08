@@ -123,7 +123,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  .gryw{
+    .enclosure{
+      width: 100%;
+      margin-left: 0;
+    }
+  }
   .enclosure {
     width: calc(100vw - 200px);
     width: 90%;
