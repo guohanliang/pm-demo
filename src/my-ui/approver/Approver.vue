@@ -9,13 +9,23 @@
       <li><span class="line"></span></li>
       <li class="input1">
         <el-col>
-          <el-autocomplete
+          <el-select
+            v-model="value9"
             class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="请输入内容"
-            @select="handleSelect"
-          ></el-autocomplete>
+            style="width: 900px"
+            multiple
+            filterable
+            remote
+            placeholder="请输入关键词"
+            :remote-method="remoteMethod"
+            :loading="loading">
+            <el-option
+              v-for="item in options4"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-col>
       </li>
       <li>
@@ -33,78 +43,88 @@
         </el-dialog>
       </li>
     </ul>
-    <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
-      <li><span class="line"></span></li>
-      <li class="input1">
-        <el-col>
-          <el-autocomplete
-            class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="请输入内容"
-            @select="handleSelect"
-          ></el-autocomplete>
-        </el-col>
-      </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
-      </li>
-    </ul>
-    <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
-      <li><span class="line"></span></li>
-      <li class="input1">
-        <el-col>
-          <el-autocomplete
-            class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="请输入内容"
-            @select="handleSelect"
-          ></el-autocomplete>
-        </el-col>
-      </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
-      </li>
-    </ul>
-    <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
-      <li><span class="line"></span></li>
-      <li class="input1">
-        <el-col>
-          <el-autocomplete
-            class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="请输入内容"
-            @select="handleSelect"
-          ></el-autocomplete>
-        </el-col>
-      </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
-      </li>
-    </ul>
+    <div v-for="(item1,index) in mydata">
+      <ul>
+        <li>
+          <button class="license">{{ item1.activityName }}</button>
+        </li>
+        <li><span class="line"></span></li>
+        <li class="input1">
+          <el-col>
+            <el-select
+              v-model="value9"
+              class="inline-input"
+              style="width: 900px"
+              multiple
+              filterable
+              remote
+              placeholder="请输入关键词"
+              :remote-method="remoteMethod"
+              :loading="loading">
+              <el-option
+                v-for="item in options5"
+                :key="item.bizunitName"
+                :label="item.chName"
+                :value="item.bizunitName">
+              </el-option>
+            </el-select>
+          </el-col>
+        </li>
+        <li>
+          <button class="choice" @click="dialogVisible = true">选择</button>
+        </li>
+      </ul>
+    </div>
+
+
   </div>
 </template>
 <script>
+  import ajax from "axios";
   import Approverperson from '../components/approve-person.vue'
   export default{
-    components:{
+    components: {
       Approverperson
     },
     data(){
       return {
         state1: '',
-        dialogVisible: false
+        dialogVisible: false,
+        options4: [],
+        value9: [],
+        value10: [],
+        list: [],
+        loading: false,
+        states: ["Alabama", "Alaska", "Arizona",
+          "Arkansas", "California", "Colorado",
+          "Connecticut", "Delaware", "Florida",
+          "Georgia", "Hawaii", "Idaho", "Illinois",
+          "Indiana", "Iowa", "Kansas", "Kentucky",
+          "Louisiana", "Maine", "Maryland",
+          "Massachusetts", "Michigan", "Minnesota",
+          "Mississippi", "Missouri", "Montana",
+          "Nebraska", "Nevada", "New Hampshire",
+          "New Jersey", "New Mexico", "New York",
+          "North Carolina", "North Dakota", "Ohio",
+          "Oklahoma", "Oregon", "Pennsylvania",
+          "Rhode Island", "South Carolina",
+          "South Dakota", "Tennessee", "Texas",
+          "Utah", "Vermont", "Virginia",
+          "Washington", "West Virginia", "Wisconsin",
+          "Wyoming"],
+        options5: [{
+          value: 'HTML',
+          label: 'HTML'
+        }, {
+          value: 'CSS',
+          label: 'CSS'
+        }, {
+          value: 'JavaScript',
+          label: 'JavaScript'
+        }],
+        mydata: [
+
+        ]
       }
     },
     methods: {
@@ -115,6 +135,33 @@
           })
           .catch(_ => {
           });
+      },
+      remoteMethod(query) {
+          var that = this;
+        console.log()
+        if (query !== '') {
+          this.loading = true;
+          ajax.get('http://localhost/api/v1/system/user/userororg/list?searchword='+query+'&pageNo=1&pageSize=10000')
+            .then(function (response) {
+              console.log(response);
+              that.options5 = response.data.data.userororginfo;
+              that.loading = false;
+
+//              chName  orgChName
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+//          setTimeout(() => {
+//            this.loading = false;
+//            this.options4 = this.list.filter(item => {
+//              return item.label.toLowerCase()
+//                  .indexOf(query.toLowerCase()) > -1;
+//            });
+//          }, 200);
+        } else {
+          this.options4 = [];
+        }
       },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;
@@ -143,7 +190,19 @@
       }
     },
     mounted() {
+      var that = this;
+      ajax.get('http://localhost/api/v1/system/bpm/defaultapprover/list?procTypeCode=p990&parameter1=1&parameter2&parameter1=3')
+        .then(function (response) {
+          that.mydata = response.data.data;
+          console.log(that.mydata)
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
       this.restaurants = this.loadAll();
+      this.list = this.states.map(item => {
+        return {value: item, label: item};
+      });
     }
   }
 </script>
@@ -151,7 +210,7 @@
   .approver {
     background-color: white;
     margin: 10px;
-    height: 240px;
+    height: 400px;
     border: 1px solid black;
     width: 90%;
     h4 {

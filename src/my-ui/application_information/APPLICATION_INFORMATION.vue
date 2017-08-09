@@ -161,7 +161,7 @@
 //          console.log(that.options1)
 
 //          console.log(res)
-          
+
         })
         .catch(function (error) {
           console.log(error);
@@ -173,6 +173,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 
   .application {
     width: 90%;
@@ -248,6 +249,7 @@
       width: 17%;
     }
   }
+
 
 
 </style>
