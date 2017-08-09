@@ -113,7 +113,7 @@
 
       axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  //生成流程编号和时间
         params: {
-          procTypeCode: 'P990',
+          procTypeCode: 'P900',
         }
       })
         .then(function (res) {

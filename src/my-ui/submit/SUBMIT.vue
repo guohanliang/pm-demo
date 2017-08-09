@@ -20,13 +20,13 @@
             data: {
               sysId: '',
               dataCode: localStorage.getItem("dataCode"),
-              prodId: '',
+              prodId: localStorage.getItem("prodId"),
               prodName: localStorage.getItem("prodName"),
               prodShortName: localStorage.getItem("prodShortName"),
               prodType: localStorage.getItem("prodType"),
               prodMgrName: localStorage.getItem("prodMgrName"),
-              prodMgrAccount: '',
-              content: ''
+              prodMgrAccount: localStorage.getItem("prodMgrAccount"),
+              content: localStorage.getItem("content")
             }
           },
           {
