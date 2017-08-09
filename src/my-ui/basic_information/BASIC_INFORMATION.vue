@@ -68,13 +68,14 @@
       </span>
       <div class="label-con">
         <el-select
+          @change="biaoqian($event)"
           v-model="value10"
           multiple
           filterable
           allow-create
-          placeholder="请选择文章标签">
+          placeholder="请选择标签">
           <el-option
-            v-for="item in options5"
+            v-for="(item,index) in options5"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -106,7 +107,11 @@
     methods: {
         lose(){     //标题失去焦点
           localStorage.setItem("businessTitle", this.input);                    //把标题存入localStroage
-        }
+        },
+      biaoqian(n){
+//        localStoragge.setItem("biaoqian", n);                    //把标题存入localStroage
+        console.log(typeof n);
+      }
     },
     created(){
       var that = this;

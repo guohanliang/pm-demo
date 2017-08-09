@@ -29,7 +29,7 @@
           this.cc = editorInstance.getContent()
 //          console.log(this.cc);
           localStorage.setItem("content",this.cc)
-          console.log(localStorage.getItem("content"))
+//          console.log(localStorage.getItem("content"))
           this.content=editorInstance.getContent();
         });
       }
