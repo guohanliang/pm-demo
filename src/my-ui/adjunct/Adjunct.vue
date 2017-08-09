@@ -108,11 +108,10 @@
     },
     created(){
         axios.get('http://localhost/api/v1/system/attachment/query?businessId=P225-77373').then((res)=>{
-          console.log(res.data.data[0].sysCreateName);
+          console.log(res.data.data[0].sysCreateName);  
           this.tableData1=res.data.data
         })
         axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res)=>{
-          console.log(res.data.data.chName);
           if(res.data.data.chName !== this.tableData1[0].sysCreateName){
               this.flag=false
           }
