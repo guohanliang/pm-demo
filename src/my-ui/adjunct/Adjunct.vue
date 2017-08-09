@@ -94,7 +94,7 @@
         console.log(response);
       },
       handleEdit(index, row){
-        this.two.sysId=this.tableData1[index].sysId
+        this.two.sysId=this.tableData1[index].sysId;
         console.log(this.two.sysId);
 
       },
@@ -114,13 +114,13 @@
     },
     created(){
       axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res) => {
-        var oneName = res.data.data.chName
+        let oneName = res.data.data.chName;
         axios.get("http://localhost/api/v1/system/attachment/query",{
           params:{
               businessId:localStorage.getItem('input1')
           }
         }).then((res) => {
-          this.tableData1 = res.data.data
+          this.tableData1 = res.data.data;
           if (oneName !== this.tableData1[0].sysCreateName) {
             this.flag = false
           }
