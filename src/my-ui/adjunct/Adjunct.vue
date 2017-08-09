@@ -72,7 +72,6 @@
   export default {
     data() {
       return {
-//        http://localhost/api/v1/system/attachment/add?businessId=P256-1706261015780
         one:{
             businessId:localStorage.getItem('input1')
         },
@@ -113,8 +112,9 @@
       }
     },
     created(){
-      axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res) => {
-        let oneName = res.data.data.chName;
+      axios.get('http://localhost/api/v1/system/user/loginuser/info')
+      .then((res) => {
+        var oneName = res.data.data.chName
         axios.get("http://localhost/api/v1/system/attachment/query",{
           params:{
               businessId:localStorage.getItem('input1')
@@ -125,7 +125,8 @@
             this.flag = false
           }
         })
-      }).catch((err)=>{
+      })
+      .catch((err)=>{
         console.log(err);
       })
     }
