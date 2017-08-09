@@ -69,6 +69,8 @@
         options4: [],
         value5: '',
 
+        prodId:'',
+        prodMgrAccount:'',
 
         arr: [],
 
@@ -76,51 +78,33 @@
     },
     methods: {
       nihao(m){
-        console.log(m)
-////          console.log(this.options1.length)
-//
-//        for (let i = 0; i < this.options1.length; i++) {
-//
-////          if (m = this.options1[i].prodName) {
-////
-////            this.value7 = this.options2[i].label;
-////            this.value6 = this.options3[i].label;
-////            this.value5 = this.options4[i].label;
-////          }
-//        }
-        console.log(this.options1);
-        console.log(this.options2);
-        console.log(this.options3);
-        console.log(this.options4);
+//        console.log(m)
+        var arr = this.arr;
+        for (var i = 0; i < arr.length; i++) {
+          if (m == arr[i].prodName) {
+            this.value7 = arr[i].prodShortName;
+            this.value6 = arr[i].prodType;
+            this.value5 = arr[i].prodMgrName;
 
+            this.prodId = arr[i].prodId;
+            this.prodMgrAccount = arr[i].prodMgrAccount;
+
+            localStorage.setItem("prodName", this.value8);                  //把产品名称存入localStroage
+            localStorage.setItem("prodShortName", this.value7);            //把产品简称存入localStroage
+            localStorage.setItem("prodType", this.value6);                 //把产品类型存入localStroage
+            localStorage.setItem("prodMgrName", this.value5);             //把产品经理存入localStroage
+
+            localStorage.setItem("prodId", this.prodId);                  //把产品编码存入localStroage
+            localStorage.setItem("prodMgrAccount", this.prodMgrAccount);                  //把产品编码存入localStroage
+            break;
+
+          }
+        }
       }
     },
 
     created(){
       var that = this;
-
-      var label = this.arr;
-
-      for (var i = 0; i < label.length; i++) {
-        that.options1.push({value: "", label: ""});
-        that.options2.push({value: "", label: ""});
-        that.options3.push({value: "", label: ""});
-        that.options4.push({value: "", label: ""});
-
-        that.options1[i].value = label[i].prodName;
-        that.options1[i].label = label[i].prodName;
-
-        that.options2[i].value = label[i].prodShortName;
-        that.options2[i].label = label[i].prodShortName;
-
-        that.options3[i].value = label[i].prodType;
-        that.options3[i].label = label[i].prodType;
-
-        that.options4[i].value = label[i].prodMgrName;
-        that.options4[i].label = label[i].prodMgrName;
-
-      }
-
 
       axios.get('http://localhost/api/v1/demo/workflow/product/query', {    //查询产品信息
 
@@ -129,16 +113,12 @@
         }
       })
         .then(function (res) {
-
+//          console.log(res)
 //          console.log(res.data.data.projects[0]);
-          localStorage.setItem("prodName", that.value8);                  //把产品名称存入localStroage
-          localStorage.setItem("prodShortName", that.value7);            //把产品简称存入localStroage
-          localStorage.setItem("prodType", that.value6);                 //把产品类型存入localStroage
-          localStorage.setItem("prodMgrName", that.value5);             //把产品经理存入localStroage
+
 
           var label = res.data.data.projects;
-//          console.log(label)
-
+          that.arr = label;
           for (var i = 0; i < label.length; i++) {
             that.options1.push({value: "", label: ""});
             that.options2.push({value: "", label: ""});
@@ -158,10 +138,6 @@
             that.options4[i].label = label[i].prodMgrName;
 
           }
-//          console.log(that.options1)
-
-//          console.log(res)
-
         })
         .catch(function (error) {
           console.log(error);

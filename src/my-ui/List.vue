@@ -53,7 +53,7 @@
         endDate: '',
         tableData: [],
         total: 0,
-        pageSize: 2
+        pageSize: 4
       }
     },
     methods: {
@@ -68,12 +68,12 @@
             pageSize: this.pageSize
           }
         })
-          .then(function (response) {
-            console.log(response.data);
-            this.tableData = response.data.approveinfos
+          .then((response)=> {
+            console.log(response.data.data.approveinfos);
+            this.tableData = response.data.data.approveinfos
           })
-          .catch(function (err) {
-            console.log(error)
+          .catch( (err)=> {
+            console.log(err)
           })
       },
 //      发起申请
@@ -84,7 +84,7 @@
       go(row, event, column){
         this.$router.push({
           path: "/gryw"
-        })
+        });
         localStorage.setItem("input1", row.dataCode)
       },
 //      分页渲染
