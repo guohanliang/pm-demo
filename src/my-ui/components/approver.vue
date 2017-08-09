@@ -19,18 +19,11 @@
       <li class="selector1">
         <el-button type="text" @click="dialogVisible1 = true">选择</el-button>
         <!--点击选择按钮,弹出 dialog-->
-        <el-dialog
-          title="选择审批人"
-          :visible.sync="dialogVisible1"
-          :modal-append-to-body="false"
-          size="large"
-          :before-close="handleClose" @close="mask1">
           <v-countersign></v-countersign>
           <span slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible1 = false">取 消</el-button>
             <el-button type="primary" @click="dialogVisible1 = false">确 定</el-button>
           </span>
-        </el-dialog>
       </li>
     </ul>
     <ul>

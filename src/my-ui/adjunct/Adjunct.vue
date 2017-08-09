@@ -55,9 +55,10 @@
                   <el-button
                     type="text"
                     size="small"
-                    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    @click="handleEdit(scope.$index, scope.row)">更新</el-button>
                 </el-upload>
                 <el-button type="text" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                <el-button type="text" size="small" @click="preview(scope.$index, scope.row)">点击预览</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -73,10 +74,10 @@
     data() {
       return {
         one:{
-            businessId:localStorage.getItem('input1')
+            businessId:localStorage.getItem('input1')||localStorage.getItem('dataCode')
         },
         two:{
-          businessId:localStorage.getItem('input1'),
+          businessId:localStorage.getItem('input1')||localStorage.getItem('dataCode'),
           sysId:''
         },
         flag: true,
@@ -91,6 +92,13 @@
       },
       onUpdata(response){
         console.log(response);
+        axios.get("http://localhost/api/v1/system/attachment/query",{
+          params:{
+            businessId:localStorage.getItem('input1')
+          }
+        }).then((res) => {
+          this.tableData1 = res.data.data;
+        })
       },
       handleEdit(index, row){
         this.two.sysId=this.tableData1[index].sysId;
@@ -109,6 +117,9 @@
         }).catch((err)=>{
           console.log(err);
         })
+      },
+      preview(index,row){
+        location.href = this.tableData1[index].filePreviewUrl
       }
     },
     created(){
@@ -173,6 +184,7 @@
               }
             }
           }
+
         }
         .line1 {
           width: 100%;
@@ -182,10 +194,13 @@
         footer {
           margin: 10px;
           .upload-demo {
-            width: 50%;
+            width: 15%;
             float: left;
+            margin-left: 10px;
             font-size: 10px;
-            color: red;
+          }
+          button{
+            width: 23%;
           }
         }
       }
