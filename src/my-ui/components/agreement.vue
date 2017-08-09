@@ -23,9 +23,9 @@
                   取 消</el-button>
               </span>
             </el-dialog>
-            <el-button @click="Carbon_Copy" :disabled="authority.terminate">抄送</el-button>
-            <el-button @click="cancellation">作废</el-button>
-            <el-button>取消</el-button>
+            <el-button @click="Carbon_Copy" >抄送</el-button>
+            <el-button @click="cancellation" :disabled="authority.terminate">作废</el-button>
+            <el-button @click="quit">取消</el-button>
           </el-form-item>
         </el-form>
     </div>
@@ -40,6 +40,8 @@
     data() {
       return {
         dialogVisible: false,
+        taskId:"",
+        activityCode:"",
         form: {
           name: '',
           region: '',
@@ -85,11 +87,11 @@
           var _this=this;
           axios.post("http://localhost/api/v1/system/bpm/task/approve",
             {data:{
-              dataCode:localStorage.getItem("dataCode1"),
-              activityCode:localStorage.getItem("activityCode"),
+              dataCode:localStorage.getItem("input1"),
+              activityCode:_this.activityCode,
               approverResult:_this.form.resource,
               approverContent:_this.form.desc,
-              taskId:3
+              taskId:_this.taskId
             }},
             {
               transformRequest:function(data){
@@ -113,7 +115,7 @@
         //   点击作废
         cancellation(){
           axios.get('http://localhost/api/v1/system/bpm/workflow/abolish',{
-            params:{dataCode:localStorage.getItem("dataCode1")}
+            params:{dataCode:localStorage.getItem("input1")}
           })
           .then((res)=>{
           })
@@ -126,7 +128,7 @@
         Carbon_Copy(){
           axios.get('http://localhost/api/v1/system/bpm/copyto/add',{
             params:{
-              dataCode:localStorage.getItem("dataCode1"),
+              dataCode:localStorage.getItem("input1"),
               appprover:""
             }
           })
@@ -135,27 +137,35 @@
           .catch((error)=>{
             console.log(error)
           })
+
+
+        },
+
+      // 点击取消,跳转到列表页
+        quit(){
+          this.$router.push({path:"/zylx"})
         }
     },
     created(){
       //1.获取当前登录人的taskId和 activityCode
       //  /system/bpm/task/getid
       axios.get('http://localhost/api/v1/system/bpm/task/getid',
-        {params:{dataCode:"P900-1708091101643"}})
+        {params:{dataCode:localStorage.getItem("input1")}})
         .then((res)=>{
-          // console.log(res.data)
+          this.taskId=res.data.data.taskId;
+          this.activityCode=res.data.data.activityCode;
         })
         .catch((res)=>{})
 
       // 2.审批页面下部按钮显示权限
       // /system/bpm/button/query
       axios.get('http://localhost/api/v1/system/bpm/button/query',
-        {params:{dataCode:"P900-1708091101643"}})
+        {params:{dataCode:localStorage.getItem("input1")}})
         .then((res)=>{
           var data1=res.data.data;
           this.authority.approve=Boolean(data1.approve);
           this.authority.modify=Boolean(data1.modify);
-          this.authority.terminate=Boolean(data1.terminate);          
+          this.authority.terminate=Boolean(data1.terminate);
         })
         .catch((res)=>{})
     },

@@ -32,7 +32,7 @@
         <span class="num">申请人</span>
         <el-input
           placeholder="请输入内容"
-          v-model="data.sysCreatorName"
+          v-model="data.applicantName"
           :disabled="true">
         </el-input>
       </div>
@@ -98,7 +98,7 @@
           dataCode:"",
           sysCreatorTime: "",
           sysCreatorAccount: "",
-          sysCreatorName: "",
+          applicantName: "",
           dcOrgCode: "",
           orgChName: "",
           title: "" ,
@@ -114,31 +114,26 @@
     created(){
       //获取从列表页存储的 dataCode
       this.dataCode=localStorage.getItem("input1");
+
       var _this=this;
       // /system/bpm/workflow/query/查询基础信息 api
       axios.get('http://localhost/api/v1/system/bpm/workflow/query',
         {
-          params:this.dataCode
+          params:{dataCode:_this.dataCode}
         })
         .then(function (res) {
-            //          将 res.data.data的 label 赋值给 options6
-          var label=res.data.data.label;
-          label=label.split(",");
-          for (var i=0;i<label.length;i++){
-              _this.options6.push({value:"",label:""});
-              _this.options6[i].value=label[i];
-              _this.options6[i].label=label[i];
-          }
-           _this.data=res.data.data;
+            //       将 res.data.data的 label 赋值给 options6
+          _this.data=res.data.data;
+
           //      将编号存到 localStorage
-          localStorage.setItem("dataCode1","js201708031")
+          localStorage.setItem("dataCode1","P256-1706261015780")
         })
         .catch(function (error) {
           console.log(error)
         })
 
         //生成流程编号和时间
-      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  
+      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {
         params: {
           procTypeCode: 'P990',
         }
@@ -146,7 +141,7 @@
         .then(function (res) {
           //  console.log(res.data.data.dataCode);
           //  console.log(res.data.data.date);
-          _this.input1 = res.data.data.dataCode;                   
+          _this.input1 = res.data.data.dataCode;
           //编号
           localStorage.setItem("dataCode", _this.input1);                 //把编号存入localStroage
 
@@ -158,7 +153,7 @@
         });
 
       //查询标签信息
-      axios.get('http://localhost/api/v1/system/label/query', {          
+      axios.get('http://localhost/api/v1/system/label/query', {
         params: {
           searchword: '',
         }

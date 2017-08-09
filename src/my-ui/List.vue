@@ -110,7 +110,6 @@
           pageSize: this.pageSize
         }
       }).then((res) => {
-        console.log(res);
         this.tableData = res.data.data.approveinfos;
         this.total = res.data.data.total
       })

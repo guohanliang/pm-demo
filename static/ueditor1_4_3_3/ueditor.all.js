@@ -8072,7 +8072,6 @@ UE.Editor.defaultOptions = function(editor){
 
 // core/loadconfig.js
 (function(){
-
     UE.Editor.prototype.loadServerConfig = function(){
         var me = this;
         setTimeout(function(){

@@ -7,23 +7,21 @@
 <script>
   import VueUEditor from '../ueditor/UEDITOR.vue';
   export default {
-    created(){
-      //console.log(this.mmm)
-    },
     props:['mmm'],
     data(){
         return {
             dd:"",
-            content:""
+            cc:""
         }
     },
     components: { VueUEditor },
     methods: {
       editorReady (editorInstance) {
-        editorInstance.setContent('Hello world!<br>你可以在这里初' +
+        editorInstance.setContent('Hello world!你可以在这里初' +
           '始化编辑器的初始内容。');
         editorInstance.addListener('contentChange', () => {
-          this.content=editorInstance.getContent();
+          this.cc = editorInstance.getContent()
+          localStorage.setItem("content",this.cc)
         });
       }
     },

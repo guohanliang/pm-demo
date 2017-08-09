@@ -1,3 +1,20 @@
 {
-	inf:['hello','world']
+  "projects": [
+    {
+      "prodId": "P123456",
+      "prodName": "产品名称001",
+      "prodShortName": "产品简称001",
+      "prodType": "pub",
+      "prodMgrAccount": "wangzan",
+      "prodMgrName": "王赞"
+    },
+    {
+      "prodId": "P654321",
+      "prodName": "产品名称002",
+      "prodShortName": "产品简称002",
+      "prodType": "pub",
+      "prodMgrAccount": "zhangsan",
+      "prodMgrName": "张三"
+    }
+  ]
 }

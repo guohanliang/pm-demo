@@ -12,7 +12,9 @@
         </el-option>
       </el-select>
       <span class="abbreviation" disabled="">产品简称</span>
-      <el-input v-model="data1.projShortName" placeholder="请输入内容" disabled></el-input>
+      <el-input v-model="data1.projShortName" placeholder="请输入内容" disabled>
+
+      </el-input>
       <span class="type">产品类型</span>
       <el-select v-model="data1.projType" placeholder="公募" disabled>
         <el-option
@@ -36,7 +38,13 @@
     </div>
     <div class="three">
       <span class="explain">说明</span>
-      <my-bianji :mmm="data1.content"></my-bianji>
+      <el-form ref="ruleForm" label-width="70px" class="demo-ruleForm">
+        <el-form-item  prop="desc" >
+          <el-input type="textarea" style="width:90%" v-model="data1.content"
+                    :disabled="true"></el-input>
+        </el-form-item>
+      </el-form>
+
     </div>
   </div>
 </template>
@@ -46,6 +54,7 @@
   export default {
     data() {
       return {
+        desc:"",
         input: '111',
         options1: [{
           value: '选项1',
@@ -115,8 +124,8 @@
     created(){
       // 获取申请信息的一栏的数据
         var _this=this;
-        axios.get('http://10.0.192.40:8081/demo/workflow/approve/query',{
-            params:{dataCode:localStorage.getItem("dataCode1")}
+        axios.get('http://localhost/api/v1/demo/workflow/approve/query',{
+            params:{dataCode:localStorage.getItem("input1")}
         })
         .then(function (res) {
           _this.data1=res.data.data;
@@ -196,6 +205,12 @@
   .el-select{
     width:17%;
   }
+}
+.content{
+  width: 80%;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #eef1f6;
 }
 
 
