@@ -18,8 +18,10 @@
           </el-date-picker>
         </div>
       </div>
-      <button @click="select">查询</button>
-      <button class="btn1" @click="to">发起申请</button>
+      <el-button type="primary" size="mini" @click="select">查询</el-button>
+      <el-button type="primary" size="mini" @click="to">发起申请</el-button>
+      <!--<button @click="select">查询</button>-->
+      <!--<button class="btn1" @click="to">发起申请</button>-->
     </header>
     <div class="list">
       <el-row>
@@ -27,10 +29,10 @@
           <el-table border :data="tableData" stripe style="width: 100%" @row-click="go">
             <el-table-column prop="rownum" label="序号" min-width="30"></el-table-column>
             <el-table-column prop="dataCode" label="编号" min-width="160"></el-table-column>
-            <el-table-column prop="dataTitle" label="标题" min-width="230"></el-table-column>
+            <el-table-column prop="title" label="标题" min-width="230"></el-table-column>
             <el-table-column prop="applyUser" label="申请人" min-width="50"></el-table-column>
             <el-table-column prop="applyDept" label="申请人部门" min-width="100"></el-table-column>
-            <el-table-column prop="applyTime" label="申请时间" min-width="135"></el-table-column>
+            <el-table-column prop="sysCreateTime" label="申请时间" min-width="135"></el-table-column>
             <el-table-column prop="status" label="当前状态" min-width="60"></el-table-column>
           </el-table>
         </el-col>
@@ -51,7 +53,7 @@
         endDate: '',
         tableData: [],
         total: 0,
-        pageSize: 1
+        pageSize: 2
       }
     },
     methods: {
@@ -71,7 +73,7 @@
             this.tableData = response.data.approveinfos
           })
           .catch(function (err) {
-//            console.log(error)
+            console.log(error)
           })
       },
 //      发起申请
@@ -87,6 +89,7 @@
       },
 //      分页渲染
       change(currentPage){
+
         axios.get("http://localhost/api/v1/demo/workflow/list/approvequery", {
           params: {
             pageNo: currentPage,
@@ -113,7 +116,7 @@
         this.total = res.data.data.total
       })
         .catch((err) => {
-//          console.log(err);
+          console.log(err);
         })
     }
   }
@@ -179,10 +182,6 @@
         height: 24px;
         border-radius: 3px;
         outline: none;
-        background-color: #eeeeee;
-      }
-      .btn1 {
-        margin-left: 10px;
       }
     }
     .list {

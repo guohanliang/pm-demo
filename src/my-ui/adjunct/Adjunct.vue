@@ -7,7 +7,8 @@
           <el-upload
             class="upload-demo"
             name="fileContent"
-            action="http://localhost/api/v1/system/attachment/add?businessId=P225-77373"
+            action="http://localhost/api/v1/system/attachment/add"
+            :data="one"
             :on-success="onSuccess"
             :file-list="tableData1">
             <span><i class="el-icon-plus">点击添加</i></span>
@@ -48,8 +49,13 @@
                   class="upload-demo"
                   name="fileContent"
                   action="http://localhost/api/v1/system/attachment/update"
+                  :on-success="onUpdata"
+                  :data="two"
                   :file-list="tableData1">
-                  <span>更新</span>
+                  <el-button
+                    type="text"
+                    size="small"
+                    @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                 </el-upload>
                 <el-button type="text" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               </template>
@@ -66,7 +72,15 @@
   export default {
     data() {
       return {
-        flag:true,
+//        http://localhost/api/v1/system/attachment/add?businessId=P256-1706261015780
+        one:{
+            businessId:localStorage.getItem('input1')
+        },
+        two:{
+          businessId:localStorage.getItem('input1'),
+          sysId:''
+        },
+        flag: true,
         tableData1: []
       };
     },
@@ -76,66 +90,64 @@
         this.tableData1.push(response.data);
         console.log(this.tableData1)
       },
-//      onChange(index){
-//          axios.post("http://localhost/api/v1/system/attachment/update",{
-//              data:{
-//                businessId:'P225-77373',
-//                sysId:this.tableData1[index].sysId
-//              }
-//          },{
-//              transformRequest:function (data) {
-//                return data;
-//              }
-//          }).then((res)=>{
-//            console.log(res);
-//          })
-//      },
-//      onSuccess1(response){
-//
-//      },
-      handleDelete(index,row){
+      onUpdata(response){
+        console.log(response);
+      },
+      handleEdit(index, row){
+        this.two.sysId=this.tableData1[index].sysId
+        console.log(this.two.sysId);
+
+      },
+      handleDelete(index, row){
         console.log(index);
         console.log(this.tableData1[index].sysId);
-        axios.get('http://localhost/api/v1/system/attachment/delete',{
-          params:{
-            sysId:this.tableData1[index].sysId
+        axios.get('http://localhost/api/v1/system/attachment/delete', {
+          params: {
+            sysId: this.tableData1[index].sysId
           }
-        }).then((res)=>{
-          console.log(res)
-          history.go(0)
+        }).then((res) => {
+          this.tableData1.splice(index,1)
+        }).catch((err)=>{
+          console.log(err);
         })
       }
     },
     created(){
-        axios.get('http://localhost/api/v1/system/attachment/query?businessId=P225-77373').then((res)=>{
-          console.log(res.data.data[0].sysCreateName);
-          this.tableData1=res.data.data
-        })
-        axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res)=>{
-          console.log(res.data.data.chName);
-          if(res.data.data.chName !== this.tableData1[0].sysCreateName){
-              this.flag=false
+      axios.get('http://localhost/api/v1/system/user/loginuser/info').then((res) => {
+        var oneName = res.data.data.chName
+        axios.get("http://localhost/api/v1/system/attachment/query",{
+          params:{
+              businessId:localStorage.getItem('input1')
+          }
+        }).then((res) => {
+          this.tableData1 = res.data.data
+          if (oneName !== this.tableData1[0].sysCreateName) {
+            this.flag = false
           }
         })
+      }).catch((err)=>{
+        console.log(err);
+      })
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .gryw{
-    .enclosure{
+  .gryw {
+    .enclosure {
       width: 100%;
       margin-left: 0;
     }
   }
+
   .enclosure {
     width: calc(100vw - 200px);
     width: 90%;
     margin: 10px;
     .adjunct {
       width: calc(100vw - 200px);
-      width:100%;
+      width: 100%;
       .attachment {
         min-height: 100px;
         border: 1px solid black;
@@ -168,7 +180,7 @@
         }
         footer {
           margin: 10px;
-          .upload-demo{
+          .upload-demo {
             width: 50%;
             float: left;
             font-size: 10px;
