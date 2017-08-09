@@ -7,9 +7,6 @@
 <script>
   import VueUEditor from '../ueditor/UEDITOR.vue';
   export default {
-    created(){
-      //console.log(this.mmm)
-    },
     props:['mmm'],
     data(){
         return {
@@ -23,7 +20,6 @@
         editorInstance.setContent('Hello world!<br>你可以在这里初' +
           '始化编辑器的初始内容。');
         editorInstance.addListener('contentChange', () => {
-          this.content=editorInstance.getContent();
         });
       }
     },

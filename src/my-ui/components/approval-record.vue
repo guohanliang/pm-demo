@@ -138,9 +138,9 @@
       //  /system/bpm/sms/send  点击发送,短信发送催办内容给后台
       sending(){
         var _this=this;
-        axios.get("http://10.0.192.40:8081/system/bpm/sms/send",
+        axios.get("http://localhost/api/v1/system/bpm/sms/send",
           {params:{
-            dataCode:localStorage.getItem("dataCode1"),
+            dataCode:localStorage.getItem("input1"),
             activityCode:this.activity.activityCode,
             approverAccount:this.data3.account,
             approverMobile:this.data3.mobile,
@@ -173,7 +173,6 @@
             params:{account:approverAccount}
           })
         .then((res)=>{
-          console.log(res.data);
           // 换成80端口需要取消注释
           this.data3=res.data.data;
         })
@@ -191,20 +190,23 @@
         return this.$store.state.approvalRecord.time
       },
       resource(){
-        if(this.desc==1){return}
-        // 将填写审批意见的新数据,赋值给 activity
-        this.activity.push({
-            activityCode: localStorage.getItem("activityCode"),
-            activityName: "部门签批",
-            approverDept: this.orgChName,
-            approverAccount:"lisi",
-            approverName: this.chName,
-            approverType:"user",
-            approverResult: localStorage.getItem("resource"),
-            approverContent: this.desc,
-            approverStartTime: this.time,
-            approverFinishTime: this.time
-        })
+
+//        if(this.desc==1){return}
+//        // 将点击填写审批意见的新数据,赋值给 activity
+//        this.activity.push({
+//            activityCode: localStorage.getItem("activityCode"),
+//            activityName: "部门签批",
+//            approverDept: this.orgChName,
+//            approverAccount:"lisi",
+//            approverName: this.chName,
+//            approverType:"user",
+//            approverResult: localStorage.getItem("resource"),
+//            approverContent: this.desc,
+//            approverStartTime: this.time,
+//            approverFinishTime: this.time
+//        })
+
+
         // DOM 还没有更新
         this.$nextTick(function () {
           // DOM 现在更新了
@@ -226,6 +228,22 @@
             }
 
           })
+
+        var _this=this;
+        //  审批页查询审批留言接口 /system/bpm/comment/query
+        axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+          {params:{
+            dataCode:localStorage.getItem("dataCode1")
+          }}
+        )
+          .then(function(res){
+            var activity=res.data.data.activity;//数组
+            _this.activity=activity;
+          })
+          .catch(function(error){
+            console.log(error)
+          })
+
         return this.$store.state.approvalRecord.resource;
       },
       desc(){
@@ -241,14 +259,16 @@
       //  审批页查询审批留言接口 /system/bpm/comment/query
        axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
          {params:{
-             dataCode:localStorage.getItem("dataCode1")
+             dataCode:localStorage.getItem("input1")
          }}
        )
        .then(function(res){
            var activity=res.data.data.activity;//数组
            _this.activity=activity;
        })
-       .catch(function(error){})
+       .catch(function(error){
+         console.log(error)
+       })
 
     },
     mounted(){
