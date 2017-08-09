@@ -12,7 +12,7 @@
       </div>
     <div class="box_two">
       <span class="code">
-        这里放一维码
+        <img id="barCodeImg" :src="src">
       </span>
     </div>
       <div class="box_three">
@@ -92,6 +92,7 @@
   export default {
     data() {
       return {
+        src: '',
         data:{
           dataCode:"",
           sysCreatorTime: "",
@@ -147,6 +148,46 @@
         })
 
 
+      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  //生成流程编号和时间
+        params: {
+          procTypeCode: 'P990',
+        }
+      })
+        .then(function (res) {
+          //  console.log(res.data.data.dataCode);
+          //  console.log(res.data.data.date);
+          _this.input1 = res.data.data.dataCode;                   
+          //编号
+          localStorage.setItem("dataCode", _this.input1);                 //把编号存入localStroage
+
+          _this.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + _this.input1 + '';  //拼接图片路径
+          _this.input2 = res.data.data.date;          //时间
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      //查询标签信息
+      axios.get('http://localhost/api/v1/system/label/query', {          
+        params: {
+          searchword: '',
+        }
+      })
+        .then(function (res) {
+          //   console.log(res.data.data.labels);
+          var label = res.data.data.labels;
+          for (var i = 0; i < label.length; i++) {
+            that.options5.push({value: "", label: ""});
+            that.options5[i].value = label[i];
+            that.options5[i].label = label[i];
+          }
+          that.data = res.data.data;
+          that.data = res.data.data;
+          // console.log(that.value10)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 </script>

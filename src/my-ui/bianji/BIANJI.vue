@@ -13,7 +13,8 @@
     props:['mmm'],
     data(){
         return {
-            dd:""
+            dd:"",
+            content:""
         }
     },
     components: { VueUEditor },
@@ -22,7 +23,7 @@
         editorInstance.setContent('Hello world!<br>你可以在这里初' +
           '始化编辑器的初始内容。');
         editorInstance.addListener('contentChange', () => {
-          console.log('编辑器内容发生了变化：', editorInstance.getContent());
+          this.content=editorInstance.getContent();
         });
       }
     },

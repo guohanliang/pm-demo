@@ -104,8 +104,8 @@
         </table>
       </div>
       <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消 </el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                <el-button @click="dialogVisible3 = false">取 消 </el-button>
+                <el-button type="primary" @click="dialogVisible3 = false">确 定</el-button>
               </span>
     </el-dialog>
   </div>
@@ -129,12 +129,7 @@
           children: 'children',
           label: 'orgChName'
         },
-        dialogVisible: true,
-        dialogVisible0: false,
-        dialogVisible1: false,
-        dialogVisible2: false,
-        dialogVisible3: true,
-        dialogVisible4: false,
+        dialogVisible3: true
       }
     },
     methods: {
@@ -146,7 +141,7 @@
           var code = selectedone.dcOrgCode;
           console.log(code)
         }
-        var url = 'http://10.0.192.40:8081/system/user/user/list' + '?' + 'dcOrgCode' + '=' + code ;
+        var url = 'http://localhost/api/v1/system/user/user/list' + '?' + 'dcOrgCode' + '=' + code ;
         var that = this;
         ajax.get(url)
           .then(function (response) {
@@ -194,14 +189,14 @@
       handleClose(data) {
         console.log(data);
       },
-
-
     },
     created: function () {
       var that = this;
-      ajax.get('http://10.0.192.40:8081/system/user/org/list')
+      var array1 = [];
+      ajax.get('http://localhost/api/v1/system/user/org/list')
         .then(function (response) {
-          that.tableData2 = response.data.data;
+          array1.push(response.data.data);
+          that.tableData2 = array1;
         })
         .catch(function (err) {
           console.log(err);

@@ -15,7 +15,7 @@
             <el-dialog title=""
                        class="msg-emerge" :visible.sync="dialogVisible"
                        size="large" :before-close="handleClose">
-                <v-approver></v-approver>
+              <v-approver></v-approver>
               <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="dialogVisible = false">
                   确 定</el-button>
@@ -34,6 +34,8 @@
 <script>
   import axios from "axios"
   import vApprover from "./approver.vue"
+  import {mapState} from "vuex"
+  import {mapMutations} from "vuex"
   export default {
     data() {
       return {
@@ -51,9 +53,51 @@
       }
     },
     methods: {
+      // 点击填写审批意见
       onSubmit() {
-        console.log('submit!');
+        // 加0函数
+        function ad0(n){
+            if(n<10){
+                return('0'+n);
+            }else{
+                return n
+            }
+        };
+
+        // 获取时间戳
+        var oDate=new Date();
+        var y=oDate.getFullYear();
+        var m=oDate.getMonth();
+        var d=oDate.getDate();
+        var h=oDate.getHours();
+        var min=oDate.getMinutes();
+        var s=oDate.getSeconds();
+        var time=y+'-'+ad0(m+1)+'-'+ad0(d)+' '+ad0(h)+': '+ad0(min)+': '+ad0(s);
+        this.$store.commit("RESOURCE",this.form.resource);
+        localStorage.setItem("resource",this.form.resource);
+        this.$store.commit("DESC",this.form.desc);
+        this.$store.commit("TIME",time);
+        var _this=this;
+        axios.post("http://localhost/api/v1/system/bpm/task/approve",
+          {data:{
+            dataCode:localStorage.getItem("dataCode1"),
+            activityCode:localStorage.getItem("activityCode"),
+            approverResult:_this.form.resource,
+            approverContent:_this.form.desc,
+            taskId:3
+          }},
+          {
+            transformRequest:function(data){
+              return data
+            }
+          }
+        )
+        .then((res)=>{
+          // console.log(res.log)
+        })
+        .catch((error)=>{})
       },
+
       handleClose(done) {
         this.$confirm('确认关闭？')
           .then(_ => {
@@ -62,29 +106,44 @@
           .catch(_ => {});
       },
 
-//      点击作废
+    //   点击作废
       cancellation(){
-        axios.get('http://10.0.192.40:8081/system/bpm/workflow/abolish',{
+        axios.get('http://localhost/api/v1/system/bpm/workflow/abolish',{
           params:{dataCode:localStorage.getItem("dataCode1")}
-        }).then((res)=>{
-
-        }).catch((error)=>{
+        })
+        .then((res)=>{
+        })
+        .catch((error)=>{
             console.log(error)
         })
       },
 
-//      点击抄送
+    //   点击抄送
       Carbon_Copy(){
-        axios.get('http://10.0.192.40:8081/system/bpm/copyto/add',{
-          params:{dataCode:localStorage.getItem("dataCode1")}
+        axios.get('http://localhost/api/v1/system/bpm/copyto/add',{
+          params:{
+            dataCode:localStorage.getItem("dataCode1"),
+            appprover:""
+          }
         })
-          .then((res)=>{
-          })
-          .catch((error)=>{
-            console.log(error)
-          })
+        .then((res)=>{
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
       }
 
+    },
+    computed:{
+        time(){
+          return this.$store.state.approvalRecord.time;
+        },
+        resource(){
+          return this.$store.state.approvalRecord.resource;
+        },
+        desc(){
+          return this.$store.state.approvalRecord.desc;
+        }
     },
     components:{
         vApprover
@@ -94,5 +153,4 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 </style>

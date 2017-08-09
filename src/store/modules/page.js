@@ -7,7 +7,7 @@ const state ={
 const mutations ={
 	['COUNT'](state,test){
 		state.count=test;
-	},
+	}
 }
 
 export default {
