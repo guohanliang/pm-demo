@@ -150,6 +150,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
+
   .application {
     width: 90%;
     margin: 10px;
@@ -224,6 +225,7 @@
       width: 17%;
     }
   }
+
 
 
 </style>

@@ -14,7 +14,10 @@
     data(){
         return {
             dd:"",
-            cc:""
+
+            cc:"",
+
+            content:""
         }
     },
     components: { VueUEditor },
@@ -27,6 +30,7 @@
 //          console.log(this.cc);
           localStorage.setItem("content",this.cc)
           console.log(localStorage.getItem("content"))
+          this.content=editorInstance.getContent();
         });
       }
     },

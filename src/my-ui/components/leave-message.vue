@@ -21,6 +21,8 @@
 
 <script>
     import axios from "axios"
+    import {mapState} from "vuex"
+    import {mapMutations} from "vuex"
     export default {
         name:"leave-message",
         data(){
@@ -46,7 +48,7 @@
                         userName: "王五",
                         userDept: "稽核部",
                         content: "好好查查他们",
-                        commentTime: "2017-07-30 18：00：00" 
+                        commentTime: "2017-07-30 18：00：00"
                     }
                 ],
                 data1:{}
@@ -79,7 +81,7 @@
                     userName: localStorage.getItem("chName"),
                     userDept: localStorage.getItem("orgChName"),
                     content: this.textarea,
-                    commentTime: time 
+                    commentTime: time
                 })
 
                 //向后台发送请求
@@ -103,7 +105,18 @@
 
             }
         },
+        computed:{
+            chName(){
+              return this.$store.state.approvalRecord.chName;
+            },
+            orgChName(){
+              return this.$store.state.approvalRecord.orgChName;
+            }
+        },
         created(){
+          var _this=this;
+          this.$store.commit("CHNAME", "冯光");
+          this.$store.commit("ORGCHNAME","技术开发二部");
            // 默认加载审批留言 /system/bpm/comment/query
            axios.get("http://10.0.192.40:8081/system/bpm/comment/query",{params:{
                 dataCode:localStorage.getItem("dataCode1")
@@ -116,10 +129,13 @@
            //查询当前登录用户信息 /system/user/loginuser/info
            axios.get("http://localhost/api/v1/system/user/loginuser/info")
            .then((res)=>{
-                this.data1=res.data.data;
-                localStorage.setItem("orgChName",this.data1.orgChName);
-                localStorage.setItem("chName",this.data1.chName);
-                localStorage.setItem("account",this.data1.account);
+                _this.data1=res.data.data;
+                localStorage.setItem("orgChName",_this.data1.orgChName);
+                localStorage.setItem("chName",_this.data1.chName);
+                localStorage.setItem("account",_this.data1.account);
+                _this.$store.commit("CHNAME", _this.data1.chName);
+                _this.$store.commit("ORGCHNAME", _this.data1.orgChName);
+
            })
            .catch((error)=>{})
         }
@@ -134,7 +150,7 @@
         height:500px;
         overflow: scroll;
         border: 1px solid rgb(51,51,51);
-        dl{          
+        dl{
             dt{
                 width:98%;
                 height:30px;

@@ -12,7 +12,7 @@
       </div>
     <div class="box_two">
       <span class="code">
-        这里放一维码
+        <img id="barCodeImg" :src="src">
       </span>
     </div>
       <div class="box_three">
@@ -74,7 +74,7 @@
           allow-create
           placeholder="请选择文章标签">
           <el-option
-            v-for="item in options5"
+            v-for="item in options6"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -92,6 +92,8 @@
   export default {
     data() {
       return {
+        dataCode:"",
+        src: '',
         data:{
           dataCode:"",
           sysCreatorTime: "",
@@ -103,40 +105,29 @@
           label:""
         },
 
-        options5: [],
+        options6: [],
         value10: []
       }
     },
     methods: {
-      getNowTime(){                                   //获取年月日
-        var date = new Date();
-        var seperator1 = "/";
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
-        if(month >=1 && month <= 9) {
-          month = "0" + month;
-        }
-        if(strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
-        }
-        var currentdate = date.getUTCFullYear() + seperator1
-          + month + seperator1 + strDate
-        return currentdate;
-      }
     },
     created(){
-      this.input2 = this.getNowTime();
+      //获取从列表页存储的 dataCode
+      this.dataCode=localStorage.getItem("input1");
       var _this=this;
       // /system/bpm/workflow/query/查询基础信息 api
-      axios.get('http://10.0.192.40:8081/system/bpm/workflow/query')
+      axios.get('http://localhost/api/v1/system/bpm/workflow/query',
+        {
+          params:this.dataCode
+        })
         .then(function (res) {
-            //            将 res.data.data的 label 赋值给 options5
+            //          将 res.data.data的 label 赋值给 options6
           var label=res.data.data.label;
           label=label.split(",");
           for (var i=0;i<label.length;i++){
-              _this.options5.push({value:"",label:""});
-              _this.options5[i].value=label[i];
-              _this.options5[i].label=label[i];
+              _this.options6.push({value:"",label:""});
+              _this.options6[i].value=label[i];
+              _this.options6[i].label=label[i];
           }
            _this.data=res.data.data;
           //      将编号存到 localStorage
@@ -146,7 +137,44 @@
           console.log(error)
         })
 
+        //生成流程编号和时间
+      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  
+        params: {
+          procTypeCode: 'P990',
+        }
+      })
+        .then(function (res) {
+          //  console.log(res.data.data.dataCode);
+          //  console.log(res.data.data.date);
+          _this.input1 = res.data.data.dataCode;                   
+          //编号
+          localStorage.setItem("dataCode", _this.input1);                 //把编号存入localStroage
 
+          _this.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + _this.input1 + '';  //拼接图片路径
+          _this.input2 = res.data.data.date;          //时间
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      //查询标签信息
+      axios.get('http://localhost/api/v1/system/label/query', {          
+        params: {
+          searchword: '',
+        }
+      })
+        .then(function (res) {
+          //   console.log(res.data.data.labels);
+          var label = res.data.data.labels;
+          for (var i = 0; i < label.length; i++) {
+            _this.options6.push({value: "", label: ""});
+            _this.options6[i].value = label[i];
+            _this.options6[i].label = label[i];
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 </script>
@@ -225,8 +253,11 @@
         .code {
           display: inline-block;
           height: 36px;
-          width:95%;
-          background: red;
+          width: 95%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
       .box_three {
