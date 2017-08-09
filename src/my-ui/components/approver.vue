@@ -17,18 +17,18 @@
         </el-col>
       </li>
       <li class="selector1">
-        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <el-button type="text" @click="dialogVisible1 = true">选择</el-button>
         <!--点击选择按钮,弹出 dialog-->
         <el-dialog
           title="选择审批人"
-          :visible.sync="dialogVisible"
+          :visible.sync="dialogVisible1"
           :modal-append-to-body="false"
           size="large"
           :before-close="handleClose" @close="mask1">
           <v-countersign></v-countersign>
           <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            <el-button @click="dialogVisible1 = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible1 = false">确 定</el-button>
           </span>
         </el-dialog>
       </li>
@@ -40,7 +40,7 @@
         <el-col>
           <el-autocomplete
             class="inline-input"
-            v-model="state1"
+            v-model="state2"
             :fetch-suggestions="querySearch"
             placeholder="请输入内容"
             @select="handleSelect"
@@ -48,7 +48,7 @@
         </el-col>
       </li>
       <li class="selector1">
-        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <el-button type="text" @click="dialogVisible1 = true">选择</el-button>
       </li>
     </ul>
     <ul>
@@ -58,7 +58,7 @@
         <el-col>
           <el-autocomplete
             class="inline-input"
-            v-model="state1"
+            v-model="state3"
             :fetch-suggestions="querySearch"
             placeholder="请输入内容"
             @select="handleSelect"
@@ -66,7 +66,7 @@
         </el-col>
       </li>
       <li class="selector1">
-        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <el-button type="text" @click="dialogVisible1 = true">选择</el-button>
       </li>
     </ul>
     <ul>
@@ -76,7 +76,7 @@
         <el-col>
           <el-autocomplete
             class="inline-input"
-            v-model="state1"
+            v-model="state4"
             :fetch-suggestions="querySearch"
             placeholder="请输入内容"
             @select="handleSelect"
@@ -84,7 +84,7 @@
         </el-col>
       </li>
       <li class="selector1">
-        <el-button type="text" @click="dialogVisible = true">选择</el-button>
+        <el-button type="text" @click="dialogVisible1 = true">选择</el-button>
       </li>
     </ul>
   </div>
@@ -95,7 +95,10 @@
     data(){
       return {
         state1: '',
-        dialogVisible: false,
+        state2: '',
+        state3: '',
+        state4: '',
+        dialogVisible1: false,
         mask:false
       }
     },
