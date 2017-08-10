@@ -280,6 +280,9 @@ td[data-v-5f302b49]{
   height: 25px;
   width: 100%;
 }
+.copy-send .approver .el-input__inner{
+  width:70%;
+}
 .approver .el-autocomplete{
   width: 100%;
 }

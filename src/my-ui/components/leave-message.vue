@@ -99,6 +99,7 @@
                     }
                 )
                 .then((res)=>{
+                  console.log("发表留言成功")
                 })
                 .catch((error)=>{
                 })

@@ -190,7 +190,6 @@
         return this.$store.state.approvalRecord.time
       },
       resource(){
-
 //        if(this.desc==1){return}
 //        // 将点击填写审批意见的新数据,赋值给 activity
 //        this.activity.push({

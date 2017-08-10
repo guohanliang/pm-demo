@@ -10,8 +10,10 @@
             <el-input type="textarea" v-model="form.desc"></el-input>
 
           <el-form-item class="submit">
-            <el-button  @click="onSubmit" :disabled="authority.approve">填写审批意见</el-button>
-            <el-button  @click="dialogVisible = true" :disabled="authority.modify">调整流程</el-button>
+            <el-button  @click="onSubmit" :disabled="authority.approve">填写审批意见
+            </el-button>
+            <el-button  @click="dialogVisible = true"
+                        :disabled="authority.modify">调整流程</el-button>
             <el-dialog title=""
                        class="msg-emerge" :visible.sync="dialogVisible"
                        size="large" :before-close="handleClose">
@@ -23,8 +25,22 @@
                   取 消</el-button>
               </span>
             </el-dialog>
-            <el-button @click="Carbon_Copy" >抄送</el-button>
-            <el-button @click="cancellation" :disabled="authority.terminate">作废</el-button>
+            <el-button  @click="dialogVisible1 = true">抄送
+            </el-button>
+            <el-dialog
+              title="抄送"
+              :visible.sync="dialogVisible1"
+              size="tiny"
+              :before-close="handleClose" class="copy-send">
+              <v-approver></v-approver>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible1 = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible1 = false,Carbon_Copy()">确 定
+                </el-button>
+              </span>
+            </el-dialog>
+            <el-button @click="cancellation" :disabled="authority.terminate">作废
+            </el-button>
             <el-button @click="quit">取消</el-button>
           </el-form-item>
         </el-form>
@@ -33,13 +49,14 @@
 
 <script>
   import axios from "axios"
-  import vApprover from "./approver.vue"
+  import vApprover from "../approver/Approver.vue"
   import {mapState} from "vuex"
   import {mapMutations} from "vuex"
   export default {
     data() {
       return {
         dialogVisible: false,
+        dialogVisible1:false,
         taskId:"",
         activityCode:"",
         form: {
@@ -129,15 +146,16 @@
           axios.get('http://localhost/api/v1/system/bpm/copyto/add',{
             params:{
               dataCode:localStorage.getItem("input1"),
-              appprover:""
+              approverAccount:"1"
             }
           })
           .then((res)=>{
+            this.$store.commit("RESOURCE",Math.random());
+            console.log("抄送成功");
           })
           .catch((error)=>{
             console.log(error)
           })
-
 
         },
 
@@ -188,4 +206,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  .copy-send .choice2{
+    display: none;
+  }
 </style>
