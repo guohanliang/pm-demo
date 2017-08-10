@@ -1,8 +1,55 @@
 <template>
   <div class="approver">
 
-    <div class="box">
+    <h4>审批人</h4>
+    <span></span>
+    <ul>
+      <li>
+        <button class="license">本部门审批</button>
+      </li>
+      <li><span class="line"></span></li>
+      <li class="input1">
+        <el-col>
+          <el-select
+            v-model="value9"
+            class="inline-input"
+            style="width: 900px"
+            multiple
+            filterable
+            remote
+            placeholder="请输入关键词"
+            :remote-method="remoteMethod"
+            :loading="loading">
+            <el-option
+              v-for="item in options4"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-col>
+      </li>
+      <li class="choice2">
+      <li class="choice2">
+        <button class="choice" @click="dialogVisible = true">选择</button>
+        <el-dialog
+          title="选择审批人"
+          :visible.sync="dialogVisible"
+          size="tiny"
+          :before-close="handleClose">
+          <approverperson></approverperson>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+      </li>
+    </ul>
+    <div v-for="(item1,index) in mydata">
 
+
+    <div class="box">
+      
       <ul>
         <li>
           <button class="license">{{name}}</button>
@@ -251,7 +298,7 @@
     margin: 10px;
     height: 80px;
     border: 1px solid black;
-    width: 90%;
+    width: 96%;
     h4 {
       color: red;
       margin-left: 10px;
