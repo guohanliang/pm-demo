@@ -1,80 +1,87 @@
 <template>
   <div class="approver">
-    <h4>审批人</h4>
-    <span></span>
-    <ul>
-      <li>
-        <button class="license">本部门审批</button>
-      </li>
-      <li><span class="line"></span></li>
-      <li class="input1">
-        <el-col>
-          <el-select
-            v-model="value9"
-            class="inline-input"
-            style="width: 900px"
-            multiple
-            filterable
-            remote
-            placeholder="请输入关键词"
-            :remote-method="remoteMethod"
-            :loading="loading">
-            <el-option
-              v-for="item in options4"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-col>
-      </li>
-      <li>
-        <button class="choice" @click="dialogVisible = true">选择</button>
-        <el-dialog
-          title="选择审批人"
-          :visible.sync="dialogVisible"
-          size="tiny"
-          :before-close="handleClose">
-          <approverperson></approverperson>
-          <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-          </span>
-        </el-dialog>
-      </li>
-    </ul>
-    <div v-for="(item1,index) in mydata">
+
+    <!--<ul>-->
+    <!--<li>-->
+    <!--<button class="license">本部门审批</button>-->
+    <!--</li>-->
+    <!--<li><span class="line"></span></li>-->
+    <!--<li class="input1">-->
+    <!--<el-col>-->
+    <!--<el-select-->
+    <!--v-model="value9"-->
+    <!--class="inline-input"-->
+    <!--style="width: 90%"-->
+    <!--multiple-->
+    <!--filterable-->
+    <!--remote-->
+    <!--placeholder="请输入关键词"-->
+    <!--:remote-method="remoteMethod"-->
+    <!--:loading="loading">-->
+    <!--<el-option-->
+    <!--v-for="item in options4"-->
+    <!--:key="item.value"-->
+    <!--:label="item.label"-->
+    <!--:value="item.value">-->
+    <!--</el-option>-->
+    <!--</el-select>-->
+    <!--</el-col>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<button class="choice" @click="dialogVisible = true">选择</button>-->
+    <!--<el-dialog-->
+    <!--title="选择审批人"-->
+    <!--:visible.sync="dialogVisible"-->
+    <!--size="tiny"-->
+    <!--:before-close="handleClose">-->
+    <!--<approverperson></approverperson>-->
+    <!--<span slot="footer" class="dialog-footer">-->
+    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
+    <!--<el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
+    <!--</span>-->
+    <!--</el-dialog>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <div class="box">
+
       <ul>
         <li>
-          <button class="license">{{ item1.activityName }}</button>
+          <button class="license">{{name}}</button>
         </li>
         <li><span class="line"></span></li>
         <li class="input1">
           <el-col>
             <el-select
-              v-model="value9"
-              class="inline-input"
-              style="width: 900px"
+
+
+              v-model="value1"
+              class="inline-input "
+              style="width: 90%"
               multiple
               filterable
               remote
               placeholder="请输入关键词"
               :remote-method="remoteMethod"
               :loading="loading">
+
               <el-option
                 v-for="item in options5"
-                :key="item.bizunitName"
-                :label="item.chName"
-                :value="item.bizunitName">
+                :key="item.name"
+                :label="item.name"
+                :value="item.name">
               </el-option>
+
+
             </el-select>
           </el-col>
         </li>
         <li>
-          <button class="choice" @click="dialogVisible = true">选择</button>
+          <button class="choice" @click="change">选择</button>
+          <approverperson v-on:child-say="goto" v-on:clo="goto1" v-show="dialogVisible" :sho = 'dialogVisible'></approverperson>
         </li>
       </ul>
     </div>
+  </div>
 
 
   </div>
@@ -91,7 +98,11 @@
         state1: '',
         dialogVisible: false,
         options4: [],
-        value9: [],
+        value0: [],
+        value1: [],
+        value2: [],
+        value3: [],
+        value4: [],
         value10: [],
         list: [],
         loading: false,
@@ -122,12 +133,38 @@
           value: 'JavaScript',
           label: 'JavaScript'
         }],
-        mydata: [
-
-        ]
+        mydata: []
       }
     },
+    props: [
+      'name'
+    ],
     methods: {
+      change(){
+
+          if(this.dialogVisible == false){
+            this.dialogVisible = true;
+          }
+
+
+      },
+      goto(msg){
+
+        var str = msg;
+        this.value1.push(str);
+        console.log(this.value1);
+        console.log(str);
+        console.log("hhh")
+      },
+      goto1(msg){
+
+        if(msg == 'dd'){
+          this.dialogVisible = false;
+        }
+      },
+      go(index1){
+        console.log(index1)
+      },
       handleClose(done) {
         this.$confirm('确认关闭？')
           .then(_ => {
@@ -136,12 +173,14 @@
           .catch(_ => {
           });
       },
+
       remoteMethod(query) {
-          var that = this;
-        console.log()
+
+        var that = this;
+
         if (query !== '') {
           this.loading = true;
-          ajax.get('http://localhost/api/v1/system/user/userororg/list?searchword='+query+'&pageNo=1&pageSize=10000')
+          ajax.get('http://localhost/api/v1/system/user/userororg/list?searchword=' + query + '&pageNo=1&pageSize=10000')
             .then(function (response) {
               console.log(response);
               that.options5 = response.data.data.userororginfo;
@@ -189,20 +228,87 @@
         console.log(item);
       }
     },
+//    updated: function () {
+////      window.localStorage.setItem("a",'');
+////      window.localStorage.setItem("selected",'');
+//      console.log(this.value1)
+//      for (var i = 0; i < this.value1.length; i++) {
+//        var index = this.value1[i].indexOf('-');
+//
+//        window.localStorage.selected += this.value1[i].substr(0, index) + ';';
+//        window.localStorage.selected.replace("undefined", '');
+//      }
+//
+//    },
+    watch: {
+
+      value1: {
+        //注意：当观察的数据为对象或数组时，curVal和oldVal是相等的，因为这两个形参指向的是同一个数据对象
+        handler(curVal, oldVal){
+            var str = '';
+          for (var i = 0; i < curVal.length; i++) {
+
+            var index = curVal[i].indexOf('-');
+//
+//
+//            window.localStorage.selected.replace("undefined", '');
+            if(index >0){
+              str += curVal[i].substr(0, index)+',';
+            }else{
+              str += curVal[i]+',';
+            }
+
+
+          }
+          window.localStorage[this.name] =str;
+
+        }
+      },
+      deep: true
+//      }
+    },
     mounted() {
-      var that = this;
-      ajax.get('http://localhost/api/v1/system/bpm/defaultapprover/list?procTypeCode=p990&parameter1=1&parameter2&parameter1=3')
-        .then(function (response) {
-          that.mydata = response.data.data;
-          console.log(that.mydata)
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+//      var that = this;
+//      ajax.get('http://localhost/api/v1/system/bpm/defaultapprover/list?procTypeCode=p900&parameter1=1&parameter2=2&parameter1=3')
+//        .then(function (response) {
+//          that.mydata = response.data.data;
+////          for(var i = 0;i<5;i++){
+////              mydata[i].value = 'value'+i;
+////          }
+//          console.log(that.mydata)
+//        })
+//        .catch(function (err) {
+//          console.log(err);
+//        });
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
+      $(".v-modal").click();
       this.restaurants = this.loadAll();
       this.list = this.states.map(item => {
         return {value: item, label: item};
       });
+
+      setTimeout(function () {
+
+//
+//        $('.approver .el-select').eq(index).attr('v-model','value'+index);
+//        $('.div').click(function () {
+//          var index = $(".div").index(this);
+//          alert(index);
+//          $('.approver .el-select').eq(index).attr('id',index);
+//
+//          console.log($('.approver .el-select').eq(index).attr('v-model'));
+//          console.log(this.value0,this.value1,this.value2,this.value3,this.value4)
+//        });
+
+      }, 20)
+
+
     }
   }
 </script>
@@ -210,7 +316,7 @@
   .approver {
     background-color: white;
     margin: 10px;
-    height: 400px;
+    height: 80px;
     border: 1px solid black;
     width: 90%;
     h4 {

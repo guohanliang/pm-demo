@@ -1,8 +1,10 @@
 <template>
-  <div class="hzcx">
+  <div class="hzcx" v-show="sho">
     <el-dialog
+      close-on-click-modal
       title="会签信息表"
-      :visible.sync="dialogVisible3"
+
+      visible
       size="tiny"
 
     >
@@ -104,9 +106,9 @@
         </table>
       </div>
       <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible3 = false">取 消 </el-button>
-                <el-button type="primary" @click="dialogVisible3 = false">确 定</el-button>
-              </span>
+                <el-button @click="clos">取 消 </el-button>
+                <el-button type="primary" @click="clos">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -116,6 +118,8 @@
   export default {
     data: function () {
       return {
+          myshow:true,
+          modalshow:false,
         seleccted_department: "",
         seleccted_person: [],
         seleccted_collections: {},
@@ -132,7 +136,13 @@
         dialogVisible3: true
       }
     },
+    props: [
+      'sho'
+    ],
     methods: {
+        clos(){
+          this.$emit('clo','dd');
+        },
       handleNodeselect1() {
         var selected = this.$refs.tree.getCheckedNodes();
         if (selected.length >= 1) {
@@ -182,6 +192,8 @@
       },
       feedback(){
 
+        this.$emit('child-say',this.tableData1[0].name);
+//          console.log(this.tableData1)
       },
       handleSleect(data) {
         console.log(data);
