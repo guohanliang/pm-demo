@@ -125,7 +125,7 @@
 //          console.log(res.data.data.dataCode);
 //          console.log(res.data.data.date);
           that.input1 = res.data.data.dataCode;                   //编号
-          localStorage.setItem("dataCode", that.input1);                    //把编号存入localStroage
+          localStorage.setItem("input1", that.input1);                    //把编号存入localStroage
 //          console.log(localStorage.getItem("dataCode"))
           that.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + that.input1 + '';  //拼接图片路径
           that.input2 = res.data.data.date;                       //时间
