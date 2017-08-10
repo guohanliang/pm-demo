@@ -311,3 +311,6 @@ td[data-v-5f302b49]{
 .edui-editor-iframeholder{
   width: 600px!important;
 }
+.application .three .el-textarea__inner{
+  margin-left: 0;
+}

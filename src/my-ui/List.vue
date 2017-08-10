@@ -20,8 +20,6 @@
       </div>
       <el-button type="primary" size="mini" @click="select">查询</el-button>
       <el-button type="primary" size="mini" @click="to">发起申请</el-button>
-      <!--<button @click="select">查询</button>-->
-      <!--<button class="btn1" @click="to">发起申请</button>-->
     </header>
     <div class="list">
       <el-row>
@@ -70,7 +68,8 @@
         })
           .then((response)=> {
             console.log(response.data.data.approveinfos);
-            this.tableData = response.data.data.approveinfos
+            this.tableData = response.data.data.approveinfos;
+            this.total = response.data.data.total
           })
           .catch( (err)=> {
             console.log(err)
@@ -111,7 +110,6 @@
           pageSize: this.pageSize
         }
       }).then((res) => {
-        console.log(res);
         this.tableData = res.data.data.approveinfos;
         this.total = res.data.data.total
       })
