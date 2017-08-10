@@ -109,12 +109,10 @@
           localStorage.setItem("businessTitle", this.input);                    //把标题存入localStroage
         },
       biaoqian(n){
-        var arr =[];
-        for(var i = 0 ; i < this.value10.length; i++){
-//            console.log(this.value10[i])
-          arr.push(this.value10[i]);
-//            console.log(arr)
-        }
+        var a = n.join();
+//        console.log(a);
+        localStorage.setItem("biaoqian",a);                                 //把标签内容存入localStroage
+//        console.log(localStorage.getItem("biaoqian"));
       }
     },
     created(){
