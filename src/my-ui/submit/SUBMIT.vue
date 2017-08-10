@@ -42,7 +42,11 @@
                 axios.get('http://localhost/api/v1/system/bpm/approver/save', {    //保存审批人
                   params: {
                     dataCode: localStorage.getItem("input1"),
-                    approverInfo: ''
+                    approverInfo: '事前抄送_'+localStorage.getItem("事前抄送").substr(0,localStorage.getItem("事前抄送").length-1)+';'
+                    +'部门审批_'+localStorage.getItem("部门审批").substr(0,localStorage.getItem("部门审批").length-1)+';'
+                    +'公司签批_'+localStorage.getItem("公司签批").substr(0,localStorage.getItem("公司签批").length-1)+';'
+                    +'承办_'+localStorage.getItem("承办").substr(0,localStorage.getItem("承办").length-1)+';'
+                    +'事后抄送_'+localStorage.getItem("事后抄送").substr(0,localStorage.getItem("事后抄送").length-1)
                   }
                 })
                   .then(function (res) {
@@ -102,7 +106,11 @@
                 axios.get('http://localhost/api/v1/system/bpm/approver/save', {    //保存审批人
                   params: {
                     dataCode: localStorage.getItem("input1"),
-                    approverInfo: ''
+                    approverInfo: '事前抄送_'+localStorage.getItem("事前抄送").substr(0,localStorage.getItem("事前抄送").length-1)+';'
+                    +'部门审批_'+localStorage.getItem("部门审批").substr(0,localStorage.getItem("部门审批").length-1)+';'
+                    +'公司签批_'+localStorage.getItem("公司签批").substr(0,localStorage.getItem("公司签批").length-1)+';'
+                    +'承办_'+localStorage.getItem("承办").substr(0,localStorage.getItem("承办").length-1)+';'
+                    +'事后抄送_'+localStorage.getItem("事后抄送").substr(0,localStorage.getItem("事后抄送").length-1)
                   }
                 })
                   .then(function (res) {

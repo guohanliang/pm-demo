@@ -181,9 +181,9 @@
 <style scoped>
   .hzcx{
     width: calc(100vw - 200px);
-    height:2626px;
-    margin-left:200px;
-    margin-top:100px;
+    /*height:2626px;*/
+    /*margin-left:200px;*/
+    /*margin-top:100px;*/
     background: #F8F8FA;
     overflow: hidden;
   }

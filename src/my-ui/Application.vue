@@ -3,7 +3,7 @@
     <basic-msg></basic-msg>
     <application-msg></application-msg>
     <adjunct></adjunct>
-    <approver></approver>
+    <aggregation-query></aggregation-query>
     <submit-btn></submit-btn>
   </div>
 </template>
@@ -11,11 +11,11 @@
 <script>
     import axios from 'axios';
     import adjunct from './adjunct/Adjunct.vue';
-    import approver from "./approver/Approver.vue"
+    import aggregationQuery from "./aggregation-query.vue"
     export default {
       components:{
           adjunct,
-          approver
+        aggregationQuery
       }
     }
 </script>
