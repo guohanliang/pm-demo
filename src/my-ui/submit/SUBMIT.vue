@@ -18,7 +18,7 @@
         axios.get('http://localhost/api/v1/demo/workflow/approve/save', {    //保存申请信息
           params: {
             sysId: '',
-            dataCode: localStorage.getItem("dataCode"),
+            dataCode: localStorage.getItem("input1"),
             prodId: localStorage.getItem("prodId"),
             prodName: localStorage.getItem("prodName"),
             prodShortName: localStorage.getItem("prodShortName"),
@@ -34,7 +34,7 @@
             localStorage.setItem("sysId", res.data.data.sysId);                    //把主键存入localStroage
             axios.get('http://localhost/api/v1/system/bpm/workflow/apply', {    //提交流程
               params: {
-                dataCode: localStorage.getItem("dataCode"),
+                dataCode: localStorage.getItem("input1"),
                 businessCode: localStorage.getItem("sysId"),
                 businessTitle: localStorage.getItem("businessTitle"),
               }
@@ -57,7 +57,7 @@
         axios.get('http://localhost/api/v1/demo/workflow/approve/save', {    //保存申请信息
           params: {
             sysId: '',
-            dataCode: localStorage.getItem("dataCode"),
+            dataCode: localStorage.getItem("input1"),
             prodId: localStorage.getItem("prodId"),
             prodName: localStorage.getItem("prodName"),
             prodShortName: localStorage.getItem("prodShortName"),
@@ -73,7 +73,7 @@
             localStorage.setItem("sysId", res.data.data.sysId);                    //把主键存入localStroage
             axios.get('http://localhost/api/v1/system/bpm/workflow/draft/save', {    //保存草稿
               params: {
-                dataCode: localStorage.getItem("dataCode"),
+                dataCode: localStorage.getItem("input1"),
                 businessCode: localStorage.getItem("sysId"),
                 businessTitle: localStorage.getItem("businessTitle"),
               }
