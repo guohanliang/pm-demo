@@ -63,12 +63,13 @@
 
 
     <div class="one">
-      <span class="label">
+      <span class="label" >
         标签
       </span>
       <div class="label-con">
         <el-select
           v-model="value10"
+          @change="tag($event)"
           multiple
           filterable
           allow-create
@@ -92,6 +93,7 @@
   export default {
     data() {
       return {
+        tag1:"",
         dataCode:"",
         src: '',
         data:{
@@ -110,6 +112,10 @@
       }
     },
     methods: {
+      tag(m){
+        this.tag1=m.join();
+        localStorage.setItem("tag",this.tag1);
+      }
     },
     created(){
       //获取从列表页存储的 dataCode

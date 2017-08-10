@@ -102,19 +102,14 @@
           this.$store.commit("DESC",this.form.desc);
           this.$store.commit("TIME",time);
           var _this=this;
-          axios.post("http://localhost/api/v1/system/bpm/task/approve",
-            {data:{
+          axios.get("http://localhost/api/v1/system/bpm/task/approve",
+            {params:{
               dataCode:localStorage.getItem("input1"),
               activityCode:_this.activityCode,
               approverResult:_this.form.resource,
               approverContent:_this.form.desc,
               taskId:_this.taskId
-            }},
-            {
-              transformRequest:function(data){
-                return data
-              }
-            }
+            }}
           )
           .then((res)=>{
           })
@@ -140,6 +135,20 @@
               console.log(error)
           })
         },
+        post_tag(){//将标签信息发送给后台
+          axios.get("http://localhost/api/v1/system/label/save",
+            {params:{
+              businessId:localStorage.getItem("input1"),
+              labelName:localStorage.getItem("tag")
+            }}
+          )
+            .then((res)=>{
+              console.log("标签信息发送给后台")
+            })
+            .catch((error)=>{
+              console.log(error)
+            })
+        },
 
         //   点击抄送
         Carbon_Copy(){
@@ -151,6 +160,7 @@
           })
           .then((res)=>{
             this.$store.commit("RESOURCE",Math.random());
+            this.post_tag();
             console.log("抄送成功");
           })
           .catch((error)=>{
