@@ -28,7 +28,7 @@
           </el-select>
         </el-col>
       </li>
-      <li>
+      <li class="choice2">
         <button class="choice" @click="dialogVisible = true">选择</button>
         <el-dialog
           title="选择审批人"
@@ -194,7 +194,6 @@
       ajax.get('http://localhost/api/v1/system/bpm/defaultapprover/list?procTypeCode=p990&parameter1=1&parameter2&parameter1=3')
         .then(function (response) {
           that.mydata = response.data.data;
-          console.log(that.mydata)
         })
         .catch(function (err) {
           console.log(err);
