@@ -68,13 +68,14 @@
       </span>
       <div class="label-con">
         <el-select
+          @change="biaoqian($event)"
           v-model="value10"
           multiple
           filterable
           allow-create
-          placeholder="请选择文章标签">
+          placeholder="请选择标签">
           <el-option
-            v-for="item in options5"
+            v-for="(item,index) in options5"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -106,22 +107,31 @@
     methods: {
         lose(){     //标题失去焦点
           localStorage.setItem("businessTitle", this.input);                    //把标题存入localStroage
+        },
+      biaoqian(n){
+        var arr =[];
+        for(var i = 0 ; i < this.value10.length; i++){
+//            console.log(this.value10[i])
+          arr.push(this.value10[i]);
+//            console.log(arr)
         }
+      }
     },
     created(){
       var that = this;
 
       axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  //生成流程编号和时间
         params: {
-          procTypeCode: 'P990',
+          procTypeCode: 'P900',
         }
       })
         .then(function (res) {
 //          console.log(res.data.data.dataCode);
 //          console.log(res.data.data.date);
           that.input1 = res.data.data.dataCode;                   //编号
-          localStorage.setItem("dataCode", that.input1);                    //把编号存入localStroage
+          localStorage.setItem("input1", that.input1);                    //把编号存入localStroage
 //          console.log(localStorage.getItem("dataCode"))
+//          console.log(localStorage.getItem("input1"))
           that.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + that.input1 + '';  //拼接图片路径
           that.input2 = res.data.data.date;                       //时间
         })

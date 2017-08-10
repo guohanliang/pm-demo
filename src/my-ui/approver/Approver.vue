@@ -101,9 +101,9 @@
     methods: {
       change(){
 
-          if(this.dialogVisible == false){
-            this.dialogVisible = true;
-          }
+        if(this.dialogVisible == false){
+          this.dialogVisible = true;
+        }
 
 
       },
@@ -204,7 +204,7 @@
       value1: {
         //注意：当观察的数据为对象或数组时，curVal和oldVal是相等的，因为这两个形参指向的是同一个数据对象
         handler(curVal, oldVal){
-            var str = '';
+          var str = '';
           for (var i = 0; i < curVal.length; i++) {
 
             var index = curVal[i].indexOf('-');
