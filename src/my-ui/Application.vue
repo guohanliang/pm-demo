@@ -11,7 +11,7 @@
 <script>
     import axios from 'axios';
     import adjunct from './adjunct/Adjunct.vue';
-    import aggregationQuery from "./aggregation-query.vue"
+    import aggregationQuery from "./Aggregation-query.vue"
     export default {
       components:{
           adjunct,
