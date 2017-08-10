@@ -1,47 +1,6 @@
 <template>
   <div class="approver">
 
-    <!--<ul>-->
-    <!--<li>-->
-    <!--<button class="license">本部门审批</button>-->
-    <!--</li>-->
-    <!--<li><span class="line"></span></li>-->
-    <!--<li class="input1">-->
-    <!--<el-col>-->
-    <!--<el-select-->
-    <!--v-model="value9"-->
-    <!--class="inline-input"-->
-    <!--style="width: 90%"-->
-    <!--multiple-->
-    <!--filterable-->
-    <!--remote-->
-    <!--placeholder="请输入关键词"-->
-    <!--:remote-method="remoteMethod"-->
-    <!--:loading="loading">-->
-    <!--<el-option-->
-    <!--v-for="item in options4"-->
-    <!--:key="item.value"-->
-    <!--:label="item.label"-->
-    <!--:value="item.value">-->
-    <!--</el-option>-->
-    <!--</el-select>-->
-    <!--</el-col>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<button class="choice" @click="dialogVisible = true">选择</button>-->
-    <!--<el-dialog-->
-    <!--title="选择审批人"-->
-    <!--:visible.sync="dialogVisible"-->
-    <!--size="tiny"-->
-    <!--:before-close="handleClose">-->
-    <!--<approverperson></approverperson>-->
-    <!--<span slot="footer" class="dialog-footer">-->
-    <!--<el-button @click="dialogVisible = false">取 消</el-button>-->
-    <!--<el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
-    <!--</span>-->
-    <!--</el-dialog>-->
-    <!--</li>-->
-    <!--</ul>-->
     <div class="box">
 
       <ul>
@@ -268,18 +227,7 @@
 //      }
     },
     mounted() {
-//      var that = this;
-//      ajax.get('http://localhost/api/v1/system/bpm/defaultapprover/list?procTypeCode=p900&parameter1=1&parameter2=2&parameter1=3')
-//        .then(function (response) {
-//          that.mydata = response.data.data;
-////          for(var i = 0;i<5;i++){
-////              mydata[i].value = 'value'+i;
-////          }
-//          console.log(that.mydata)
-//        })
-//        .catch(function (err) {
-//          console.log(err);
-//        });
+
       $(".v-modal").click();
       $(".v-modal").click();
       $(".v-modal").click();
@@ -292,21 +240,6 @@
       this.list = this.states.map(item => {
         return {value: item, label: item};
       });
-
-      setTimeout(function () {
-
-//
-//        $('.approver .el-select').eq(index).attr('v-model','value'+index);
-//        $('.div').click(function () {
-//          var index = $(".div").index(this);
-//          alert(index);
-//          $('.approver .el-select').eq(index).attr('id',index);
-//
-//          console.log($('.approver .el-select').eq(index).attr('v-model'));
-//          console.log(this.value0,this.value1,this.value2,this.value3,this.value4)
-//        });
-
-      }, 20)
 
 
     }
