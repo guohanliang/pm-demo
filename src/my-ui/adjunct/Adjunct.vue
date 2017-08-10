@@ -41,24 +41,27 @@
               min-width="100">
             </el-table-column>
             <el-table-column
-              v-if="flag"
               label="操作"
               min-width="100">
               <template scope="scope">
-                <el-upload
-                  class="upload-demo"
-                  name="fileContent"
-                  action="http://localhost/api/v1/system/attachment/update"
-                  :on-success="onUpdata"
-                  :data="two"
-                  :file-list="tableData1">
-                  <el-button
-                    type="text"
-                    size="small"
-                    @click="handleEdit(scope.$index, scope.row)">更新</el-button>
-                </el-upload>
-                <el-button type="text" size="small" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                <el-button type="text" size="small" @click="preview(scope.$index, scope.row)">点击预览</el-button>
+                <div v-if='true'>
+                  <el-upload
+                    class="upload-demo"
+                    name="fileContent"
+                    action="http://localhost/api/v1/system/attachment/update"
+                    :on-success="onUpdata"
+                    :data="two"
+                    :file-list="tableData1">
+                    <el-button
+                      type="text"
+                      size="small"
+                      @click="handleEdit(scope.$index, scope.row)"
+                      :disabled="tableData1[scope.$index].sysCreateName !== name ">更新
+                    </el-button>
+                  </el-upload>
+                  <el-button type="text" size="small" @click="handleDelete(scope.$index, scope.row)" :disabled="tableData1[scope.$index].sysCreateName !== name">删除</el-button>
+                  <el-button type="text" size="small" @click="preview(scope.$index, scope.row)" >点击预览</el-button>
+                </div>
               </template>
             </el-table-column>
           </el-table>
@@ -73,14 +76,16 @@
   export default {
     data() {
       return {
+        name:'',
         one:{
-            businessId:localStorage.getItem('input1')||localStorage.getItem('dataCode')
+          businessId:localStorage.getItem('input1')
         },
         two:{
-          businessId:localStorage.getItem('input1')||localStorage.getItem('dataCode'),
+          businessId:localStorage.getItem('input1'),
           sysId:''
         },
         flag: true,
+        flag1:true,
         tableData1: []
       };
     },
@@ -122,19 +127,16 @@
         location.href = this.tableData1[index].filePreviewUrl
       }
     },
-    created(){
+    mounted(){
       axios.get('http://localhost/api/v1/system/user/loginuser/info')
       .then((res) => {
-        var oneName = res.data.data.chName
+        this.name = res.data.data.chName;
         axios.get("http://localhost/api/v1/system/attachment/query",{
           params:{
               businessId:localStorage.getItem('input1')
           }
         }).then((res) => {
           this.tableData1 = res.data.data;
-          if (oneName !== this.tableData1[0].sysCreateName) {
-            this.flag = false
-          }
         })
       })
       .catch((err)=>{
