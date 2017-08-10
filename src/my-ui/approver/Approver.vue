@@ -29,6 +29,7 @@
         </el-col>
       </li>
       <li class="choice2">
+      <li class="choice2">
         <button class="choice" @click="dialogVisible = true">选择</button>
         <el-dialog
           title="选择审批人"
@@ -211,7 +212,7 @@
     margin: 10px;
     height: 400px;
     border: 1px solid black;
-    width: 90%;
+    width: 96%;
     h4 {
       color: red;
       margin-left: 10px;
