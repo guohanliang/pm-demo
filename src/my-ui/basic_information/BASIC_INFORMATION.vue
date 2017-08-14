@@ -118,7 +118,7 @@
     created(){
       var that = this;
 
-      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {  //生成流程编号和时间
+      axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/createdatacode', {  //生成流程编号和时间
         params: {
           procTypeCode: 'P900',
         }
@@ -130,14 +130,14 @@
           localStorage.setItem("input1", that.input1);                    //把编号存入localStroage
 //          console.log(localStorage.getItem("dataCode"))
 //          console.log(localStorage.getItem("input1"))
-          that.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + that.input1 + '';  //拼接图片路径
+          that.src = 'http://localhost/api/v1/system/system/bpm/bpmcontroller/createbarcode?strBarCode=' + that.input1 + '';  //拼接图片路径
           that.input2 = res.data.data.date;                       //时间
         })
         .catch(function (error) {
           console.log(error);
         });
 
-      axios.get('http://localhost/api/v1/system/user/loginuser/info')//查询当前登录用户
+      axios.get('http://localhost/api/v1/system/user/usercontroller/query-loginuser')//查询当前登录用户
         .then(function (res) {
 //            console.log(res)
 //          console.log(res.data.data);
@@ -149,7 +149,7 @@
         });
 
 
-      axios.get('http://localhost/api/v1/system/label/query', {           //查询标签信息
+      axios.get('http://localhost/api/v1/system/label/labelcontroller/query-label', {           //查询标签信息
         params: {
           searchword: '',
         }

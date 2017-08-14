@@ -14,7 +14,7 @@
     },
     methods: {
       aaa(){
-        axios.get('http://localhost/api/v1/system/label/save', {    //保存标签信息
+        axios.get('http://localhost/api/v1/system/label/labelcontroller/save-label', {    //保存标签信息
           params: {
             dataCode: localStorage.getItem("input1"),
             labelName: localStorage.getItem("biaoqian")
@@ -39,14 +39,14 @@
 //            console.log(res);
 //            console.log(1)
                 localStorage.setItem("sysId", res.data.data.sysId);                    //把主键存入localStroage
-                axios.get('http://localhost/api/v1/system/bpm/approver/save', {    //保存审批人
+                axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/saveapprover', {    //保存审批人
                   params: {
                     dataCode: localStorage.getItem("input1"),
                     approverInfo: '事前抄送_'+localStorage.getItem("事前抄送").substr(0,localStorage.getItem("事前抄送").length-1)+';' +'部门审批_'+localStorage.getItem("部门审批").substr(0,localStorage.getItem("部门审批").length-1)+';' +'公司签批_'+localStorage.getItem("公司签批").substr(0,localStorage.getItem("公司签批").length-1)+';' +'承办_'+localStorage.getItem("承办").substr(0,localStorage.getItem("承办").length-1)+';' +'事后抄送_'+localStorage.getItem("事后抄送").substr(0,localStorage.getItem("事后抄送").length-1)
                   }
                 })
                   .then(function (res) {
-                    axios.get('http://localhost/api/v1/system/bpm/workflow/apply', {    //提交流程
+                    axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/applyworkflow', {    //提交流程
                       params: {
                         dataCode: localStorage.getItem("input1"),
                         businessCode: localStorage.getItem("sysId"),
@@ -74,7 +74,7 @@
       },
 
       bbb(){
-        axios.get('http://localhost/api/v1/system/label/save', {    //保存标签信息
+        axios.get('http://localhost/api/v1/system/label/labelcontroller/save-label', {    //保存标签信息
           params: {
             dataCode: localStorage.getItem("input1"),
             labelName: localStorage.getItem("biaoqian")
@@ -99,14 +99,14 @@
 //            console.log(res);
 //            console.log(1)
                 localStorage.setItem("sysId", res.data.data.sysId);                    //把主键存入localStroage
-                axios.get('http://localhost/api/v1/system/bpm/approver/save', {    //保存审批人
+                axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/saveapprover', {    //保存审批人
                   params: {
                     dataCode: localStorage.getItem("input1"),
                     approverInfo: '事前抄送_'+localStorage.getItem("事前抄送").substr(0,localStorage.getItem("事前抄送").length-1)+';' +'部门审批_'+localStorage.getItem("部门审批").substr(0,localStorage.getItem("部门审批").length-1)+';' +'公司签批_'+localStorage.getItem("公司签批").substr(0,localStorage.getItem("公司签批").length-1)+';' +'承办_'+localStorage.getItem("承办").substr(0,localStorage.getItem("承办").length-1)+';' +'事后抄送_'+localStorage.getItem("事后抄送").substr(0,localStorage.getItem("事后抄送").length-1)
                   }
                 })
                   .then(function (res) {
-                    axios.get('http://localhost/api/v1/system/bpm/workflow/draft/save', {    //保存草稿
+                    axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/savedraft', {    //保存草稿
                       params: {
                         dataCode: localStorage.getItem("input1"),
                         businessCode: localStorage.getItem("sysId"),
