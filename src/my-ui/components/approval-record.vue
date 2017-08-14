@@ -138,7 +138,7 @@
       //  /system/bpm/sms/send  点击发送,短信发送催办内容给后台
       sending(){
         var _this=this;
-        axios.get("http://localhost/api/v1/system/bpm/sms/send",
+        axios.get("http://localhost/api/v1/system/bpm/bpmcontroller/sendsms",
           {params:{
             dataCode:localStorage.getItem("input1"),
             activityCode:this.activity.activityCode,
@@ -168,7 +168,7 @@
         })
 
         //请求后台数据 /system/user/user/query
-        axios.get("http://localhost/api/v1/system/user/user/query",
+        axios.get("http://localhost/api/v1/system/user/usercontroller/query-user",
           {
             params:{account:approverAccount}
           })
@@ -230,7 +230,7 @@
 
         var _this=this;
         //  审批页查询审批留言接口 /system/bpm/comment/query
-        axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+        axios.get("http://10.0.192.40:8081/system/bpm/bpmcontroller/querycomment",
           {params:{
             dataCode:localStorage.getItem("dataCode1")
           }}
@@ -256,7 +256,7 @@
 
         var _this=this;
       //  审批页查询审批留言接口 /system/bpm/comment/query
-       axios.get("http://10.0.192.40:8081/system/bpm/approveinfo/list",
+       axios.get("http://10.0.192.40:8081/system/bpm/bpmcontroller/querycomment",
          {params:{
              dataCode:localStorage.getItem("input1")
          }}

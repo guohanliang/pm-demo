@@ -92,7 +92,7 @@
           this.$store.commit("DESC",this.form.desc);
           this.$store.commit("TIME",time);
           var _this=this;
-          axios.get("http://localhost/api/v1/system/bpm/task/approve",
+          axios.get("http://localhost/api/v1/system/bpm/bpmcontroller/approveworkflow",
             {params:{
               dataCode:localStorage.getItem("input1"),
               activityCode:_this.activityCode,
@@ -111,7 +111,7 @@
             .then(_ => {
               done();
               //确定之后,向后台发送人
-              axios.get("http://localhost/api/v1/system/bpm/approver/save",
+              axios.get("http://localhost/api/v1/system/bpm/bpmcontroller/saveapprover",
                 {params:{
                   dataCode:localStorage.getItem("input1"),
                   approverInfo: '事前抄送_'+localStorage.getItem("事前抄送").substr(0,localStorage.getItem("事前抄送").length-1)+';' +'部门审批_'+localStorage.getItem("部门审批").substr(0,localStorage.getItem("部门审批").length-1)+';' +'公司签批_'+localStorage.getItem("公司签批").substr(0,localStorage.getItem("公司签批").length-1)+';' +'承办_'+localStorage.getItem("承办").substr(0,localStorage.getItem("承办").length-1)+';' +'事后抄送_'+localStorage.getItem("事后抄送").substr(0,localStorage.getItem("事后抄送").length-1)
