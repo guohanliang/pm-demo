@@ -123,7 +123,7 @@
 
       var _this=this;
       // /system/bpm/workflow/query/查询基础信息 api
-      axios.get('http://localhost/api/v1/system/bpm/workflow/query',
+      axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/queryworkflowbasicsInfo',
         {
           params:{dataCode:_this.dataCode}
         })
@@ -139,7 +139,7 @@
         })
 
         //生成流程编号和时间
-      axios.get('http://localhost/api/v1/system/bpm/datacode/add', {
+      axios.get('http://localhost/api/v1/system/bpm/bpmcontroller/createdatacode', {
         params: {
           procTypeCode: 'P990',
         }
@@ -151,7 +151,7 @@
           //编号
           localStorage.setItem("dataCode", _this.input1);                 //把编号存入localStroage
 
-          _this.src = 'http://localhost/api/v1/system/bpm/barcode/create?strBarCode=' + _this.input1 + '';  //拼接图片路径
+          _this.src = 'http://localhost/api/v1/system/bpm/bpmcontroller/createbarcode=' + _this.input1 + '';  //拼接图片路径
           _this.input2 = res.data.data.date;          //时间
         })
         .catch(function (error) {
@@ -159,7 +159,7 @@
         });
 
       //查询标签信息
-      axios.get('http://localhost/api/v1/system/label/query', {
+      axios.get('http://localhost/api/v1/system/label/labelcontroller/query-label', {
         params: {
           searchword: '',
         }

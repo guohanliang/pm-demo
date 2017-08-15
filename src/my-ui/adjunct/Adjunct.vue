@@ -7,7 +7,7 @@
           <el-upload
             class="upload-demo"
             name="fileContent"
-            action="http://localhost/api/v1/system/attachment/add"
+            action="http://localhost/api/v1/system/attachment/attachmentcontroller/add-attachment"
             :data="one"
             :on-success="onSuccess"
             :file-list="tableData1">
@@ -48,7 +48,7 @@
                   <el-upload
                     class="upload-demo"
                     name="fileContent"
-                    action="http://localhost/api/v1/system/attachment/update"
+                    action="http://localhost/api/v1/system/attachment/attachmentcontroller/update-attachment"
                     :on-success="onUpdata"
                     :data="two"
                     :file-list="tableData1">
@@ -97,7 +97,7 @@
       },
       onUpdata(response){
         console.log(response);
-        axios.get("http://localhost/api/v1/system/attachment/query",{
+        axios.get("http://localhost/api/v1/system/attachment/attachmentcontroller/query-attachmentlist",{
           params:{
             businessId:localStorage.getItem('input1')
           }
@@ -113,7 +113,7 @@
       handleDelete(index, row){
         console.log(index);
         console.log(this.tableData1[index].sysId);
-        axios.get('http://localhost/api/v1/system/attachment/delete', {
+        axios.get('http://localhost/api/v1/system/attachment/attachmentcontroller/delete-attachment', {
           params: {
             sysId: this.tableData1[index].sysId
           }
@@ -128,10 +128,10 @@
       }
     },
     mounted(){
-      axios.get('http://localhost/api/v1/system/user/loginuser/info')
+      axios.get('http://localhost/api/v1/system/user/usercontroller/query-loginuser')
       .then((res) => {
         this.name = res.data.data.chName;
-        axios.get("http://localhost/api/v1/system/attachment/query",{
+        axios.get("http://localhost/api/v1/system/attachment/attachmentcontroller/query-attachmentlist",{
           params:{
               businessId:localStorage.getItem('input1')
           }

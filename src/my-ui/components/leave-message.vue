@@ -15,7 +15,6 @@
                 <el-button @click="message_Delivered">发表留言</el-button>
             </dd>
         </dl>
-
     </div>
 </template>
 
@@ -85,7 +84,7 @@
                 })
 
                 //向后台发送请求
-                axios.post("http://10.0.192.40:8081/system/bpm/comment/add",
+                axios.post("http://localhost/api/v1/system/bpm/bpmcontroller/addcomment",
                     {
                         data:{
                             dataCode:localStorage.getItem("dataCode1"),
@@ -119,7 +118,7 @@
           this.$store.commit("CHNAME", "冯光");
           this.$store.commit("ORGCHNAME","技术开发二部");
            // 默认加载审批留言 /system/bpm/comment/query
-           axios.get("http://10.0.192.40:8081/system/bpm/comment/query",{params:{
+           axios.get("http://localhost/api/v1/system/bpm/bpmcontroller/querycomment",{params:{
                 dataCode:localStorage.getItem("dataCode1")
            }})
            .then((res)=>{
@@ -128,7 +127,7 @@
            .catch((error)=>{})
 
            //查询当前登录用户信息 /system/user/loginuser/info
-           axios.get("http://localhost/api/v1/system/user/loginuser/info")
+           axios.get("http://localhost/api/v1/system/user/usercontroller/query-loginuser")
            .then((res)=>{
                 _this.data1=res.data.data;
                 localStorage.setItem("orgChName",_this.data1.orgChName);

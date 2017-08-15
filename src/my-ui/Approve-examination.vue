@@ -46,12 +46,11 @@
         vAdjunct
     },
     created(){
-        axios.get('http://10.0.192.40:8081/system/bpm/workflow/query',{
+        axios.get('http://10.0.192.40:8081/demo/workflow/approve/query',{
             params:{
                 dataCode:localStorage.getItem("input1")
             }
         }).then((res)=>{
-//          console.log(localStorage.getItem("input1"));
         })
     }
 
